@@ -1,0 +1,17 @@
+!themes/material
+*.bak
+*.pem
+*.pyc
+.DS_Store
+.coverage
+bower_components
+build
+dist
+env
+htmlcov
+lib
+node_modules
+scripts/deploy
+scripts/deploy_*
+scripts/run_*
+themes/

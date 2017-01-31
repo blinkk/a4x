@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="{{doc.locale}}">
+<head>
+<meta charset="utf-8">
+<meta content="IE=Edge" http-equiv="X-UA-Compatible">
+<meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0" name="viewport">
+{% if doc.base == 'index' %}
+  <title>{{_(podspec.title)}}</title>
+{% elif doc.parent %}
+  <title>{{_(doc.parent.title)}} – {{_(podspec.title)}}</title>
+{% else %}
+  <title>{{_(doc.title)}} – {{_(podspec.title)}}</title>
+{% endif %}
+<meta property="og:url" content="{{doc.url}}">
+<meta property="og:type" content="website">
+{% set banner_url = doc.banner_url or doc.parent.banner_url or podspec.meta.banner_url %}
+{% if banner_url %}
+<meta property="og:image" content="{{banner_url}}">
+{% endif %}
+<meta property="og:title" content="{{_(podspec.title)}}">
+<meta property="og:site_name" content="{{_(podspec.title)}}">
+{% if doc.description %}
+<meta name="description" content="{{_(doc.description)|safe}}">
+<meta property="og:description" content="{{_(doc.description)|safe}}">
+{% endif %}
+{% if podspec.meta.icon %}
+<link rel="shortcut icon" href="{{g.static(podspec.meta.icon).url.path}}">
+{% endif %}
+<link href='https://fonts.googleapis.com/css?family=Montserrat|Rubik:300,400,500,600,700,400italic' rel='stylesheet'>
+<link href="https://fonts.googleapis.com/css?family=Roboto+Mono:100, 300,400,600,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,600,700|Product+Sans:400&lang=en" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="{{g.static('/dist/css/main.min.css').url.path}}">
+{#
+<script src="{{g.static('/dist/js/main.min.js').url.path}}"></script>
+#}
+{% if podspec.meta.gtm_id %}
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id={{podspec.gtm_id}}"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','{{podspec.meta.gtm_id}}');</script>
+{% endif %}
+{% if podspec.meta.google_analytics_id %}
+<script src="//www.google.com/js/gweb/analytics/autotrack.js"></script>
+<script>
+  var autotrack = new gweb.analytics.AutoTrack({profile: '{{podspec.meta.google_analytics_id}}'});
+</script>
+{% endif %}
+</head>
+<body>
+  {% block body %}
+    {% include "/views/partials/header.html" %}
+
+    <main>
+      {% block main %}
+        {% block content %}
+        {% set partials = doc.parent.partials if doc.parent else doc.partials %}
+        {% if partials %}
+          {% for partial in partials if partial.partial %}
+            {% if partial.doc and doc.locale not in partial.doc.locales %}
+              {% continue %}
+            {% endif %}
+            {% set template = '/views/partials/{}.html'.format(partial.partial) %}
+            {% include template with context %}
+          {% endfor %}
+        {% endif %}
+        {% endblock %}
+
+        {% block modals %}
+        {% set modals = doc.modals or doc.parent.modals %}
+        {% if modals %}
+          {% for partial in modals if partial.partial %}
+            {% if partial.doc and doc.locale not in partial.doc.locales %}
+              {% continue %}
+            {% endif %}
+            {% set template = '/views/partials/{}.html'.format(partial.partial) %}
+            {% include template with context %}
+          {% endfor %}
+        {% endif %}
+        {% endblock %}
+      {% endblock %}
+    </main>
+
+    {% include "/views/partials/footer.html" %}
+  {% endblock %}
+</body>
+</html>

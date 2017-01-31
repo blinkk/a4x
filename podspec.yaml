@@ -1,0 +1,20 @@
+grow_version: ">=0.0.60"
+home: /content/pages/index.yaml
+root: "/"
+title: a4p
+
+meta:
+  google_site_verification:
+
+static_dirs:
+- static_dir: /source/images/
+  serve_at: /assets/static/images/
+- static_dir: /dist/
+  serve_at: "/assets/static/"
+
+preprocessors:
+  # - kind: gulp
+- kind: sass
+  name: sass
+  sass_dir: /source/sass/
+  out_dir: /dist/css/

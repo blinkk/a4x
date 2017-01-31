@@ -1,0 +1,22 @@
+$path: /
+partials:
+- partial: hero-progress
+  title: "I Lift My Lamp Beside the Golden Door"
+  raised: $500
+  goal: $1,000
+- partial: artist
+- partial: cols
+  cols:
+  - num_cols: 7
+    partials:
+    - partial: hero-art
+      image: https://images.bigcartel.com/product_images/192314536/liftmylamp-web.jpg?auto=format&fit=max&h=1000&w=1000
+  - num_cols: 5
+    partials:
+    - partial: specs
+      options:
+        - title: Large (13x19")
+          price: $75
+        - title: Small (8.5x11")
+          price: $35
+    - partial: pay

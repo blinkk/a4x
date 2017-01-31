@@ -1,0 +1,25 @@
+<div class="form specs">
+  <div class="specs__row">
+    <div class="form__field form__field--label">
+      What prints would you like?
+    </div>
+    <div class="form__field">
+      <select class="form__control">
+        {% for option in partial.options %}
+        <option>{{option.title}} - {{option.price}}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+  <div class="specs__row">
+    <div class="form__field form__field--label">
+      How much extra would you like to donate?
+    </div>
+    <div class="form__field">
+      <input type="range">
+    </div>
+    <div class="form__field">
+      Beat the average and we'll...
+    </div>
+  </div>
+</div>

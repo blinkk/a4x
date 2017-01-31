@@ -1,0 +1,28 @@
+$bar-height: 30px
+$bar-bg: #D2EBD8
+$bar-fg: #7DBAB2
+
+.hero-progress
+  margin-bottom: $pad
+  text-align: center
+
+  .hero-progress__title
+    +font-size($font-size-xl, $line-height-xl)
+    margin-bottom: $pad
+    font-weight: $font-weight-light
+
+  .hero-progress__amount
+    margin-bottom: $pad * 2
+    +font-size($font-size-md, $line-height-md)
+
+  .hero-progress__bar
+    background: $bar-bg
+    height: $bar-height
+
+  .hero-progress__bar__fg
+    height: $bar-height
+
+  .hero-progress__bar__bg
+    background: $bar-fg
+    height: $bar-height
+    width: 20%

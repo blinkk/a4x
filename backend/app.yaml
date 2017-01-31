@@ -1,0 +1,63 @@
+api_version: 1
+runtime: python27
+threadsafe: true
+
+inbound_services:
+- mail
+
+libraries:
+- name: lxml
+  version: latest
+- name: endpoints
+  version: latest
+- name: ssl 
+  version: latest
+- name: pycrypto
+  version: latest
+- name: jinja2
+  version: 2.6
+- name: webapp2
+  version: latest
+- name: PIL
+  version: latest
+- name: yaml
+  version: latest
+
+handlers:
+- url: /_ah/admin/interactive.*
+  script: google.appengine.ext.admin.application
+  login: admin
+  secure: always
+- url: /assets
+  static_dir: dist/assets
+- url: /_ah/mail/.+
+  script: app.main.email_app
+  login: admin
+- url: /_api/.*
+  script: app.main.api_app
+  secure: always
+- url: .*
+  script: app.main.app
+  secure: always
+
+skip_files:
+- ^(.*/)?#.*#
+- ^(.*/)?.*\.py[co]
+- ^(.*/)?.*\.so$
+- ^(.*/)?.*\_test.(html|js|py)$
+- ^(.*/)?.*~
+- ^(.*/)?\..*
+- ^(.*/)?app\.yaml
+- ^(.*/)?app\.yml
+- ^(.*/)?index\.yaml
+- ^(.*/)?index\.yml
+- ^(.*/)?run_tests.py
+- ^.*.example
+- bower_components
+- env
+- frontend
+- htmlcov
+- lib/Crypto
+- lib/PIL
+- node_modules
+- testing

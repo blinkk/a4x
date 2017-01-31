@@ -1,0 +1,12 @@
+<div class="ak-grid ak-grid--padded">
+  {% for col in partial.cols %}
+  <div class="ak-grid__item ak-grid__item--{{col.num_cols}}-cols">
+    {% for subpartial in col.partials if subpartial.partial %}
+      {% with partial = subpartial %}
+        {% set template = '/views/partials/{}.html'.format(subpartial.partial) %}
+        {% include template with context %}
+      {% endwith %}
+    {% endfor %}
+  </div>
+  {% endfor %}
+</div>
