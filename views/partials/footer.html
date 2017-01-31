@@ -1,2 +1,8 @@
+{% set footer = g.doc('/content/partials/footer.yaml') %}
 <div class="footer">
+  {% for item in footer.nav if item != doc %}
+  <div class="footer__link">
+    <a href="{{item.url.path}}">{{item.titles('nav')}}</a>
+  </div>
+  {% endfor %}
 </div>

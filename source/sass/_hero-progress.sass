@@ -1,23 +1,21 @@
-$bar-height: 30px
+$bar-height: 15px
 $bar-bg: #D2EBD8
 $bar-fg: #7DBAB2
 
 .hero-progress
-  margin-bottom: $pad
-  text-align: center
-
-  .hero-progress__title
-    +font-size($font-size-xl, $line-height-xl)
-    margin-bottom: $pad
-    font-weight: $font-weight-light
+  margin-bottom: $pad * 2
 
   .hero-progress__amount
-    margin-bottom: $pad * 2
-    +font-size($font-size-md, $line-height-md)
+    margin-bottom: $pad / 2
+
+    span
+      +font-size($font-size-md, $line-height-md)
+      color: $color-black
 
   .hero-progress__bar
     background: $bar-bg
     height: $bar-height
+    margin-bottom: $pad / 2 + 3px
 
   .hero-progress__bar__fg
     height: $bar-height
@@ -26,3 +24,6 @@ $bar-fg: #7DBAB2
     background: $bar-fg
     height: $bar-height
     width: 20%
+
+  .hero-progress__details
+    +font-size($font-size-sm, $line-height-sm)

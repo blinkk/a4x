@@ -1,4 +1,25 @@
 <div class="artist">
-  <div class="artist__bubble"></div>
-  <div class="artist__bubble"></div>
+  <div class="artist__title">
+    {{partial.title}}
+  </div>
+  <div class="artist__cause">
+    <div class="ak-grid ak-grid--valign-middle ak-grid--padded">
+      <div class="ak-grid__item ak-grid__item--4-cols">
+        <div class="artist__bubbles">
+          <div class="artist__bubble"></div>
+          <div class="artist__bubble"></div>
+        </div>
+      </div>
+      <div class="ak-grid__item ak-grid__item--8-cols">
+        <div class="artist__attribution">
+          by
+          <a href="{{partial.artist.url}}">{{partial.artist.title}}</a>
+          for <a href="{{partial.cause.url}}">{{partial.cause.title}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="artist__statement">
+    {{partial.statement}}
+  </div>
 </div>

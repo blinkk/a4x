@@ -1,25 +1,40 @@
 <div class="form specs">
+
   <div class="specs__row">
     <div class="form__field form__field--label">
       What prints would you like?
     </div>
     <div class="form__field">
-      <select class="form__control">
-        {% for option in partial.options %}
-        <option>{{option.title}} - {{option.price}}</option>
-        {% endfor %}
-      </select>
+      {% for option in partial.options %}
+      <div class="form__field__row">
+        <div class="ak-grid ak-grid--padded ak-grid--valign-middle">
+          <div class="ak-grid__item ak-grid__item--8-cols">
+            {{option.title}} - {{option.price}}
+          </div>
+          <div class="ak-grid__item ak-grid__item--4-cols">
+            <input type="number" class="form__control form__control--xs" value="1">
+            <div class="btn btn--xs btn--inverted">Add</div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
     </div>
   </div>
+
   <div class="specs__row">
     <div class="form__field form__field--label">
-      How much extra would you like to donate?
+      Would you like to make an extra donation?
     </div>
-    <div class="form__field">
-      <input type="range">
-    </div>
-    <div class="form__field">
-      Beat the average and we'll...
+    <div class="form__field__row">
+      <div class="ak-grid ak-grid--padded ak-grid--valign-middle">
+        <div class="ak-grid__item ak-grid__item--8-cols">
+          <input type="range">
+        </div>
+        <div class="ak-grid__item ak-grid__item--4-cols">
+          $10.00
+        </div>
+      </div>
     </div>
   </div>
+
 </div>

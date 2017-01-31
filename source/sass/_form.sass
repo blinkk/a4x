@@ -3,7 +3,12 @@
     margin-bottom: $pad * 1.5
 
     &--label
+      color: $color-black
       margin-bottom: $pad / 2
+
+    .form__field__row
+      margin-bottom: $pad / 2
+      font-size: $font-size-sm
 
   select.form__control
     border: 1px solid $color-text
@@ -15,6 +20,15 @@
     padding: $pad / 2
     font-family: $font-family
     font-size: $font-size
+
+  input[type=number].form__control
+    &--xs
+      padding: 5px
+      color: $color-text
+      font-size: $font-size-xs
+      vertical-align: middle
+      width: 25px
+      display: inline-block
 
   input[type=range]
     width: 100%
