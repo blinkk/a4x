@@ -1,1 +1,30 @@
 $title: About
+partials:
+- partial: cols
+  cols:
+  - num_cols: 8
+    partials:
+    - partial: post
+      title: "A4X: A platform for raising money for causes and celebrating artists"
+      body: |
+          Each week, we'll feature a different artist sponsoring a different
+          cause. A4X allows artists to leverage their creativity and raise
+          money and awareness for a cause they find meaningful.
+          <br><br>
+          You can contribute to both the artist and the cause by backing the
+          campaign. If you raise the average contribution, you'll receive a
+          bonus item.
+          <br><br>
+          Some campaigns will allow you to contribute an additional amount, and
+          we'll send a customized hand-written letter on your behalf to
+          representatives, voicing your support for the issue at hand.
+          <br><br>
+          In a future version of A4X, you'll be able to subscribe and receive
+          notifications when new art and a new campaign is available.
+  - num_cols: 4
+    partials:
+    - partial: profiles
+      title: Who's behind this?
+      people:
+      - title: user
+      - title: user
