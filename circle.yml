@@ -1,0 +1,37 @@
+general:
+  artifacts: ~
+
+machine:
+  environment:
+    SUBDOMAIN: $(echo $CIRCLE_BRANCH | sed -e 's/\//-/g' | sed -e 's/^feature-//g')
+  python:
+    version: 2.7.11
+
+test:
+  override:
+  - echo "Skipping inference on test."
+
+dependencies:
+  override:
+  - echo "Skipping inference on install."
+  pre:
+  - echo $CLIENT_SECRET | base64 --decode > $HOME/client-secret.json
+  - make develop
+  - gcloud --quiet components update app
+  - gcloud auth activate-service-account --key-file $HOME/client-secret.json
+  cache_directories:
+  - bower_components
+  - build
+  - lib
+  - ~/.cache/pip/
+
+deployment:
+  deploy:
+    branch: master
+    commands:
+    - make prod_version=$CIRCLE_SHA1 deploy
+  stage:
+    branch: /^((?!master).)*$/
+    commands:
+    - make staging_version=staging stage
+    - make staging_version=$SUBDOMAIN update-github-commit-status

@@ -16,7 +16,6 @@ static_dirs:
   serve_at: "/assets/static/"
 
 preprocessors:
-  # - kind: gulp
 - kind: sass
   name: sass
   sass_dir: /source/sass/
