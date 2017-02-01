@@ -6,19 +6,19 @@ handlers:
 - url: /(.*\..*)
   static_files: build/\1
   upload: build/(.*\..*)
-  expiration: 10m
+  expiration: 1m
 - url: /(.+)/
   static_files: build/\1/index.html
   upload: build/(.+)/index.html
-  expiration: 0
+  expiration: 1m
 - url: /(.+)
   static_files: build/\1/index.html
   upload: build/(.+)/index.html
-  expiration: 0
+  expiration: 1m
 - url: /
   static_files: build/index.html
   upload: build/index.html
-  expiration: 0
+  expiration: 1m
  
 skip_files:
 - (?!build).*
