@@ -2,6 +2,6 @@ var airkit = require('airkit/gulp/compilejs');
 var config = require('../config');
 
 module.exports = function() {
-  return airkit.compilejs(
+  return airkit.watchjs(
       config.JS_SOURCES, config.JS_OUT_DIR, config.JS_OUT_FILE);
 };

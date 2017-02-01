@@ -1,5 +1,7 @@
-require('require-dir')('./gulp/tasks');
-var gulp = require('gulp');
+var gulp = require('./gulp')([
+  'compilejs',
+  'watchjs'
+]);
 
-gulp.task('build', ['sass', 'compilejs']);
-gulp.task('default', ['sass', 'watch']);
+gulp.task('build', ['compilejs']);
+gulp.task('default', ['watchjs']);

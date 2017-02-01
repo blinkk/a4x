@@ -17,6 +17,7 @@ static_dirs:
   fingerprinted: true
 
 preprocessors:
+- kind: gulp
 - kind: sass
   name: sass
   sass_dir: /source/sass/
