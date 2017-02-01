@@ -37,12 +37,15 @@ partials:
           size: 6x9"
           price: $5
           default_amount: 0
+          icon: !g.static /source/images/icon-postcard.png
         - title: Small Print
           size: 8.5x11"
           price: $35
+          icon: !g.static /source/images/icon-small.png
           default_amount: 0
         - title: Large Print
           size: 13x19"
           price: $75
+          icon: !g.static /source/images/icon-large.png
           default_amount: 1
     - partial: pay
