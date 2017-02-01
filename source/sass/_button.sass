@@ -1,14 +1,22 @@
 .btn
   background: $color-secondary
   border: 0
+  color: white
   cursor: pointer
   display: inline-block
-  position: relative
-  outline: none
-  transition: all 0.3s ease-out
   font-size: $font-size-md
+  outline: none
   padding: $pad / 1.5 $pad * 2
-  color: white
+  position: relative
+  text-transform: lowercase
+  transition: all 0.3s ease-out
+
+  &--flush
+    margin-right: 1px
+
+  &--sm
+    padding: 10px 15px
+    font-size: $font-size-sm
 
   &--xs
     padding: 5px 10px
@@ -23,4 +31,10 @@
     padding-right: $pad * 1.5
 
   i
+    margin-top: -2px
+    transition: transform 200ms ease
     vertical-align: middle
+
+  &:hover
+    i
+      transform: translateX(5px)

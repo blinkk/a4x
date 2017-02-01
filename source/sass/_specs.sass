@@ -6,3 +6,31 @@
 
   span.amount
     color: $color-secondary
+
+  .rewards
+    margin-bottom: $pad / 2
+
+    .rewards__cell
+      border: 1px solid $color-secondary
+      padding: $pad / 2
+      text-align: center
+      +font-size($font-size-sm, $line-height-sm)
+
+      .rewards__cell__title
+        color: $color-secondary
+
+      &--disabled
+        border-color: $color-grey
+        background: $color-grey
+        .rewards__cell__title
+          color: inherit
+
+      .rewards__cell__image
+        background: #ddd
+        height: 30px
+        margin: $pad / 2 - 2px auto $pad / 2
+        width: 30px
+        border-radius: 100%
+
+      .rewards__cell__price
+        +font-size($font-size-xs, $line-height-xs)

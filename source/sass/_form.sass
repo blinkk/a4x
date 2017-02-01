@@ -8,7 +8,6 @@
 
       span
         color: $color-black
-        font-weight: $font-weight-semibold
 
     &--label
       color: $color-black
@@ -30,6 +29,26 @@
     font-size: $font-size
 
   input[type=number].form__control
+    &--sm
+      color: $color-text
+      font-weight: 300
+      padding: 10px 15px
+      font-size: $font-size-sm
+      width: 75px
+      vertical-align: middle
+      &:focus
+        outline: none
+
+    &--toggled
+      -webkit-appearance: none
+      background: $color-secondary
+      border: none
+      color: $color-white
+
+      &::-webkit-input-placeholder
+        font-style: italic
+        color: rgba(255, 255, 255, 1)
+
     &--xs
       padding: 5px
       color: $color-text

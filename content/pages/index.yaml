@@ -33,13 +33,16 @@ partials:
       percent: 32
     - partial: specs
       options:
-        - title: Large (13x19")
-          price: $75
-          default_amount: 1
-        - title: Small (8.5x11")
-          price: $35
-          default_amount: 0
         - title: Postcard
+          size: 6x9"
           price: $5
           default_amount: 0
+        - title: Small Print
+          size: 8.5x11"
+          price: $35
+          default_amount: 0
+        - title: Large Print
+          size: 13x19"
+          price: $75
+          default_amount: 1
     - partial: pay
