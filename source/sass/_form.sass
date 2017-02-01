@@ -2,6 +2,10 @@
   .form__field
     margin-bottom: $pad * 1.5
 
+    &--help
+      +font-size($font-size-xs, $line-height-xs)
+    margin-bottom: $pad
+
     &--label
       color: $color-black
       margin-bottom: $pad / 2
@@ -30,5 +34,27 @@
       width: 25px
       display: inline-block
 
+  $slider-height: 15px
+
   input[type=range]
+    height: $slider-height
+    -webkit-appearance: none
     width: 100%
+
+    &::-webkit-slider-thumb
+      cursor: pointer
+      display: block
+      background: $color-secondary
+      width: $slider-height
+      height: $slider-height
+      border-radius: 100%
+      -webkit-appearance: none
+
+    &::-webkit-slider-runnable-track
+      background: $color-grey
+      border-radius: $slider-height
+      height: $slider-height
+      -webkit-appearance: none
+
+    &:focus
+      outline: none

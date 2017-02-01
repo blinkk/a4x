@@ -3,6 +3,17 @@ $bubble-size: 50px
 .artist
   margin: 0 0 $pad * 2
 
+  .artist__week
+    margin-bottom: $pad / 4
+
+  .artist__week__chip
+    // background: $bar-bg
+    color: $color-black
+    display: inline-block
+    // padding: 2px $pad / 4
+    font-weight: $font-weight-semibold
+    +font-size($font-size-xs, $line-height-xs)
+
   .artist__title
     +font-size($font-size-xl, $line-height-xl)
     color: $color-black
@@ -11,6 +22,7 @@ $bubble-size: 50px
 
   .artist__bubble
     background: #333
+    background-size: cover
     border-radius: 100%
     width: $bubble-size
     height: $bubble-size

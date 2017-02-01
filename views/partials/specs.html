@@ -1,6 +1,52 @@
 <div class="form specs">
 
+  {#
   <div class="specs__row">
+    <div class="form__field__row">
+      <i class="material-icons-extended">post_facebook</i>
+      <i class="material-icons-extended">post_twitter</i>
+      <i class="material-icons-extended">link</i>
+    </div>
+  </div>
+  #}
+
+  <div class="specs__row">
+    <div class="form__field form__field--label">
+      How much would you like to contribute?
+    </div>
+    <div class="form__field form__field--help">
+      The average so far is $15. Contribute $16
+      and get a bonus vinyl sticker.
+    </div>
+    <div class="form__field__row">
+      <div class="ak-grid ak-grid--padded ak-grid--valign-middle">
+        <div class="ak-grid__item ak-grid__item--8-cols">
+          <input type="range">
+        </div>
+        <div class="ak-grid__item ak-grid__item--4-cols">
+          <span class="amount">$10.00</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="specs__row">
+    <div class="form__field form__field--label">
+      For your contribution, you will receive:
+    </div>
+    <div class="form__field__row">
+      <ul>
+        <li>Postcard (1)</li>
+        <li>Small print (1)</li>
+        <li>Vinyl sticker (1)</li>
+      </ul>
+    </div>
+    <div class="form__field__row">
+      <a href="#" class="btn btn--inverted btn--xs">Customize</a>
+    </div>
+  </div>
+
+  <div class="specs__row" style="display: none">
     <div class="form__field form__field--label">
       What prints would you like?
     </div>
@@ -12,28 +58,12 @@
             {{option.title}} - {{option.price}}
           </div>
           <div class="ak-grid__item ak-grid__item--4-cols">
-            <input type="number" class="form__control form__control--xs" value="1">
-            <div class="btn btn--xs btn--inverted">Add</div>
+            <input type="number" class="form__control form__control--xs" value="{{option.default_amount}}">
+            {# <div class="btn btn--xs btn--inverted">Add</div> #}
           </div>
         </div>
       </div>
       {% endfor %}
-    </div>
-  </div>
-
-  <div class="specs__row">
-    <div class="form__field form__field--label">
-      Would you like to make an extra donation?
-    </div>
-    <div class="form__field__row">
-      <div class="ak-grid ak-grid--padded ak-grid--valign-middle">
-        <div class="ak-grid__item ak-grid__item--8-cols">
-          <input type="range">
-        </div>
-        <div class="ak-grid__item ak-grid__item--4-cols">
-          $10.00
-        </div>
-      </div>
     </div>
   </div>
 

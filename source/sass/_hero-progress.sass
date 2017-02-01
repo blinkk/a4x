@@ -1,21 +1,21 @@
 $bar-height: 15px
-$bar-bg: #D2EBD8
-$bar-fg: #7DBAB2
 
 .hero-progress
   margin-bottom: $pad * 2
+
+  span
+    color: $color-black
 
   .hero-progress__amount
     margin-bottom: $pad / 2
 
     span
       +font-size($font-size-md, $line-height-md)
-      color: $color-black
 
   .hero-progress__bar
     background: $bar-bg
     height: $bar-height
-    margin-bottom: $pad / 2 + 3px
+    margin-bottom: $pad / 2
 
   .hero-progress__bar__fg
     height: $bar-height
@@ -27,3 +27,6 @@ $bar-fg: #7DBAB2
 
   .hero-progress__details
     +font-size($font-size-sm, $line-height-sm)
+
+    .hero-progress__details__alt
+      float: right

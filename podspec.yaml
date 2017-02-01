@@ -1,10 +1,9 @@
 grow_version: ">=0.0.60"
 home: /content/pages/index.yaml
-root: "/"
 title: a4p
 
 meta:
-  google_site_verification:
+  google_site_verification: ~
 
 static_dirs:
 - static_dir: /source/images/

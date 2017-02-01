@@ -1,7 +1,7 @@
 <div class="hero-progress">
   <div class="hero-progress__amount">
     <span>{{partial.raised}}</span>
-    raised by {{partial.num_backers}} backers
+    contributed by {{partial.num_backers}} people
   </div>
   <div class="hero-progress__bar">
     <div class="hero-progress__bar__bg">
@@ -10,6 +10,9 @@
     </div>
   </div>
   <div class="hero-progress__details">
+    <div class="hero-progress__details__alt">
+      {{partial.remaining}}
+    </div>
     <span>{{partial.percent}}%</span> of {{partial.goal}}
   </div>
 </div>

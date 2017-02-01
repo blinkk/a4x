@@ -1,3 +1,4 @@
+$title: Home
 $path: /
 partials:
 - partial: cols
@@ -11,13 +12,14 @@ partials:
     - partial: artist
       title: "I Lift My Lamp Beside the Golden Door"
       artist:
-        title: Artist Name
+        title: Jennifer Hom
         url: #
-        image: #
+        image: https://pbs.twimg.com/profile_images/2874657266/aa8bc5241748dfbf9162ae3d7129b04e_400x400.png
+        location: San Francisco
       cause:
-        title: Cause Name
+        title: ACLU
         url: #
-        image: #
+        image: http://jolt.law.harvard.edu/digest/wp-content/uploads/2014/11/aclu-logo.gif
       statement: |
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -25,13 +27,17 @@ partials:
       raised: $500
       num_backers: 521
       goal: $1,000
+      remaining: 6 days left
       percent: 32
     - partial: specs
       options:
         - title: Large (13x19")
           price: $75
+          default_amount: 1
         - title: Small (8.5x11")
           price: $35
+          default_amount: 0
         - title: Postcard
           price: $5
+          default_amount: 0
     - partial: pay

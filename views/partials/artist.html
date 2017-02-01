@@ -6,20 +6,28 @@
     <div class="ak-grid ak-grid--valign-middle ak-grid--padded">
       <div class="ak-grid__item ak-grid__item--4-cols">
         <div class="artist__bubbles">
-          <div class="artist__bubble"></div>
-          <div class="artist__bubble"></div>
+          <div class="artist__bubble" style="background-image: url({{partial.artist.image}})"></div>
+          <div class="artist__bubble" style="background-image: url({{partial.cause.image}})"></div>
         </div>
       </div>
       <div class="ak-grid__item ak-grid__item--8-cols">
+
+  <div class="artist__week">
+    <div class="artist__week__chip">
+      February 1-8
+    </div>
+  </div>
         <div class="artist__attribution">
           by
-          <a href="{{partial.artist.url}}">{{partial.artist.title}}</a>
+          <a href="{{partial.artist.url}}">{{partial.artist.title}}</a> in {{partial.artist.location}}<br>
           for <a href="{{partial.cause.url}}">{{partial.cause.title}}</a>
         </div>
       </div>
     </div>
   </div>
   <div class="artist__statement">
+    <p>
     {{partial.statement}}
+    </p>
   </div>
 </div>
