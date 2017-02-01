@@ -5,7 +5,9 @@ body
   font-family: $font-family
   max-width: $max-width
   margin: 0 auto
-  padding: $pad * 3 $pad
+  padding: $pad * 2 $pad
+  +md
+    padding: $pad * 3 $pad
 
 .ak-grid__item
   box-sizing: border-box
@@ -34,3 +36,8 @@ p
 
   &--sm
     +font-size($font-size-sm, $line-height-sm)
+
+.gt--md
+  display: none
+  +md
+    display: inherit
