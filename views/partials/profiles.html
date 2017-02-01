@@ -3,13 +3,20 @@
     {{partial.title}}
   </div>
   {% for person in partial.people %}
-  <div class="ak-grid ak-grid--padded">
-    <div class="ak-grid__item ak-grid__item--3-cols">
-      <div class="profiles__bubble"></div>
-    </div>
-    <div class="ak-grid__item ak-grid__item--9-cols">
-      {{person.title}}
+  <div class="profiles__people">
+    <div class="ak-grid ak-grid--padded">
+      <div class="ak-grid__item ak-grid__item--3-cols">
+        <div class="profiles__bubble"></div>
+      </div>
+      <div class="ak-grid__item ak-grid__item--9-cols">
+        {{person.title}}
+      </div>
     </div>
   </div>
   {% endfor %}
+  {% if partial.body %}
+  <div class="profiles__body">
+    {{partial.body|safe}}
+  </div>
+  {% endif %}
 </div>

@@ -1,6 +1,6 @@
 grow_version: ">=0.0.60"
 home: /content/pages/index.yaml
-title: A4X
+title: Art for X – A4X
 
 localization:
   default_locale: en

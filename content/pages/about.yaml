@@ -7,8 +7,8 @@ partials:
     - partial: post
       title: "A4X: A platform for raising money for causes and celebrating artists"
       body: |
-          Each week, we'll feature a different artist sponsoring a different
-          cause. A4X allows artists to leverage their creativity and raise
+          Periodically, we feature different artists sponsoring different
+          causes. A4X allows artists to leverage their creativity and raise
           money and awareness for a cause they find meaningful.
           <br><br>
           You can contribute to both the artist and the cause by backing the
@@ -17,7 +17,7 @@ partials:
           <br><br>
           Some campaigns will allow you to contribute an additional amount, and
           we'll send a customized hand-written letter on your behalf to
-          representatives, voicing your support for the issue at hand.
+          representatives, which voices your support for the issue at hand.
           <br><br>
           In a future version of A4X, you'll be able to subscribe and receive
           notifications when new art and a new campaign is available.
@@ -28,3 +28,10 @@ partials:
       people:
       - title: user
       - title: user
+      body: |
+          We launched this website to become more involved with causes and the
+          political landscape in America. 
+          <br><br>
+          This website is open source and released under the CC 3.0 license.
+          If you see a problem or would like to make an enhancement, discussion
+          and pull requests are welcome.
