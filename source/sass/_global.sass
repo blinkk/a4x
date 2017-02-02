@@ -41,3 +41,12 @@ p
   display: none
   +md
     display: inherit
+
+.quote
+  &:before
+    content: '“'
+  &:after
+    content: '”'
+  &:after,
+  &:before
+    font-weight: $font-weight-semibold

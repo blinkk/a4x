@@ -10,132 +10,137 @@
   </div>
   #}
 
-  <div class="specs__row">
-    <div class="form__field form__field--label">
-      How much would you like to contribute?
+  <div ng-if="!ctrl.customizing" ng-cloak>
+
+    <div class="specs__row">
+      <div class="form__field form__field--label">
+        How much would you like to contribute?
+      </div>
+      <div class="form__field__row">
+        {% for option in partial.options -%}
+        {%- set amount = option.price[1:]|int -%}
+        <div class="btn btn--toggle btn--flush btn--sm" ng-click="ctrl.setAmount({{amount}})" ng-class="{'btn--toggle--off': !ctrl.isAmountEqual({{amount}})}">{{option.price}}</div>
+        {%- endfor -%}
+        <input ng-model="ctrl.customAmount" ng-change="ctrl.setAmount(ctrl.customAmount)" type="number" class="form__control--toggled form__control form__control--sm" placeholder="Custom" ng-class="{'form__control--toggled--off': !ctrl.isAmountEqual(ctrl.customAmount)}">
+      </div>
+      <div class="form__field form__field--help">
+        The average so far is $15. Pay <span>$16+</span>
+        for a bonus vinyl sticker.
+      </div>
     </div>
-    <div class="form__field__row">
-      {% for option in partial.options -%}
-      {%- set amount = option.price[1:]|int -%}
-      <div class="btn btn--toggle--off btn--toggle btn--flush btn--sm" ng-click="ctrl.setAmount({{amount}})" ng-class="{'btn--toggle--off': !ctrl.isAmountEqual({{amount}})}">{{option.price}}</div>
-      {%- endfor -%}
-      <input ng-model="ctrl.customAmount" ng-change="ctrl.setAmount(ctrl.customAmount)" type="number" class="form__control--toggled form__control--toggled--off form__control form__control--sm" placeholder="Custom" ng-class="{'form__control--toggled--off': !ctrl.isAmountEqual(ctrl.customAmount)}">
-    </div>
-    <div class="form__field form__field--help">
-      The average so far is $15. Pay <span>$16+</span>
-      for a bonus vinyl sticker.
+    <div class="specs__row">
+      <div class="form__field form__field--label">
+        For your contribution, you will receive:
+      </div>
+      <div class="form__field__row">
+
+        <div class="rewards" ng-if="ctrl.amount < 35">
+          <div class="ak-grid ak-grid--3-cols ak-grid--valign-middle">
+            {% for option in partial.options %}
+            {%- set amount = option.price[1:]|int -%}
+            <div class="ak-grid__item">
+              <div class="rewards__cell" ng-class="{'rewards__cell--disabled': ctrl.amount < {{amount}} || !ctrl.amount}">
+                <div class="rewards__cell__title">
+                  {{option.title}}
+                  <br>{{option.size}}
+                </div>
+                <div class="rewards__cell__image" style="background-image: url({{option.icon.url.path}})"></div>
+                <div class="rewards__cell__price">
+                  Pay {{option.price}}+
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="rewards" ng-if="ctrl.amount >= 85">
+          <div class="ak-grid ak-grid--valign-middle">
+            <div class="ak-grid__item ak-grid__item--12-cols">
+              <div class="rewards__cell">
+                <div class="rewards__cell__title">
+                  1x Postcard + 1x Large Print
+                </div>
+                <div class="rewards__cell__image--inline rewards__cell__image" style="background-image: url({{partial.options[0].icon.url.path}})"></div>
+                <div class="rewards__cell__image--inline rewards__cell__image" style="background-image: url({{partial.options[2].icon.url.path}})"></div>
+                <div class="rewards__cell__price">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rewards" ng-if="ctrl.amount >= 35 && ctrl.amount < 85">
+          <div class="ak-grid ak-grid--valign-middle">
+            <div class="ak-grid__item ak-grid__item--12-cols">
+              <div class="rewards__cell">
+                <div class="rewards__cell__title">
+                  1x Postcard + 1x Small Print
+                </div>
+                <div class="rewards__cell__image--inline rewards__cell__image" style="background-image: url({{partial.options[0].icon.url.path}})"></div>
+                <div class="rewards__cell__image--inline rewards__cell__image" style="background-image: url({{partial.options[1].icon.url.path}})"></div>
+                <div class="rewards__cell__price">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form__field__row">
+          <a href="javascript:" class="link link--sm" ng-click="ctrl.toggleCustomizer()">customize order</a>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="specs__row">
+  <div ng-if="ctrl.customizing" ng-cloak>
     <div class="form__field form__field--label">
-      For your contribution, you will receive:
+      Customize your order:
+    </div>
+    <div class="items">
+      <table class="items__table">
+        <thead>
+          <tr class="items__table__row">
+            <td>Qty</td>
+            <td>Price</td>
+            <td></td>
+          </tr>
+        </thead>
+        {% for option in partial.options %}
+        <tr class="items__table__row">
+          <td>
+            <select class="form__control">
+              {% for num in range(0, 51) %}
+              <option value="{{num}}">{{num}}</option>
+              {% endfor %}
+            </select>
+          </td>
+          <td>
+            {{option.price}}
+          </td>
+          <td>
+            {{option.title}} ({{option.size}})
+          </td>
+        </tr>
+        {% endfor %}
+        <tr class="items__table__row">
+          <td>
+          </td>
+          <td>
+            <input type="text" class="form__control form__control--xs form__control--fixed">
+          </td>
+          <td>
+            Additional donation
+          </td>
+        </tr>
+        <tr class="items__table__row">
+          <td colspan="3">
+            Total: $600
+          </td>
+        </tr>
+      </table>
     </div>
     <div class="form__field__row">
-
-      <div class="rewards">
-        <div class="ak-grid ak-grid--3-cols ak-grid--valign-middle">
-          {% for option in partial.options %}
-          <div class="ak-grid__item">
-            <div class="rewards__cell rewards__cell--disabled">
-              <div class="rewards__cell__title">
-                {{option.title}}
-                <br>{{option.size}}
-              </div>
-              <div class="rewards__cell__image" style="background-image: url({{option.icon.url.path}})"></div>
-              <div class="rewards__cell__price">
-                Pay {{option.price}}+
-              </div>
-            </div>
-          </div>
-          {% endfor %}
-        </div>
-      </div>
-
-      <div class="rewards">
-        <div class="ak-grid ak-grid--valign-middle">
-          <div class="ak-grid__item ak-grid__item--12-cols">
-            <div class="rewards__cell">
-              <div class="rewards__cell__title">
-                1x Postcard + 1x Small Print + 1x Large Print
-              </div>
-              <div class="rewards__cell__image--inline rewards__cell__image" style="background-image: url({{partial.options[0].icon.url.path}})"></div>
-              <div class="rewards__cell__image--inline rewards__cell__image" style="background-image: url({{partial.options[1].icon.url.path}})"></div>
-              <div class="rewards__cell__image--inline rewards__cell__image" style="background-image: url({{partial.options[2].icon.url.path}})"></div>
-              <div class="rewards__cell__price">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="rewards">
-        <div class="ak-grid ak-grid--valign-middle">
-          <div class="ak-grid__item ak-grid__item--12-cols">
-            <div class="rewards__cell rewards__cell--disabled">
-              <div class="rewards__cell__title">
-                1x Postcard + 1x Small Print
-              </div>
-              <div class="rewards__cell__image--inline rewards__cell__image" style="background-image: url({{partial.options[0].icon.url.path}})"></div>
-              <div class="rewards__cell__image--inline rewards__cell__image" style="background-image: url({{partial.options[1].icon.url.path}})"></div>
-              <div class="rewards__cell__price">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="form__field__row">
-        <a href="#" class="link link--sm">Customize order</a>
-      </div>
-
-      <div class="items">
-        <table class="items__table">
-          <thead>
-            <tr class="items__table__row">
-              <td>Qty</td>
-              <td>Price</td>
-              <td></td>
-            </tr>
-          </thead>
-          {% for option in partial.options %}
-          <tr class="items__table__row">
-            <td>
-              <select class="form__control">
-                {% for num in range(0, 51) %}
-                <option value="{{num}}">{{num}}</option>
-                {% endfor %}
-              </select>
-            </td>
-            <td>
-              {{option.price}}
-            </td>
-            <td>
-              {{option.title}} ({{option.size}})
-            </td>
-          </tr>
-          {% endfor %}
-          <tr class="items__table__row">
-            <td>
-              --
-            </td>
-            <td>
-              <input type="text" class="form__control form__control--xs form__control--fixed">
-            </td>
-            <td>
-              Additional donation
-            </td>
-          </tr>
-          <tr class="items__table__row">
-            <td colspan="3">
-              Total: $600
-            </td>
-          </tr>
-        </table>
-      </div>
-      <div class="form__field__row">
-        <a href="#" class="link link--sm">done customizing order</a>
-      </div>
-
+      <a href="javascript:" ng-click="ctrl.toggleCustomizer()" class="link link--sm">use default contributions</a>
     </div>
   </div>
 

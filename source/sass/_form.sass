@@ -44,10 +44,13 @@
         outline: none
 
     &--xs
-      +font-size($font-size-sm, $line-height-sm)
+      +font-size($font-size-xs, $line-height-xs)
+      &:focus
+        outline: none
 
     &--fixed
       width: 50px !important
+      margin: -6px 0
 
     &--toggled
       background: $color-secondary

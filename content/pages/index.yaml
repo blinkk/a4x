@@ -23,8 +23,13 @@ partials:
         url: #
         image: http://jolt.law.harvard.edu/digest/wp-content/uploads/2014/11/aclu-logo.gif
       statement: |
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Through all the changes in America over the last several weeks, it is
+          clear that the country needs to remain true to our spirit.
+          Immigration is the heart of this land and I wanted to do what little
+          I can to protect it.
+          <br><br>
+          What started as a way cope turned into something
+          that I hope will help support the American Civil Liberties Union.
     - partial: hero-progress
       raised: $500
       num_backers: 521
@@ -47,7 +52,7 @@ partials:
           stripe_id: "prod_A2jFUpHRly9AuB"
         - title: Large Print
           size: 13x19"
-          price: $75
+          price: $85
           icon: !g.static /source/images/icon-large.png
           default_amount: 1
           stripe_id: "prod_A2jFvzFvVfD5tF"
