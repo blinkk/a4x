@@ -21,7 +21,7 @@
         {%- set amount = option.price[1:]|int -%}
         <div class="btn btn--toggle btn--flush btn--sm" ng-click="ctrl.setAmount({{amount}})" ng-class="{'btn--toggle--off': !ctrl.isAmountEqual({{amount}})}">{{option.price}}</div>
         {%- endfor -%}
-        <input ng-model="ctrl.customAmount" ng-change="ctrl.setAmount(ctrl.customAmount)" type="number" class="form__control--toggled form__control form__control--sm" placeholder="Custom" ng-class="{'form__control--toggled--off': !ctrl.isAmountEqual(ctrl.customAmount)}">
+        <div class="form__dollar">$</div><input ng-model="ctrl.customAmount" ng-change="ctrl.setAmount(ctrl.customAmount)" type="number" class="form__control--toggled form__control form__control--dollar" placeholder="_" ng-class="{'form__control--toggled--off': !ctrl.isAmountEqual(ctrl.customAmount)}">
       </div>
       <div class="form__field form__field--help">
         The average so far is $15. Pay <span>$16+</span>
@@ -86,7 +86,7 @@
           </div>
         </div>
         <div class="form__field__row">
-          <a href="javascript:" class="link link--sm" ng-click="ctrl.toggleCustomizer()">customize order</a>
+          <a href="javascript:" class="link link--sm" ng-click="ctrl.toggleCustomizer()">custom order</a>
         </div>
       </div>
     </div>
@@ -142,6 +142,15 @@
     <div class="form__field__row">
       <a href="javascript:" ng-click="ctrl.toggleCustomizer()" class="link link--sm">use default contributions</a>
     </div>
+  </div>
+  <div class="specs__pay" ng-if="ctrl.dirty">
+    <button class="btn btn--icon">
+      Contribute
+      <i class="material-icons">navigate_next</i>
+    </button>
+    {#
+    <div class="specs__pay__meta">Your total donation is <span>$75</span></div>
+    #}
   </div>
 
 </div>

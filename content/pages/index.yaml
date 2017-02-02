@@ -56,4 +56,3 @@ partials:
           icon: !g.static /source/images/icon-large.png
           default_amount: 1
           stripe_id: "prod_A2jFvzFvVfD5tF"
-    - partial: pay

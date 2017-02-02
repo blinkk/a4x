@@ -1,4 +1,11 @@
 .form
+  .form__dollar
+    color: $color-white
+    display: inline-block
+    font-size: $font-size-md
+    position: absolute
+    padding: $pad / 2
+
   .form__field
     margin-bottom: $pad * 1.5
 
@@ -56,10 +63,14 @@
       background: $color-secondary
       border: none
       color: $color-white
+      font-size: $font-size-md
+      width: 100px
+      outline: none
+      padding-left: $pad * 1.5
 
       &::-webkit-input-placeholder
-        font-style: italic
         color: rgba(255, 255, 255, 1)
+        font-weight: 300
 
       &--off
         background: $color-grey
