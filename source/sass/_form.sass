@@ -29,18 +29,20 @@
     font-size: $font-size
 
   input[type=number].form__control
+    border-radius: 0
+    -webkit-appearance: none
+    vertical-align: top
+
     &--sm
       color: $color-text
       font-weight: 300
       padding: 10px 15px
       font-size: $font-size-sm
       width: 75px
-      vertical-align: middle
       &:focus
         outline: none
 
     &--toggled
-      -webkit-appearance: none
       background: $color-secondary
       border: none
       color: $color-white
@@ -48,6 +50,14 @@
       &::-webkit-input-placeholder
         font-style: italic
         color: rgba(255, 255, 255, 1)
+
+      &--off
+        background: $color-grey
+        color: $color-black
+
+        &::-webkit-input-placeholder
+          font-style: italic
+          color: $color-black
 
     &--xs
       padding: 5px

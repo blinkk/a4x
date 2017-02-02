@@ -1,4 +1,4 @@
-<div class="form specs">
+<div class="form specs" ng-controller="DonateController as ctrl">
 
   {#
   <div class="specs__row">
@@ -16,9 +16,10 @@
     </div>
     <div class="form__field__row">
       {% for option in partial.options -%}
-      <div class="btn btn--toggle btn--flush btn--sm">{{option.price}}</div>
+      {%- set amount = option.price[1:]|int -%}
+      <div class="btn btn--toggle--off btn--toggle btn--flush btn--sm" ng-click="ctrl.setAmount({{amount}})" ng-class="{'btn--toggle--off': !ctrl.isAmountEqual({{amount}})}">{{option.price}}</div>
       {%- endfor -%}
-      <input type="number" class="form__control--toggled form__control form__control--sm" placeholder="Custom">
+      <input ng-model="ctrl.customAmount" ng-change="ctrl.setAmount(ctrl.customAmount)" type="number" class="form__control--toggled form__control--toggled--off form__control form__control--sm" placeholder="Custom" ng-class="{'form__control--toggled--off': !ctrl.isAmountEqual(ctrl.customAmount)}">
     </div>
     <div class="form__field form__field--help">
       The average so far is $15. Pay <span>$16+</span>
@@ -33,7 +34,7 @@
     <div class="form__field__row">
 
       <div class="rewards">
-        <div class="ak-grid ak-grid--padded ak-grid--3-cols ak-grid--valign-middle">
+        <div class="ak-grid ak-grid--3-cols ak-grid--valign-middle">
           {% for option in partial.options %}
           <div class="ak-grid__item">
             <div class="rewards__cell rewards__cell--disabled">

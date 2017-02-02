@@ -8,13 +8,22 @@
     color: $color-secondary
 
   .rewards
-    margin-bottom: $pad / 2
+    margin-bottom: $pad / 4
+
+    .ak-grid__item
+      margin-bottom: 0
+      padding: 0
+
+      &:last-child
+        .rewards__cell
+          margin-right: 0
 
     .rewards__cell
       border: 1px solid $color-secondary
       padding: $pad / 2
       text-align: center
       +font-size($font-size-sm, $line-height-sm)
+      margin-right: 1px
 
       .rewards__cell__title
         color: $color-secondary

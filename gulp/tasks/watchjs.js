@@ -3,5 +3,6 @@ var config = require('../config');
 
 module.exports = function() {
   return airkit.watchjs(
-      config.JS_SOURCES, config.JS_OUT_DIR, config.JS_OUT_FILE);
+      config.JS_SOURCES, config.JS_OUT_DIR, config.JS_OUT_FILE,
+      config.JS_OPTIONS);
 };
