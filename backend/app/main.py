@@ -14,7 +14,7 @@ app = webapp2.WSGIApplication([
 
 
 api_app = service.service_mappings((
-    ('/_api/services.*', services.SubmissionsService),
+    ('/_api/orders.*', services.OrderService),
 ))
 
 

@@ -51,11 +51,91 @@
           {% endfor %}
         </div>
       </div>
-      
 
-    </div>
-    <div class="form__field__row">
-      <a href="#" class="link link--sm">Customize order</a>
+      <div class="rewards">
+        <div class="ak-grid ak-grid--valign-middle">
+          <div class="ak-grid__item ak-grid__item--12-cols">
+            <div class="rewards__cell">
+              <div class="rewards__cell__title">
+                1x Postcard + 1x Small Print + 1x Large Print
+              </div>
+              <div class="rewards__cell__image--inline rewards__cell__image" style="background-image: url({{partial.options[0].icon.url.path}})"></div>
+              <div class="rewards__cell__image--inline rewards__cell__image" style="background-image: url({{partial.options[1].icon.url.path}})"></div>
+              <div class="rewards__cell__image--inline rewards__cell__image" style="background-image: url({{partial.options[2].icon.url.path}})"></div>
+              <div class="rewards__cell__price">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rewards">
+        <div class="ak-grid ak-grid--valign-middle">
+          <div class="ak-grid__item ak-grid__item--12-cols">
+            <div class="rewards__cell rewards__cell--disabled">
+              <div class="rewards__cell__title">
+                1x Postcard + 1x Small Print
+              </div>
+              <div class="rewards__cell__image--inline rewards__cell__image" style="background-image: url({{partial.options[0].icon.url.path}})"></div>
+              <div class="rewards__cell__image--inline rewards__cell__image" style="background-image: url({{partial.options[1].icon.url.path}})"></div>
+              <div class="rewards__cell__price">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form__field__row">
+        <a href="#" class="link link--sm">Customize order</a>
+      </div>
+
+      <div class="items">
+        <table class="items__table">
+          <thead>
+            <tr class="items__table__row">
+              <td>Qty</td>
+              <td>Price</td>
+              <td></td>
+            </tr>
+          </thead>
+          {% for option in partial.options %}
+          <tr class="items__table__row">
+            <td>
+              <select class="form__control">
+                {% for num in range(0, 51) %}
+                <option value="{{num}}">{{num}}</option>
+                {% endfor %}
+              </select>
+            </td>
+            <td>
+              {{option.price}}
+            </td>
+            <td>
+              {{option.title}} ({{option.size}})
+            </td>
+          </tr>
+          {% endfor %}
+          <tr class="items__table__row">
+            <td>
+              --
+            </td>
+            <td>
+              <input type="text" class="form__control form__control--xs form__control--fixed">
+            </td>
+            <td>
+              Additional donation
+            </td>
+          </tr>
+          <tr class="items__table__row">
+            <td colspan="3">
+              Total: $600
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="form__field__row">
+        <a href="#" class="link link--sm">done customizing order</a>
+      </div>
+
     </div>
   </div>
 

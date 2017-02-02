@@ -8,8 +8,6 @@
     color: $color-secondary
 
   .rewards
-    margin-bottom: $pad / 4
-
     .ak-grid__item
       margin-bottom: 0
       padding: 0
@@ -43,5 +41,27 @@
         background-blend-mode: multiply
         mix-blend-mode: multiply
 
+        &--inline
+          display: inline-block
+          margin: $pad / 2 $pad / 2 0
+
       .rewards__cell__price
         +font-size($font-size-xs, $line-height-xs)
+
+  .items
+    .items__table
+      border: 1px solid $color-grey
+      border-collapse: collapse
+      width: 100%
+
+      .items__table__row
+        td
+          border-bottom: 1px solid $color-grey
+          padding: $pad / 2
+
+      thead
+        .items__table__row
+          td
+            +font-size($font-size-sm, $line-height-sm)
+            padding: $pad / 3 $pad / 2
+            background: $color-grey

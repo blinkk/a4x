@@ -4,6 +4,7 @@ title: Art for X – A4X
 
 localization:
   default_locale: en
+  google_analytics_id: UA-91344777-1
 
 meta:
   icon: /source/images/icon.png

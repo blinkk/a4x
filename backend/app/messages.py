@@ -1,29 +1,38 @@
 from protorpc import messages
 
 
-class AmountMessage(messages.Message):
-    cause = messages.IntegerField(1)
-    artist = messages.IntegerField(2)
+class ItemMessage(messages.Message):
+    stripe_id = messages.StringField(1)
 
 
-class SizeMessage(messages.Message):
-    width = messages.IntegerField(1)
-    height = messages.IntegerField(2)
-    quantity = messages.IntegerField(3)
+class ChargeMessage(messages.Message):
+    stripe_token = messages.StringField(1)
+    amount = messages.StringField(2)
+    email = messages.StringField(3)
 
 
-class FormatMessage(messages.Message):
-    size = messages.MessageField(SizeMessage, 1)
+class AddressMessage(messages.Message):
+    line1 = messages.StringField(1)
+    line2 = messages.StringField(2)
+    city = messages.StringField(3)
+    country = messages.StringField(4)
+    postal_code = messages.StringField(5)
 
 
-class DonationMessage(messages.Message):
-    amount = messages.MessageField(AmountMessage, 1)
-    size = messages.MessageField(AmountMessage, 2)
+class ShippingMessage(messages.Message):
+    name = messages.StringField(1)
+    address = messages.MessageField(AddressMessage, 2)
 
 
-class DonationRequest(messages.Message):
-    donation = messages.MessageField(DonationMessage, 1)
+class OrderMessage(messages.Message):
+    email = messages.StringField(1)
+    shipping = messages.MessageField(ShippingMessage, 2)
+    items = messages.MessageField(ItemMessage, 3, repeated=True)
 
 
-class DonationResponse(messages.Message):
-    donation = messages.MessageField(DonationMessage, 1)
+class OrderRequest(messages.Message):
+    order = messages.MessageField(OrderMessage, 1)
+
+
+class OrderResponse(messages.Message):
+    order = messages.MessageField(OrderMessage, 1)

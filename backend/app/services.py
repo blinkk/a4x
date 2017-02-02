@@ -1,10 +1,13 @@
 from . import messages
+from . import orders
 
 
+class OrderService(remote.Service):
 
-class Service(remote.Service):
-
-    @remote.method(messages.DonationRequest
-                   messages.DonationResponse)
-    def donate(self, request):
-        pass
+    @remote.method(messages.OrderRequest
+                   messages.OrderResponse)
+    def create(self, request):
+        order = orders.Order.create_stripe_order(request.order)
+        resp = messages.OrderResponse()
+#        resp.order = order.to_message()
+        return resp

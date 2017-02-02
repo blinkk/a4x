@@ -3,6 +3,13 @@ api_version: 1
 threadsafe: true
 
 handlers:
+- url: /_ah/admin/interactive.*
+  script: google.appengine.ext.admin.application
+  login: admin
+  secure: always
+- url: /_api/.*
+  script: backend.app.main.api_app
+  secure: always
 - url: /(.*\..*)
   static_files: build/\1
   upload: build/(.*\..*)
@@ -21,4 +28,5 @@ handlers:
   expiration: 1m
  
 skip_files:
-- (?!build).*
+- (?!build|backend|appengine_config\.py).*
+- ^(.*/)?.*\.py[co]

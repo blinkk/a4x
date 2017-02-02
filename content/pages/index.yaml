@@ -38,14 +38,17 @@ partials:
           price: $5
           default_amount: 0
           icon: !g.static /source/images/icon-postcard.png
+          stripe_id: "prod_A2jFmV0g088dKI"
         - title: Small Print
           size: 8.5x11"
           price: $35
           icon: !g.static /source/images/icon-small.png
           default_amount: 0
+          stripe_id: "prod_A2jFUpHRly9AuB"
         - title: Large Print
           size: 13x19"
           price: $75
           icon: !g.static /source/images/icon-large.png
           default_amount: 1
+          stripe_id: "prod_A2jFvzFvVfD5tF"
     - partial: pay
