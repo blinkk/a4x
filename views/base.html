@@ -32,6 +32,7 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,600,700|Product+Sans:400&lang=en" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="{{g.static('/dist/css/main.min.css').url.path}}">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.min.js"></script>
 <script src="{{g.static('/dist/js/main.min.js').url.path}}"></script>
 {% if podspec.meta.gtm_id %}
@@ -43,6 +44,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','{{podspec.meta.gtm_id}}');</script>
 {% endif %}
+<script src="https://checkout.stripe.com/checkout.js"></script>
+<script src="https://js.stripe.com/v2/"></script>
+<script>
+Stripe.setPublishableKey('{{podspec.meta.stripe_publishable_key}}');
+</script>
+</script>
 {% if podspec.meta.google_analytics_id %}
 <script src="//www.google.com/js/gweb/analytics/autotrack.js"></script>
 <script>

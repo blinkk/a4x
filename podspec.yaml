@@ -9,6 +9,7 @@ localization:
 meta:
   icon: /source/images/icon.png
   google_site_verification: ~
+  stripe_publishable_key: ""
 
 static_dirs:
 - static_dir: /source/images/

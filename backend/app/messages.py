@@ -2,7 +2,9 @@ from protorpc import messages
 
 
 class ItemMessage(messages.Message):
-    stripe_id = messages.StringField(1)
+    parent = messages.StringField(1)
+    quantity = messages.IntegerField(2, default=1)
+    type = messages.StringField(3)
 
 
 class ChargeMessage(messages.Message):
@@ -28,6 +30,7 @@ class OrderMessage(messages.Message):
     email = messages.StringField(1)
     shipping = messages.MessageField(ShippingMessage, 2)
     items = messages.MessageField(ItemMessage, 3, repeated=True)
+    stripe_token = messages.StringField(4)
 
 
 class OrderRequest(messages.Message):

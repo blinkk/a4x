@@ -33,7 +33,7 @@ deploy:
 	  --promote \
 	  app.yaml
 
-run-gae:
+run:
 	dev_appserver.py --allow_skipped_files=true .
 
 update-github-commit-status:

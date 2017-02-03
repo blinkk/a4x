@@ -6,6 +6,9 @@
     position: absolute
     padding: $pad / 2
 
+    &--off
+      color: $color-black
+
   .form__field
     margin-bottom: $pad * 1.5
 
@@ -28,6 +31,18 @@
     border: 1px solid $color-text
     padding: $pad / 2
     appearance: none
+
+  textarea.form__control
+    +font-size($font-size-sm, $line-height-sm)
+    border-color: $color-grey
+    box-sizing: border-box
+    min-height: 100px
+    user-resize: none
+    width: 100%
+    padding: $pad / 2
+
+    &:focus
+      outline: none
 
   input[type=text],
   input[type=number]

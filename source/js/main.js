@@ -1,7 +1,9 @@
-var donate = require('./ng/donate');
+var order = require('./ng/order');
+
 
 var a4x = window.a4x || {};
 window.a4x = a4x;
+
 
 a4x.main = function() {
   initNg();
@@ -10,7 +12,7 @@ a4x.main = function() {
 
 function initNg() {
   angular.module('a4x', [])
-      .controller('DonateController', donate.DonateController)
+      .controller('OrderController', order.OrderController)
       .config(['$interpolateProvider', function($interpolateProvider) {
         $interpolateProvider.startSymbol('[[').endSymbol(']]');
       }]);

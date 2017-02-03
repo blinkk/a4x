@@ -15,11 +15,13 @@ class Order(base.Model):
         try:
             stripe_items = [{
                 'type': 'sku',
-                'parent': item.stripe_id
+                'quantity': item.quantity,
+                'parent': item.parent,
             } for item in message.items]
-            stripe.Order.create(
+            stripe_order = stripe.Order.create(
               currency='usd',
               items=stripe_items,
+              email=message.email,
               shipping={
                 "name": message.shipping.name,
                 "address":{
@@ -29,8 +31,8 @@ class Order(base.Model):
                   "postal_code": message.shipping.address.postal_code,
                 },
               },
-              email=message.email,
             )
+            return stripe_order
         except stripe.CardError:
             self.response.status_int = 400
             self.response.out.write('Error processing payment.')
@@ -38,14 +40,19 @@ class Order(base.Model):
 
     @classmethod
     def create_test(cls):
+        order_message = cls.create_test_message()
+        cls.create_stripe_order(order_message)
+
+    @classmethod
+    def create_test_message(cls):
         address_message = messages.AddressMessage(
                 line1='1234 1st St',
                 city='San Francisco',
                 country='US',
                 postal_code='94110')
         items_message = [
-                messages.ItemMessage(stripe_id='sku_A2kY1fnyd8ecUt'),
-                messages.ItemMessage(stripe_id='sku_A2kYvzKCTUaR2N')]
+                messages.ItemMessage(parent='sku_A2kY1fnyd8ecUt', type='sku'),
+                messages.ItemMessage(parent='sku_A2kYvzKCTUaR2N', type='sku')]
         shipping_message = messages.ShippingMessage(
                 name='Breakfast at Tiffany\'s',
                 address=address_message)
@@ -53,4 +60,4 @@ class Order(base.Model):
                 email='user@example.com',
                 shipping=shipping_message,
                 items=items_message)
-        cls.create_stripe_order(order_message)
+        return order_message
