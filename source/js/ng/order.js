@@ -54,6 +54,11 @@ OrderController.prototype.createStripeHandler = function() {
 };
 
 
+OrderController.prototype.getAmount = function() {
+  return parseFloat(2000);
+};
+
+
 OrderController.prototype.openOrderDialog = function() {
   var numItems = 0;
   for (var sku in this.skusToQuantities) {
@@ -65,7 +70,7 @@ OrderController.prototype.openOrderDialog = function() {
   handler.open({
     name: 'Art for X',
     description: numItems + ' items + $' + donation + ' additional donation',
-    amount: 2000
+    amount: this.getAmount()
   });
 };
 
@@ -83,6 +88,7 @@ OrderController.prototype.createOrder = function(token) {
   var req = {
     'order': {
       'stripe_token': token.id,
+      'amount': this.getAmount(),
       'email': token.email,
       'items': items,
       'shipping': {

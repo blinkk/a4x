@@ -9,6 +9,9 @@ DESCRIPTION = 'Art for X Invoice'
 
 
 class Order(base.Model):
+    amount = ndb.FloatProperty()
+    num_items = ndb.IntegerProperty()
+    note = ndb.StringProperty()
 
     @classmethod
     def create_stripe_order(cls, message):
@@ -23,12 +26,12 @@ class Order(base.Model):
               items=stripe_items,
               email=message.email,
               shipping={
-                "name": message.shipping.name,
-                "address":{
-                  "line1": message.shipping.address.line1,
-                  "city": message.shipping.address.city,
-                  "country": message.shipping.address.country,
-                  "postal_code": message.shipping.address.postal_code,
+                'name': message.shipping.name,
+                'address':{
+                    'line1': message.shipping.address.line1,
+                    'city': message.shipping.address.city,
+                    'country': message.shipping.address.country,
+                    'postal_code': message.shipping.address.postal_code,
                 },
               },
             )
@@ -36,7 +39,12 @@ class Order(base.Model):
         except stripe.CardError:
             self.response.status_int = 400
             self.response.out.write('Error processing payment.')
-            return
+        num_items = 0
+        for item in message.items:
+            num_items += item.quantity
+        ent = cls(amount=message.amount, num_items=num_items)
+        ent.put()
+        return ent
 
     @classmethod
     def create_test(cls):

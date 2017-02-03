@@ -7,12 +7,6 @@ class ItemMessage(messages.Message):
     type = messages.StringField(3)
 
 
-class ChargeMessage(messages.Message):
-    stripe_token = messages.StringField(1)
-    amount = messages.StringField(2)
-    email = messages.StringField(3)
-
-
 class AddressMessage(messages.Message):
     line1 = messages.StringField(1)
     line2 = messages.StringField(2)
@@ -31,6 +25,7 @@ class OrderMessage(messages.Message):
     shipping = messages.MessageField(ShippingMessage, 2)
     items = messages.MessageField(ItemMessage, 3, repeated=True)
     stripe_token = messages.StringField(4)
+    amount = messages.FloatField(5)
 
 
 class OrderRequest(messages.Message):
