@@ -20,8 +20,8 @@ partials:
         location: San Francisco
       cause:
         title: ACLU
-        url: #
-        image: http://jolt.law.harvard.edu/digest/wp-content/uploads/2014/11/aclu-logo.gif
+        url: https://www.aclu.org/
+        image: https://upload.wikimedia.org/wikipedia/en/4/4d/American_Civil_Liberties_Union_logo.png
       statement: |
           Through all the changes in America over the last several weeks, it is
           clear that the country needs to remain true to our spirit.
@@ -37,22 +37,24 @@ partials:
       remaining: 6 days left
       percent: 32
     - partial: specs
+      campaign_ident: 'jh-ilmlbtgd'
+      custom_stripe_sku: "123" # TODO
       options:
         - title: Postcard
           size: 6x9"
-          price: $5
+          price: 5
           default_amount: 0
           icon: !g.static /source/images/icon-postcard.png
           stripe_sku: "sku_A2kY1fnyd8ecUt"
         - title: Small Print
           size: 8.5x11"
-          price: $35
+          price: 35
           icon: !g.static /source/images/icon-small.png
           default_amount: 0
           stripe_sku: "sku_A2kYvzKCTUaR2N"
         - title: Large Print
           size: 13x19"
-          price: $75
+          price: 75
           icon: !g.static /source/images/icon-large.png
           default_amount: 1
           stripe_sku: "sku_A2kYvzKCTUaR2N"

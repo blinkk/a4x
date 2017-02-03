@@ -28,6 +28,12 @@ class OrderMessage(messages.Message):
     amount = messages.FloatField(5)
 
 
+class CampaignMessage(messages.Message):
+    num_orders = messages.IntegerField(1)
+    raised = messages.FloatField(2)
+    goal = messages.FloatField(3)
+
+
 class OrderRequest(messages.Message):
     order = messages.MessageField(OrderMessage, 1)
 

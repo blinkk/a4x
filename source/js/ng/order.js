@@ -13,7 +13,8 @@ var OrderController = function($element, $scope) {
   this.customizing = false;
   this.amount = '';
   this.order = {};
-  this.skusToQuantities = {};
+  this.campaignIdent = null;
+  this.skusToItems = {};
 };
 
 
@@ -27,9 +28,9 @@ OrderController.prototype.isAmountEqual = function(amount) {
 };
 
 
-OrderController.prototype.setSkuQuantity = function(sku, quantity, amount) {
+OrderController.prototype.setSkuItem = function(sku, item, amount) {
   this.dirty = true;
-  this.skusToQuantities[sku] = quantity;
+  this.skusToItems[sku] = item;
   this.amount = amount;
 };
 
@@ -55,30 +56,39 @@ OrderController.prototype.createStripeHandler = function() {
 
 
 OrderController.prototype.getAmount = function() {
-  return parseFloat(2000);
+  var total = 0;
+  for (var sku in this.skusToItems) {
+    var item = this.skusToItems[sku];
+    total += item['quantity'] * item['price'];
+  }
+  return total;
 };
 
 
 OrderController.prototype.openOrderDialog = function() {
   var numItems = 0;
-  for (var sku in this.skusToQuantities) {
-    var quantity = this.skusToQuantities[sku];
+  for (var sku in this.skusToItems) {
+    var quantity = this.skusToItems[sku]['quantity'];
     numItems += quantity;
   };
   var donation = 0;
+  numItems = parseInt(numItems);
   var handler = this.createStripeHandler();
+  var noun = numItems == 1 ? 'item' : 'items';
+  var amount = this.getAmount() * 100;
   handler.open({
     name: 'Art for X',
-    description: numItems + ' items + $' + donation + ' additional donation',
-    amount: this.getAmount()
+    description: numItems + ' ' + noun + ', $' + donation + ' on top',
+    amount: amount 
   });
 };
 
 
 OrderController.prototype.createOrder = function(token) {
+  var amount = this.getAmount() * 100;
   var items = [];
-  for (var sku in this.skusToQuantities) {
-    var quantity = this.skusToQuantities[sku];
+  for (var sku in this.skusToItems) {
+    var quantity = this.skusToItems[sku]['quantity'];
     items.push({
       'type': 'sku',
       'parent': sku,
@@ -87,8 +97,9 @@ OrderController.prototype.createOrder = function(token) {
   }
   var req = {
     'order': {
+      'campaign_ident': this.campaignIdent,
       'stripe_token': token.id,
-      'amount': this.getAmount(),
+      'amount': amount,
       'email': token.email,
       'items': items,
       'shipping': {

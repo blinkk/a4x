@@ -1,4 +1,4 @@
-<div class="form specs" ng-controller="OrderController as ctrl">
+<div class="form specs" ng-controller="OrderController as ctrl" ng-init="ctrl.campaignIdent = '{{partial.campaign_ident}}'">
 
   {#
   <div class="specs__row">
@@ -18,8 +18,7 @@
       </div>
       <div class="form__field__row">
         {% for option in partial.options -%}
-        {%- set amount = option.price[1:]|int -%}
-        <div class="btn btn--toggle btn--flush btn--sm" ng-click="ctrl.setSkuQuantity('{{option.stripe_sku}}', 1, {{amount}})" ng-class="{'btn--toggle--off': !ctrl.isAmountEqual({{amount}})}">{{option.price}}</div>
+        <div class="btn btn--toggle btn--flush btn--sm" ng-click="ctrl.setSkuItem('{{option.stripe_sku}}', {'quantity': '1', 'price': {{option.price}}}, {{option.price}})" ng-class="{'btn--toggle--off': !ctrl.isAmountEqual({{option.price}})}">${{option.price}}</div>
         {%- endfor -%}
         <div class="form__dollar" ng-class="{'form__dollar--off': !ctrl.isAmountEqual(ctrl.customAmount)}">$</div><input ng-model="ctrl.customAmount" ng-change="ctrl.setAmount(ctrl.customAmount)" type="number" class="form__control--toggled form__control form__control--dollar" placeholder="_" ng-class="{'form__control--toggled--off': !ctrl.isAmountEqual(ctrl.customAmount)}">
       </div>
@@ -37,16 +36,15 @@
         <div class="rewards" ng-if="ctrl.amount < 35">
           <div class="ak-grid ak-grid--3-cols ak-grid--valign-middle">
             {% for option in partial.options %}
-            {%- set amount = option.price[1:]|int -%}
             <div class="ak-grid__item">
-              <div class="rewards__cell" ng-class="{'rewards__cell--disabled': ctrl.amount < {{amount}} || !ctrl.amount}">
+              <div class="rewards__cell" ng-class="{'rewards__cell--disabled': ctrl.amount < {{option.price}} || !ctrl.amount}">
                 <div class="rewards__cell__title">
                   {{option.title}}
                   <br>{{option.size}}
                 </div>
                 <div class="rewards__cell__image" style="background-image: url({{option.icon.url.path}})"></div>
                 <div class="rewards__cell__price">
-                  Pay {{option.price}}+
+                  Pay ${{option.price}}+
                 </div>
               </div>
             </div>
@@ -115,7 +113,7 @@
             </select>
           </td>
           <td>
-            {{option.price}}
+            ${{option.price}}
           </td>
           <td>
             {{option.title}} ({{option.size}})
