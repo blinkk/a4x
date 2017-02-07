@@ -1,6 +1,8 @@
 .btn
   background: $color-secondary
-  border: 0
+  border: none
+  border-radius: 4px
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.12)
   color: white
   cursor: pointer
   display: inline-block
@@ -9,10 +11,12 @@
   padding: $pad / 1.5 $pad * 2
   position: relative
   text-transform: lowercase
-  transition: all 0.3s ease-out
+  transform: perspective(1px) translate3d(0, 0, 0)
+  transition: transform 0.3s ease
+  -webkit-font-smoothing: antialiased
 
   &--flush
-    margin-right: 1px
+    margin-right: 4px
 
   &--sm
     padding: 10px 15px
@@ -37,12 +41,13 @@
 
   &--toggle
     font-size: $font-size-md
-    transition: none
 
     &--off
       background: $color-grey
       color: $color-black
 
   &:hover
+    transform: scale(1.05)
+
     i
       transform: translateX(5px)

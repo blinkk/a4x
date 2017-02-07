@@ -1,4 +1,5 @@
 from protorpc import messages
+from protorpc import message_types
 
 
 class ItemMessage(messages.Message):
@@ -26,12 +27,17 @@ class OrderMessage(messages.Message):
     items = messages.MessageField(ItemMessage, 3, repeated=True)
     stripe_token = messages.StringField(4)
     amount = messages.FloatField(5)
+    note = messages.StringField(6)
 
 
 class CampaignMessage(messages.Message):
     num_orders = messages.IntegerField(1)
     raised = messages.FloatField(2)
     goal = messages.FloatField(3)
+    percent_raised = messages.FloatField(4)
+    start = message_types.DateTimeField(5)
+    end = message_types.DateTimeField(6)
+    ident = messages.StringField(7)
 
 
 class OrderRequest(messages.Message):
@@ -40,3 +46,11 @@ class OrderRequest(messages.Message):
 
 class OrderResponse(messages.Message):
     order = messages.MessageField(OrderMessage, 1)
+
+
+class CampaignRequest(messages.Message):
+    campaign = messages.MessageField(CampaignMessage, 1)
+
+
+class CampaignResponse(messages.Message):
+    campaign = messages.MessageField(CampaignMessage, 1)

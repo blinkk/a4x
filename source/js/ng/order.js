@@ -10,11 +10,29 @@ var rpc = function(method, data) {
 
 var OrderController = function($element, $scope) {
   this.dirty = false;
-  this.customizing = false;
+  this.customizing = true;
   this.amount = '';
   this.order = {};
   this.campaignIdent = null;
   this.skusToItems = {};
+};
+
+
+OrderController.prototype.setCampaignIdent = function(ident) {
+  this.campaignIdent = ident;
+  this.getCampaign(ident);
+};
+
+
+OrderController.prototype.getCampaign = function(ident) {
+  var req = {
+    'campaign': {
+      'ident': ident
+    }
+  };
+  rpc('campaigns.get', req).success(function(resp) {
+    console.log(resp);
+  });
 };
 
 

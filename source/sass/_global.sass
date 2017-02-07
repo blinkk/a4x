@@ -1,5 +1,5 @@
 body
-  -webkit-font-aliasing: antialiased
+  -webkit-font-smoothing: antialiased
   background: $color-bg
   color: $color-text
   font-family: $font-family
@@ -50,3 +50,8 @@ p
   &:after,
   &:before
     font-weight: $font-weight-semibold
+
+em
+  +font-size($font-size-sm, $line-height-sm)
+  font-style: normal
+  color: $color-black

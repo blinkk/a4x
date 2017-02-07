@@ -1,4 +1,4 @@
-<div class="form specs" ng-controller="OrderController as ctrl" ng-init="ctrl.campaignIdent = '{{partial.campaign_ident}}'">
+<div class="form specs" ng-controller="OrderController as ctrl" ng-init="ctrl.setCampaignIdent('{{partial.campaign_ident}}')">
 
   {#
   <div class="specs__row">
@@ -23,8 +23,7 @@
         <div class="form__dollar" ng-class="{'form__dollar--off': !ctrl.isAmountEqual(ctrl.customAmount)}">$</div><input ng-model="ctrl.customAmount" ng-change="ctrl.setAmount(ctrl.customAmount)" type="number" class="form__control--toggled form__control form__control--dollar" placeholder="_" ng-class="{'form__control--toggled--off': !ctrl.isAmountEqual(ctrl.customAmount)}">
       </div>
       <div class="form__field form__field--help">
-        The average so far is $15. Pay <span>$16+</span>
-        for a bonus vinyl sticker.
+        The average contribution so far is <span>$15</span>.
       </div>
     </div>
     <div class="specs__row">
@@ -33,7 +32,7 @@
       </div>
       <div class="form__field__row">
 
-        <div class="rewards" ng-if="ctrl.amount < 35">
+        <div class="rewards">
           <div class="ak-grid ak-grid--3-cols ak-grid--valign-middle">
             {% for option in partial.options %}
             <div class="ak-grid__item">
@@ -52,37 +51,6 @@
           </div>
         </div>
 
-        <div class="rewards" ng-if="ctrl.amount >= 85">
-          <div class="ak-grid ak-grid--valign-middle">
-            <div class="ak-grid__item ak-grid__item--12-cols">
-              <div class="rewards__cell">
-                <div class="rewards__cell__title">
-                  1x Postcard + 1x Large Print
-                </div>
-                <div class="rewards__cell__image--inline rewards__cell__image" style="background-image: url({{partial.options[0].icon.url.path}})"></div>
-                <div class="rewards__cell__image--inline rewards__cell__image" style="background-image: url({{partial.options[2].icon.url.path}})"></div>
-                <div class="rewards__cell__price">
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="rewards" ng-if="ctrl.amount >= 35 && ctrl.amount < 85">
-          <div class="ak-grid ak-grid--valign-middle">
-            <div class="ak-grid__item ak-grid__item--12-cols">
-              <div class="rewards__cell">
-                <div class="rewards__cell__title">
-                  1x Postcard + 1x Small Print
-                </div>
-                <div class="rewards__cell__image--inline rewards__cell__image" style="background-image: url({{partial.options[0].icon.url.path}})"></div>
-                <div class="rewards__cell__image--inline rewards__cell__image" style="background-image: url({{partial.options[1].icon.url.path}})"></div>
-                <div class="rewards__cell__price">
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
         <div class="form__field__row">
           <a href="javascript:" class="link link--sm" ng-click="ctrl.toggleCustomizer()">create custom order</a>
         </div>
@@ -106,14 +74,17 @@
         {% for option in partial.options %}
         <tr class="items__table__row">
           <td>
-            <select class="form__control">
+            <div class="form__select">
+              <select class="form__control">
               {% for num in range(0, 51) %}
               <option value="{{num}}">{{num}}</option>
               {% endfor %}
-            </select>
+              </select>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 7.6" enable-background="new 0 0 15 7.6"><path d="M15 1.1l-7.5 6.5-7.5-6.3 1-1.2 6.5 5.5 6.5-5.6z"></path></svg>
+            </div>
           </td>
           <td>
-            ${{option.price}}
+            <em>${{option.price}}</em>
           </td>
           <td>
             {{option.title}} ({{option.size}})
@@ -124,22 +95,24 @@
     </div>
 
     <div class="form__field form__field--label">
-      Would you like to leave an extra donation?
+      Would you like to donate an additional amount?
     </div>
     <div class="form__field__row">
       <div class="form__dollar form__dollar--off">$</div><input type="text" class="form__control form__control--toggled form__control--dollar form__control--toggled--off" placeholder="_">
     </div>
 
-    <div class="form__field form__field--label">
-      Would you like to leave an extra donation?
+    <div class="form__field form__field--label form__field--push">
+      Your subtotal:
     </div>
     <div class="form__field__row">
-      <div class="form__dollar form__dollar--off">$</div><input type="text" class="form__control form__control--toggled form__control--dollar form__control--toggled--off" placeholder="_">
+      <div class="form__field__text">$100</div>
     </div>
 
+    {#
     <div class="form__field__row">
       <a href="javascript:" ng-click="ctrl.toggleCustomizer()" class="link link--sm">go back</a>
     </div>
+    #}
   </div>
 
   <div class="specs__row" style="display: none">
@@ -151,9 +124,9 @@
     </div>
   </div>
 
-  <div class="specs__pay" ng-if="ctrl.dirty">
+  <div class="specs__pay">
     <button class="btn btn--icon" ng-click="ctrl.openOrderDialog()">
-      Pay
+      Next
       <i class="material-icons">navigate_next</i>
     </button>
   </div>

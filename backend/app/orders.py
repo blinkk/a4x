@@ -1,4 +1,5 @@
 from . import base
+from . import campaigns
 from . import messages
 from google.appengine.ext import ndb
 from google.appengine.ext.ndb import msgprop
@@ -6,35 +7,6 @@ from google.appengine.ext.ndb import msgprop
 import stripe
 
 DESCRIPTION = 'Art for X Invoice'
-
-
-class Campaign(base.Model):
-    end = ndb.DateTimeProperty()
-    goal = ndb.FloatProperty()
-    num_orders = ndb.IntegerProperty()
-    raised = ndb.FloatProperty()
-    start = ndb.DateTimeProperty()
-
-    @classmethod
-    def get_or_create(cls, ident):
-        key = ndb.Key('Campaign', ident)
-        ent = key.get()
-        if ent is None:
-            ent = cls(key=key)
-            ent.put()
-        return ent
-
-    def add_order(self, order):
-        self.num_orders += 1
-        self.raised = order.amount
-        self.put()
-
-    def to_message(self):
-        msg = messages.CampaignMessage()
-        msg.num_orders = self.num_orders
-        msg.raised = self.raised
-        msg.goal = self.goal
-        return msg
 
 
 class Order(base.Model):
@@ -74,7 +46,7 @@ class Order(base.Model):
             num_items += item.quantity
         ent = cls(amount=message.amount, num_items=num_items)
         ent.put()
-        campaign = Campaign.get_or_create(message.campaign_ident)
+        campaign = campaigns.Campaign.get_or_create(message.campaign_ident)
         campaign.add_order(ent)
         return ent
 

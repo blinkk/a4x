@@ -18,9 +18,9 @@
     </div>
   </div>
         <div class="artist__attribution">
-          by
+          Artist:
           <a href="{{partial.artist.url}}">{{partial.artist.title}}</a> in {{partial.artist.location}}<br class="gt--md">
-          for <a href="{{partial.cause.url}}">{{partial.cause.title}}</a>
+          Cause: <a href="{{partial.cause.url}}">{{partial.cause.title}}</a>
         </div>
       </div>
     </div>
@@ -29,5 +29,8 @@
     <p class="quote">
     {{partial.statement|safe}}
     </p>
+  </div>
+  <div class="artist__post-statement">
+    <p>{{partial.post_statement|safe}}</p>
   </div>
 </div>

@@ -2,9 +2,12 @@
   .form__dollar
     color: $color-white
     display: inline-block
-    font-size: $font-size-md
     position: absolute
     padding: $pad / 2
+    +font-size($font-size-sm, $line-height-sm)
+    transform: perspective(1px) translate3d(0, 0, 0)
+    z-index: 1
+    -webkit-font-smoothing: antialiased
 
     &--off
       color: $color-black
@@ -13,11 +16,14 @@
     margin-bottom: $pad * 1.5
 
     &--help
-      +font-size($font-size-xs, $line-height-xs)
+      +font-size($font-size-sm, $line-height-sm)
       margin-top: $pad /2
 
       span
         color: $color-black
+
+    &--push
+      margin-top: $pad * 2
 
     &--label
       color: $color-black
@@ -27,10 +33,32 @@
       margin-bottom: $pad / 2
       font-size: $font-size-sm
 
+  .form__field__text
+    color: $color-black
+    +font-size($font-size-lg, $line-height-lg)
+
   select.form__control
-    border: 1px solid $color-text
-    padding: $pad / 2
+    -webkit-appearance: none
     appearance: none
+    border: 1px solid $color-grey-light
+    cursor: pointer
+    font-size: $font-size-sm
+    outline: none
+    padding: $pad / 2
+    width: 100%
+
+  .form__select
+    position: relative
+    select
+      padding-right: $pad * 2
+    svg
+      position: absolute
+      pointer-events: none
+      width: 15px
+      height: 10px
+      top: calc(50% - 5px)
+      right: 12px
+      z-index: 1
 
   textarea.form__control
     +font-size($font-size-sm, $line-height-sm)
@@ -75,13 +103,15 @@
       margin: -6px 0
 
     &--toggled
-      background: $color-secondary
-      border: none
+      border: 1px solid $color-grey-light
+      border-radius: 5px
       color: $color-white
-      font-size: $font-size-md
+      font-size: $font-size-sm
       width: 100px
       outline: none
       padding-left: $pad * 1.5
+      -webkit-font-smoothing: antialiased
+      transform: perspective(1px) translate3d(0, 0, 0)
 
       &::-webkit-input-placeholder
         color: rgba(255, 255, 255, 1)

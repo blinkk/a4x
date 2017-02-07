@@ -28,6 +28,10 @@
     display: inline-block
     margin: 0 $pad / 4
 
+    &--sq
+      border-radius: 0
+      width: $bubble-size * 2
+
   .artist__attribution
     +font-size($font-size-sm, $line-height-sm)
 
@@ -37,3 +41,7 @@
   .artist__cause
     margin-bottom: $pad * 2
     font-weight: 100
+
+  .artist__post-statement
+    font-weight: $font-weight-semibold
+    color: $color-black
