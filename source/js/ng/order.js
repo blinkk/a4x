@@ -9,11 +9,13 @@ var rpc = function(method, data) {
 
 
 var OrderController = function($element, $scope) {
+  this.$scope = $scope;
   this.dirty = false;
   this.customizing = true;
   this.amount = '';
   this.order = {};
   this.campaignIdent = null;
+  this.campaign = null;
   this.skusToItems = {};
   this.quantities = {};
   this.quantityOptions = [];
@@ -58,8 +60,9 @@ OrderController.prototype.getCampaign = function(ident) {
     }
   };
   rpc('campaigns.get', req).success(function(resp) {
-    console.log(resp);
-  });
+    this.campaign = resp['campaign'];
+    this.$scope.$apply();
+  }.bind(this));
 };
 
 
@@ -74,7 +77,6 @@ OrderController.prototype.isAmountEqual = function(amount) {
 
 
 OrderController.prototype.setSkuItem = function(sku, item, amount) {
-  console.log('test');
   this.dirty = true;
   this.skusToItems[sku] = item;
   this.amount = amount;
@@ -105,7 +107,7 @@ OrderController.prototype.openOrderDialog = function() {
   var numItems = 0;
   for (var sku in this.quantities) {
     var quantity = this.quantities[sku];
-    numItems += quantity;
+    numItems += parseInt(quantity);
   };
   numItems = parseInt(numItems);
   var handler = this.createStripeHandler();
@@ -121,10 +123,10 @@ OrderController.prototype.openOrderDialog = function() {
 
 
 OrderController.prototype.createOrder = function(token) {
-  var total = this.getTotal() * 100;
+  var total = this.getTotal();
   var items = [];
   for (var sku in this.skusToItems) {
-    var quantity = this.skusToItems[sku]['quantity'];
+    var quantity = this.quantities[sku];
     items.push({
       'type': 'sku',
       'parent': sku,
@@ -135,7 +137,7 @@ OrderController.prototype.createOrder = function(token) {
     'order': {
       'campaign_ident': this.campaignIdent,
       'stripe_token': token.id,
-      'amount': amount,
+      'amount': total,
       'email': token.email,
       'items': items,
       'shipping': {
@@ -151,7 +153,10 @@ OrderController.prototype.createOrder = function(token) {
       }
     }
   };
-  rpc('orders.create', req);
+  rpc('orders.create', req).success(function(resp) {
+    this.campaign = resp['campaign'];
+    this.$scope.$apply();
+  }.bind(this));
 };
 
 

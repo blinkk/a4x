@@ -15,6 +15,10 @@ class Order(base.Model):
     note = ndb.StringProperty()
     campaign_ident = ndb.StringProperty()
 
+    @property
+    def campaign(self):
+        return campaigns.Campaign.get(self.campaign_ident)
+
     @classmethod
     def create_stripe_order(cls, message):
         try:
@@ -22,7 +26,7 @@ class Order(base.Model):
                 'type': 'sku',
                 'quantity': item.quantity,
                 'parent': item.parent,
-            } for item in message.items]
+            } for item in message.items if item.quantity]
             stripe_order = stripe.Order.create(
               currency='usd',
               items=stripe_items,
@@ -37,14 +41,17 @@ class Order(base.Model):
                 },
               },
             )
-            return stripe_order
         except stripe.CardError:
             self.response.status_int = 400
             self.response.out.write('Error processing payment.')
         num_items = 0
         for item in message.items:
             num_items += item.quantity
-        ent = cls(amount=message.amount, num_items=num_items)
+
+        ent = cls(
+            amount=message.amount,
+            num_items=num_items,
+            campaign_ident=message.campaign_ident)
         ent.put()
         campaign = campaigns.Campaign.get_or_create(message.campaign_ident)
         campaign.add_order(ent)
@@ -73,3 +80,7 @@ class Order(base.Model):
                 shipping=shipping_message,
                 items=items_message)
         return order_message
+
+    def to_message(self):
+        msg = messages.OrderMessage()
+        return msg

@@ -34,12 +34,6 @@ partials:
           that I hope will help support the American Civil Liberties Union.
       post_statement: |
           Make your purchase below. All profits will be donated directly to the ACLU.
-    - partial: hero-progress
-      raised: $500
-      num_backers: 521
-      goal: $1,000
-      remaining: 6 days left
-      percent: 32
     - partial: specs
       campaign_ident: 'jh-ilmlbtgd'
       custom_stripe_sku: "123" # TODO
@@ -58,4 +52,4 @@ partials:
           size: 13x19"
           price: 75
           default_amount: 1
-          stripe_sku: "sku_A2kYvzKCTUaR21"
+          stripe_sku: "sku_A4zTv7WfqbXvcl"

@@ -22,5 +22,6 @@ class OrderService(remote.Service):
     def create(self, request):
         order = orders.Order.create_stripe_order(request.order)
         resp = messages.OrderResponse()
-#        resp.order = order.to_message()
+        resp.order = order.to_message()
+        resp.campaign = order.campaign.to_message()
         return resp

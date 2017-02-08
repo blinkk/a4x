@@ -28,6 +28,7 @@ class OrderMessage(messages.Message):
     stripe_token = messages.StringField(4)
     amount = messages.FloatField(5)
     note = messages.StringField(6)
+    campaign_ident = messages.StringField(7)
 
 
 class CampaignMessage(messages.Message):
@@ -46,6 +47,7 @@ class OrderRequest(messages.Message):
 
 class OrderResponse(messages.Message):
     order = messages.MessageField(OrderMessage, 1)
+    campaign = messages.MessageField(CampaignMessage, 2)
 
 
 class CampaignRequest(messages.Message):

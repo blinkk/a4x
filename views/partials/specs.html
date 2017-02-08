@@ -1,5 +1,25 @@
 <div class="form specs" ng-controller="OrderController as ctrl" ng-init="ctrl.setDefaults('{{partial.campaign_ident}}', {{partial.options|jsonify}})">
 
+
+  <div class="hero-progress">
+    <div class="hero-progress__amount">
+      <span>$[[ctrl.campaign.raised]]</span>
+      contributed by [[ctrl.campaign.num_orders]] people
+    </div>
+    <div class="hero-progress__bar">
+      <div class="hero-progress__bar__bg">
+        <div class="hero-progress__bar__fg">
+        </div>
+      </div>
+    </div>
+    <div class="hero-progress__details">
+      <div class="hero-progress__details__alt">
+        [[ctrl.campaign.remaining]]
+      </div>
+      <span>[[ctrl.campaign.percent_raised]]%</span> of $[[ctrl.campaign.goal]]
+    </div>
+  </div>
+
   {#
   <div class="specs__row">
     <div class="form__field__row">

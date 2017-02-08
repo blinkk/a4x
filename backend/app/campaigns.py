@@ -29,12 +29,13 @@ class Campaign(base.Model):
     @property
     def percent_raised(self):
         if self.raised and self.goal:
-            return self.raised / self.goal
+            return self.raised / self.goal * 100
         return 0.0
 
     def add_order(self, order):
+        self.num_orders = self.num_orders or 0
         self.num_orders += 1
-        self.raised = order.amount
+        self.raised += order.amount
         self.put()
 
     def to_message(self):
