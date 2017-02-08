@@ -1,4 +1,4 @@
-<div class="form specs" ng-controller="OrderController as ctrl" ng-init="ctrl.setCampaignIdent('{{partial.campaign_ident}}')">
+<div class="form specs" ng-controller="OrderController as ctrl" ng-init="ctrl.setDefaults('{{partial.campaign_ident}}', {{partial.options|jsonify}})">
 
   {#
   <div class="specs__row">
@@ -41,7 +41,9 @@
                   {{option.title}}
                   <br>{{option.size}}
                 </div>
+                {% if option.icon %}
                 <div class="rewards__cell__image" style="background-image: url({{option.icon.url.path}})"></div>
+                {% endif %}
                 <div class="rewards__cell__price">
                   Pay ${{option.price}}+
                 </div>
@@ -60,7 +62,7 @@
 
   <div ng-if="ctrl.customizing" ng-cloak>
     <div class="form__field form__field--label">
-      Customize your order:
+      Choose prints to order:
     </div>
     <div class="items">
       <table class="items__table">
@@ -75,10 +77,8 @@
         <tr class="items__table__row">
           <td>
             <div class="form__select">
-              <select class="form__control">
-              {% for num in range(0, 51) %}
-              <option value="{{num}}">{{num}}</option>
-              {% endfor %}
+              <select class="form__control" ng-model="ctrl.quantities['{{option.stripe_sku}}']" ng-change="ctrl.setSkuItem('{{option.stripe_sku}}', {{option|jsonify}}, '1')">
+              <option value="[[num]]" ng-repeat="num in ctrl.quantityOptions">[[num]]</option>
               </select>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 7.6" enable-background="new 0 0 15 7.6"><path d="M15 1.1l-7.5 6.5-7.5-6.3 1-1.2 6.5 5.5 6.5-5.6z"></path></svg>
             </div>
@@ -98,14 +98,14 @@
       Would you like to donate an additional amount?
     </div>
     <div class="form__field__row">
-      <div class="form__dollar form__dollar--off">$</div><input type="text" class="form__control form__control--toggled form__control--dollar form__control--toggled--off" placeholder="_">
+      <div class="form__dollar form__dollar--off">$</div><input type="text" class="form__control form__control--toggled form__control--dollar form__control--toggled--off" placeholder="_" ng-model="ctrl.additionalAmount">
     </div>
 
     <div class="form__field form__field--label form__field--push">
       Your subtotal:
     </div>
     <div class="form__field__row">
-      <div class="form__field__text">$100</div>
+      <div class="form__field__text">$[[ctrl.getTotal()]]</div>
     </div>
 
     {#

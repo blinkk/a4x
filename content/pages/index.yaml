@@ -45,20 +45,17 @@ partials:
       custom_stripe_sku: "123" # TODO
       options:
         - title: Postcard
-          size: 6x9"
+          size: 4x6"
           price: 5
           default_amount: 0
-          icon: !g.static /source/images/icon-postcard.png
           stripe_sku: "sku_A2kY1fnyd8ecUt"
         - title: Small Print
           size: 8.5x11"
           price: 35
-          icon: !g.static /source/images/icon-small.png
           default_amount: 0
           stripe_sku: "sku_A2kYvzKCTUaR2N"
         - title: Large Print
           size: 13x19"
           price: 75
-          icon: !g.static /source/images/icon-large.png
           default_amount: 1
-          stripe_sku: "sku_A2kYvzKCTUaR2N"
+          stripe_sku: "sku_A2kYvzKCTUaR21"

@@ -15,6 +15,33 @@ var OrderController = function($element, $scope) {
   this.order = {};
   this.campaignIdent = null;
   this.skusToItems = {};
+  this.quantities = {};
+  this.quantityOptions = [];
+  this.additionalAmount = null;
+  for (var i = 0; i < 50; i++) {
+    this.quantityOptions.push(i);
+  }
+};
+
+
+OrderController.prototype.getTotal = function() {
+  var total = 0;
+  for (var sku in this.quantities) {
+    total += this.skusToItems[sku]['price'] * this.quantities[sku];
+  }
+  if (this.additionalAmount) {
+    total += parseInt(this.additionalAmount);
+  }
+  return total;
+};
+
+
+OrderController.prototype.setDefaults = function(ident, options) {
+  this.setCampaignIdent(ident);
+  options.forEach(function(option) {
+    this.skusToItems[option['stripe_sku']] = option;
+    this.quantities[option['stripe_sku']] = option['default_amount'].toString();
+  }.bind(this));
 };
 
 
@@ -47,6 +74,7 @@ OrderController.prototype.isAmountEqual = function(amount) {
 
 
 OrderController.prototype.setSkuItem = function(sku, item, amount) {
+  console.log('test');
   this.dirty = true;
   this.skusToItems[sku] = item;
   this.amount = amount;
@@ -73,27 +101,17 @@ OrderController.prototype.createStripeHandler = function() {
 };
 
 
-OrderController.prototype.getAmount = function() {
-  var total = 0;
-  for (var sku in this.skusToItems) {
-    var item = this.skusToItems[sku];
-    total += item['quantity'] * item['price'];
-  }
-  return total;
-};
-
-
 OrderController.prototype.openOrderDialog = function() {
   var numItems = 0;
-  for (var sku in this.skusToItems) {
-    var quantity = this.skusToItems[sku]['quantity'];
+  for (var sku in this.quantities) {
+    var quantity = this.quantities[sku];
     numItems += quantity;
   };
-  var donation = 0;
   numItems = parseInt(numItems);
   var handler = this.createStripeHandler();
   var noun = numItems == 1 ? 'item' : 'items';
-  var amount = this.getAmount() * 100;
+  var amount = this.getTotal() * 100;
+  var donation = this.additionalAmount || 0;
   handler.open({
     name: 'Art for X',
     description: numItems + ' ' + noun + ', $' + donation + ' on top',
@@ -103,7 +121,7 @@ OrderController.prototype.openOrderDialog = function() {
 
 
 OrderController.prototype.createOrder = function(token) {
-  var amount = this.getAmount() * 100;
+  var total = this.getTotal() * 100;
   var items = [];
   for (var sku in this.skusToItems) {
     var quantity = this.skusToItems[sku]['quantity'];
