@@ -1,6 +1,4 @@
 .hero-art
-  margin-bottom: $pad
-
   .hero-art__canvas
     line-height: 0
     +md
@@ -13,3 +11,22 @@
   .hero-art__details
     +font-size($font-size-xs, $line-height-xs)
     margin-top: $pad
+
+    .hero-art__details__title
+      font-weight: normal
+      color: $color-black
+      margin-bottom: $pad / 2
+
+    .hero-art__details__body
+      margin-bottom: $pad / 2
+
+    .hero-art__images
+      .hero-art__images__thumb
+        background-position: center
+        background-size: cover
+        border-radius: 3px
+        cursor: pointer
+        display: inline-block
+        height: 50px
+        margin-right: 5px
+        width: 50px

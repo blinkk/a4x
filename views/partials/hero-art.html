@@ -3,6 +3,17 @@
     <img src="{{partial.image}}">
   </div>
   <div class="hero-art__details">
-    {{partial.details|safe}}
+    <div class="hero-art__details__title">Print specs:</div>
+    <div class="hero-art__details__body">
+    {{partial.specs|safe}}
+    </div>
+    <div class="hero-art__details__title">More images from the artist:</div>
+    <div class="hero-art__details__body">
+      <div class="hero-art__images">
+        {% for image in partial.more_images %}
+        <a href="{{image.url}}" class="hero-art__images__thumb" style="background-image:url({{image.image.url}})"></a>
+        {% endfor %}
+      </div>
+    </div>
   </div>
 </div>

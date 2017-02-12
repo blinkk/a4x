@@ -16,13 +16,16 @@
     +font-size($font-size-xs, $line-height-xs)
 
   .artist__title
-    +font-size($font-size-xl, $line-height-xl)
+    +font-size($font-size-lg, $line-height-lg)
     color: $color-black
+    +md
+      +font-size($font-size-xl, $line-height-xl)
 
   .artist__subtitle
     margin-top: $pad/2
-    +font-size($font-size-sm, $line-height-sm)
+    +font-size($font-size-xs, $line-height-xs)
     +md
+      +font-size($font-size-sm, $line-height-sm)
 
   .artist__aside
     margin-top: $pad
@@ -31,7 +34,9 @@
       text-align: left
 
   .artist__bubbles
-    margin-bottom: $pad / 5
+    margin-bottom: $pad / 3
+    +md
+      margin-bottom: $pad / 5
 
   .artist__bubble
     background-size: cover

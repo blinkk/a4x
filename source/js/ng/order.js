@@ -26,6 +26,13 @@ var OrderController = function($element, $scope) {
 };
 
 
+OrderController.prototype.getAddMoreAmount = function() {
+  if (this.campaign) {
+    return this.campaign.average - this.getTotal();
+  }
+};
+
+
 OrderController.prototype.getTotal = function() {
   var total = 0;
   for (var sku in this.quantities) {

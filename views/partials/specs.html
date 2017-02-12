@@ -26,81 +26,12 @@
     </div>
   </div>
 
-  {#
-  <div class="specs__row">
-    <div class="form__field__row">
-      <i class="material-icons-extended">post_facebook</i>
-      <i class="material-icons-extended">post_twitter</i>
-      <i class="material-icons-extended">link</i>
-    </div>
-  </div>
-  #}
-
-  <div ng-if="!ctrl.customizing" ng-cloak>
-
-    <div class="specs__row">
-      <div class="form__field form__field--label">
-        How much would you like to contribute?
-      </div>
-      <div class="form__field__row">
-        {% for option in partial.options -%}
-        <div class="btn btn--toggle btn--flush btn--sm" ng-click="ctrl.setSkuItem('{{option.stripe_sku}}', {'quantity': '1', 'price': {{option.price}}}, {{option.price}})" ng-class="{'btn--toggle--off': !ctrl.isAmountEqual({{option.price}})}">${{option.price}}</div>
-        {%- endfor -%}
-        <div class="form__dollar" ng-class="{'form__dollar--off': !ctrl.isAmountEqual(ctrl.customAmount)}">$</div><input ng-model="ctrl.customAmount" ng-change="ctrl.setAmount(ctrl.customAmount)" type="number" class="form__control--toggled form__control form__control--dollar" placeholder="_" ng-class="{'form__control--toggled--off': !ctrl.isAmountEqual(ctrl.customAmount)}">
-      </div>
-      <div class="form__field form__field--help">
-        The average contribution so far is <span>$15</span>.
-      </div>
-    </div>
-    <div class="specs__row">
-      <div class="form__field form__field--label">
-        For your contribution, you will receive:
-      </div>
-      <div class="form__field__row">
-
-        <div class="rewards">
-          <div class="ak-grid ak-grid--3-cols ak-grid--valign-middle">
-            {% for option in partial.options %}
-            <div class="ak-grid__item">
-              <div class="rewards__cell" ng-class="{'rewards__cell--disabled': ctrl.amount < {{option.price}} || !ctrl.amount}">
-                <div class="rewards__cell__title">
-                  {{option.title}}
-                  <br>{{option.size}}
-                </div>
-                {% if option.icon %}
-                <div class="rewards__cell__image" style="background-image: url({{option.icon.url.path}})"></div>
-                {% endif %}
-                <div class="rewards__cell__price">
-                  Pay ${{option.price}}+
-                </div>
-              </div>
-            </div>
-            {% endfor %}
-          </div>
-        </div>
-
-        <div class="form__field__row">
-          <a href="javascript:" class="link link--sm" ng-click="ctrl.toggleCustomizer()">create custom order</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div ng-if="ctrl.customizing" ng-cloak>
+  <div>
     <div class="form__field form__field--label">
       Choose prints to order:
     </div>
     <div class="items">
       <table class="items__table">
-        {#
-        <thead>
-          <tr class="items__table__row">
-            <td>Qty</td>
-            <td>Price</td>
-            <td></td>
-          </tr>
-        </thead>
-        #}
         {% for option in partial.options %}
         <tr class="items__table__row">
           <td>
@@ -126,7 +57,7 @@
       Would you like to donate an additional amount?
     </div>
     <div class="form__field__meta">
-      Add <b>$20</b> to beat the average of $10!
+      Add <b>[[ctrl.getAddMoreAmount()|currency:"$":0]]</b> to beat the average of [[ctrl.campaign.average|currency:"$":0]]!
     </div>
     <div class="form__field__row">
       <div class="form__dollar form__dollar--off">$</div><input type="text" class="form__control form__control--toggled form__control--dollar form__control--toggled--off" placeholder="_" ng-model="ctrl.additionalAmount">
@@ -142,11 +73,6 @@
       <div class="form__field__text">[[ctrl.getTotal()|currency:"$":0]]</div>
     </div>
 
-    {#
-    <div class="form__field__row">
-      <a href="javascript:" ng-click="ctrl.toggleCustomizer()" class="link link--sm">go back</a>
-    </div>
-    #}
   </div>
 
   <div class="specs__row" style="display: none">
