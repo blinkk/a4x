@@ -1,12 +1,13 @@
 grow_version: ">=0.0.60"
 home: /content/pages/index.yaml
-title: Art for X – A4X
+title: Art for X
 
 localization:
   default_locale: en
   google_analytics_id: UA-91344777-1
 
 meta:
+  description: "Buy art and raise money for good causes."
   icon: /source/images/icon.png
   google_site_verification: ~
   stripe_publishable_key: ""

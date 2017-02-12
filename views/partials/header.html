@@ -1,4 +1,11 @@
 {% set header = g.doc('/content/partials/header.yaml') %}
 <div class="header">
-  {{header.tagline|safe}}
+  <div class="header__content">
+    {% if doc.donate %}
+    <div class="header__aside">
+      <a class="btn btn--sm">Donate now <i class="material-icons">navigate_next</i></a>
+    </div>
+    {% endif %}
+    {{header.tagline|safe}}
+  </div>
 </div>

@@ -1,36 +1,24 @@
 <div class="artist">
-  <div class="artist__title">
-    “{{partial.title}}”
-  </div>
-  <div class="artist__cause">
-    <div class="ak-grid ak-grid--valign-middle ak-grid--padded">
-      <div class="ak-grid__item ak-grid__item--5-cols ak-grid__item--4-cols--gt-md">
+  <div class="ak-grid ak-grid--valign-middle">
+    <div class="ak-grid__item ak-grid__item--3-cols--gt-md">
+      <div class="artist__aside">
         <div class="artist__bubbles">
-          <div class="artist__bubble" style="background-image: url({{partial.artist.image}})"></div>
-          <div class="artist__bubble" style="background-image: url({{partial.cause.image}})"></div>
+          <a href="{{partial.artist.url}}" class="artist__bubble" style="background-image: url({{partial.artist.image}})"></a>
+          <div class="artist__bubble artist__bubble--sq" style="background-image: url({{partial.cause.image}})"></div>
         </div>
-      </div>
-      <div class="ak-grid__item ak-grid__item--7-cols ak-grid__item--8-cols--gt-md">
-
-  <div class="artist__week">
-    <div class="artist__week__chip">
-      February 1-8
-    </div>
-  </div>
         <div class="artist__attribution">
-          Artist:
-          <a href="{{partial.artist.url}}">{{partial.artist.title}}</a> in {{partial.artist.location}}<br class="gt--md">
-          Cause: <a href="{{partial.cause.url}}">{{partial.cause.title}}</a>
+          By <a href="{{partial.artist.url}}">{{partial.artist.title}}</a>
+          for <a href="{{partial.cause.url}}">{{partial.cause.title}}</a>
         </div>
       </div>
     </div>
-  </div>
-  <div class="artist__statement">
-    <p>
-    {{partial.statement|safe}}
-    </p>
-  </div>
-  <div class="artist__post-statement">
-    <p>{{partial.post_statement|safe}}</p>
+    <div class="ak-grid__item ak-grid__item--9-cols--gt-md">
+      <div class="artist__title">
+        “{{partial.title}}”
+      </div>
+      <div class="artist__subtitle">
+        {{partial.subtitle}}
+      </div>
+    </div>
   </div>
 </div>

@@ -15,12 +15,25 @@
   transition: transform 0.3s ease
   -webkit-font-smoothing: antialiased
 
+  &[disabled]
+    opacity: .5
+    pointer-events: none
+
+  i
+    margin-top: -2px
+    transition: transform 200ms ease
+    vertical-align: middle
+
   &--flush
     margin-right: 4px
 
   &--sm
     padding: 10px 15px
     font-size: $font-size-sm
+
+    i
+      max-width: 20px
+      margin: -2px 0
 
   &--xs
     padding: 5px 10px
@@ -33,11 +46,6 @@
 
   &--icon
     padding-right: $pad * 1.5
-
-  i
-    margin-top: -2px
-    transition: transform 200ms ease
-    vertical-align: middle
 
   &--toggle
     font-size: $font-size-md

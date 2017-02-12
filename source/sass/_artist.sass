@@ -1,5 +1,6 @@
 .artist
   margin: 0 0 $pad * 2
+  text-align: center
 
   .artist__week
     margin-bottom: $pad / 4
@@ -15,34 +16,44 @@
   .artist__title
     +font-size($font-size-xl, $line-height-xl)
     color: $color-black
-    font-weight: $font-weight-light
-    margin-bottom: $pad * 2
+
+  .artist__subtitle
+    margin-top: $pad/2
+    +font-size($font-size-sm, $line-height-sm)
+
+  .artist__aside
+    text-align: left
+
+  .artist__bubbles
+    margin-bottom: $pad / 5
 
   .artist__bubble
-    background: $color-grey
     background-size: cover
+    background-repeat: no-repeat
     background-position: center
     border-radius: 100%
     width: $bubble-size
     height: $bubble-size
     display: inline-block
-    margin: 0 $pad / 4
+    margin: 0 0
+
+    &:first-child
+      margin-right: 5px
 
     &--sq
       border-radius: 0
-      width: $bubble-size * 2
+      width: $bubble-size * 2.5
+      background-size: contain
 
   .artist__attribution
     +font-size($font-size-sm, $line-height-sm)
+    a
+      color: $color-black
+      &:hover
+        color: $color-secondary
 
     span
       font-weight: 500
 
   .artist__cause
-    margin-bottom: $pad * 2
     font-weight: 100
-
-  .artist__post-statement
-    font-weight: $font-weight-semibold
-    color: $color-black
-    margin-top: $pad

@@ -9,7 +9,6 @@ handlers:
   secure: always
 - url: /_api/.*
   script: backend.app.main.api_app
-  secure: always
 - url: /(.*\..*)
   static_files: build/\1
   upload: build/(.*\..*)

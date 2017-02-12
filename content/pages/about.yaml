@@ -1,6 +1,7 @@
 $title: About
 partials:
 - partial: cols
+  class: cols--narrow
   cols:
   - num_cols: 8
     partials:

@@ -7,7 +7,7 @@ from google.appengine.ext.ndb import msgprop
 
 class Campaign(base.Model):
     end = ndb.DateTimeProperty()
-    goal = ndb.FloatProperty()
+    goal = ndb.FloatProperty(default=1000)
     num_orders = ndb.IntegerProperty()
     raised = ndb.FloatProperty()
     start = ndb.DateTimeProperty()
@@ -29,12 +29,23 @@ class Campaign(base.Model):
     @property
     def percent_raised(self):
         if self.raised and self.goal:
-            return self.raised / self.goal * 100
+            val = self.raised / self.goal * 100
+            val = '{0:.2f}'.format(round(val, 2))
+            return float(val)
+        return 0.0
+
+    @property
+    def average(self):
+        if self.raised and self.goal:
+            val = self.raised / self.num_orders
+            val = '{0:.2f}'.format(round(val, 2))
+            return float(val)
         return 0.0
 
     def add_order(self, order):
         self.num_orders = self.num_orders or 0
         self.num_orders += 1
+        self.raised = self.raised or 0
         self.raised += order.amount
         self.put()
 
@@ -47,4 +58,5 @@ class Campaign(base.Model):
         msg.percent_raised = self.percent_raised
         msg.end = self.end
         msg.start = self.start
+        msg.average = self.average
         return msg

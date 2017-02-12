@@ -39,6 +39,7 @@ class CampaignMessage(messages.Message):
     start = message_types.DateTimeField(5)
     end = message_types.DateTimeField(6)
     ident = messages.StringField(7)
+    average = messages.FloatField(8)
 
 
 class OrderRequest(messages.Message):

@@ -1,12 +1,23 @@
 .header
-  text-align: center
-  margin-bottom: $pad * 2
-  padding: 0 $pad
-  +md
-    margin-bottom: $pad * 3
+  box-shadow: 0px 4px 10px 0 rgba(22,22,22,0.08)
+  background: $color-white
+  color: $color-dark
+  margin-bottom: $pad
+  padding: $pad
+  +font-size($font-size-sm, $line-height-sm)
 
   b
-    color: $color-black
     font-weight: $font-weight-semibold
+    color: $color-secondary
     display: inline-block
     margin-right: 5px
+
+  span
+    opacity: .5
+
+  .header__content
+    +contained
+
+  .header__aside
+    float: right
+    margin-top: -10px

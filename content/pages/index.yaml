@@ -1,6 +1,19 @@
 $title: Home
 $path: /
+donate: true
 partials:
+- partial: artist
+  title: "I Lift My Lamp Beside the Golden Door"
+  subtitle: All profits made from orders will be donated directly to the ACLU
+  artist:
+    title: Jennifer Hom
+    url: http://jenniferhom.com/
+    image: https://pbs.twimg.com/profile_images/2874657266/aa8bc5241748dfbf9162ae3d7129b04e_400x400.png
+    location: San Francisco
+  cause:
+    title: ACLU
+    url: https://www.aclu.org/
+    image: https://upload.wikimedia.org/wikipedia/en/4/4d/American_Civil_Liberties_Union_logo.png
 - partial: cols
   cols:
   - num_cols: 6
@@ -13,17 +26,8 @@ partials:
           • The size of the print fits within its paper size with a .25" border.
   - num_cols: 6
     partials:
-    - partial: artist
-      title: "I Lift My Lamp Beside the Golden Door"
-      artist:
-        title: Jennifer Hom
-        url: http://jenniferhom.com/
-        image: https://pbs.twimg.com/profile_images/2874657266/aa8bc5241748dfbf9162ae3d7129b04e_400x400.png
-        location: San Francisco
-      cause:
-        title: ACLU
-        url: https://www.aclu.org/
-        image: https://upload.wikimedia.org/wikipedia/en/4/4d/American_Civil_Liberties_Union_logo.png
+    - partial: specs
+
       statement: |
           Through all the changes in America over the last several weeks, it is
           clear that the country needs to remain true to our spirit.
@@ -32,9 +36,7 @@ partials:
           <br><br>
           What started as a way cope turned into something
           that I hope will help support the American Civil Liberties Union.
-      post_statement: |
-          Make your purchase below. All profits will be donated directly to the ACLU.
-    - partial: specs
+
       campaign_ident: 'jh-ilmlbtgd'
       custom_stripe_sku: "123" # TODO
       options:

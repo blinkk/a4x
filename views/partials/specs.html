@@ -1,22 +1,30 @@
 <div class="form specs" ng-controller="OrderController as ctrl" ng-init="ctrl.setDefaults('{{partial.campaign_ident}}', {{partial.options|jsonify}})">
 
-
   <div class="hero-progress">
     <div class="hero-progress__amount">
-      <span>$[[ctrl.campaign.raised]]</span>
+      <span>[[ctrl.campaign.raised|currency:"$":0]]</span>
       contributed by [[ctrl.campaign.num_orders]] people
     </div>
     <div class="hero-progress__bar">
-      <div class="hero-progress__bar__bg">
-        <div class="hero-progress__bar__fg">
-        </div>
+      <div class="hero-progress__bar__bg" ng-style="{'width': ctrl.campaign.percent_raised + '%'}">
       </div>
     </div>
     <div class="hero-progress__details">
       <div class="hero-progress__details__alt">
         [[ctrl.campaign.remaining]]
       </div>
-      <span>[[ctrl.campaign.percent_raised]]%</span> of $[[ctrl.campaign.goal]]
+      <span>[[ctrl.campaign.percent_raised]]%</span> of [[ctrl.campaign.goal|currency:"$":0]] goal
+    </div>
+  </div>
+
+  <div class="specs__row">
+    <div class="form__field form__field--label">
+      The story behind this:
+    </div>
+    <div class="form__field__row artist__statement">
+      <p>
+      {{partial.statement|safe}}
+      </p>
     </div>
   </div>
 
@@ -86,6 +94,7 @@
     </div>
     <div class="items">
       <table class="items__table">
+        {#
         <thead>
           <tr class="items__table__row">
             <td>Qty</td>
@@ -93,6 +102,7 @@
             <td></td>
           </tr>
         </thead>
+        #}
         {% for option in partial.options %}
         <tr class="items__table__row">
           <td>
@@ -119,13 +129,19 @@
     </div>
     <div class="form__field__row">
       <div class="form__dollar form__dollar--off">$</div><input type="text" class="form__control form__control--toggled form__control--dollar form__control--toggled--off" placeholder="_" ng-model="ctrl.additionalAmount">
+      <div class="form__aside" ng-class="{'form__aside--visible': ctrl.additionalAmount}">
+        Thank you!
+      </div>
     </div>
 
     <div class="form__field form__field--label form__field--push">
       Your subtotal:
     </div>
     <div class="form__field__row">
-      <div class="form__field__text">$[[ctrl.getTotal()]]</div>
+      <div class="form__field__text">[[ctrl.getTotal()|currency:"$":0]]</div>
+      <div class="form__aside form__aside--alt form__aside--visible">
+        Add <b>$20</b> more to beat the average of $10.
+      </div>
     </div>
 
     {#
@@ -145,7 +161,7 @@
   </div>
 
   <div class="specs__pay">
-    <button class="btn btn--icon" ng-click="ctrl.openOrderDialog()">
+    <button class="btn btn--icon" ng-click="ctrl.openOrderDialog()" ng-disabled="!ctrl.getTotal()">
       Next
       <i class="material-icons">navigate_next</i>
     </button>
