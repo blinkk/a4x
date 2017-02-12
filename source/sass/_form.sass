@@ -28,6 +28,7 @@
     &--label
       color: $color-black
       margin-bottom: $pad / 2
+      font-weight: $font-weight-semibold
 
     .form__field__row
       margin-bottom: $pad / 2
@@ -36,6 +37,14 @@
   .form__field__text
     color: $color-black
     +font-size($font-size-lg, $line-height-lg)
+
+  .form__field__meta
+    margin-bottom: $pad / 2
+    +font-size($font-size-sm, $line-height-sm)
+
+    b
+      color: $color-black
+      font-weight: normal
 
   select.form__control
     -webkit-appearance: none
@@ -165,8 +174,7 @@
     display: inline-block
     margin-left: $pad / 2
     +font-size($font-size-sm, $line-height-sm)
-    font-weight: $font-weight-semibold
-    color: $color-gold
+    color: $color-secondary
     transition: all 150ms ease-in
     transform: translateY(5px) scale(.9)
     opacity: 0

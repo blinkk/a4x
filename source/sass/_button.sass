@@ -10,7 +10,6 @@
   outline: none
   padding: $pad / 1.5 $pad * 2
   position: relative
-  text-transform: lowercase
   transform: perspective(1px) translate3d(0, 0, 0)
   transition: transform 0.3s ease
   -webkit-font-smoothing: antialiased
@@ -23,6 +22,17 @@
     margin-top: -2px
     transition: transform 200ms ease
     vertical-align: middle
+
+  &--grey
+    background: #EDEDED
+    color: #626369
+    box-shadow: none
+
+    i
+      font-size: $font-size-sm
+      margin: -1px 0 0 3px !important
+      display: inline-block
+      transform: translateX(0) !important
 
   &--flush
     margin-right: 4px

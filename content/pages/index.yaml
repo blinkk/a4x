@@ -29,13 +29,16 @@ partials:
     - partial: specs
 
       statement: |
+          <p>
           Through all the changes in America over the last several weeks, it is
           clear that the country needs to remain true to our spirit.
           Immigration is the heart of this land and I wanted to do what little
           I can to protect it.
-          <br><br>
+          </p>
+          <p>
           What started as a way cope turned into something
           that I hope will help support the American Civil Liberties Union.
+          </p>
 
       campaign_ident: 'jh-ilmlbtgd'
       custom_stripe_sku: "123" # TODO
