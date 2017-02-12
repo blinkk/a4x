@@ -1,5 +1,9 @@
 .cols
-  margin: 0 auto
+  margin: $pad auto 0
 
   &--narrow
     max-width: $max-width-sm
+
+    .ak-grid__item:first-child
+      +md
+        padding-right: $pad * 2

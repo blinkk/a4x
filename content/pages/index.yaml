@@ -1,7 +1,9 @@
 $title: Home
 $path: /
 donate: true
+
 partials:
+
 - partial: artist
   title: "I Lift My Lamp Beside the Golden Door"
   subtitle: All profits made from orders will be donated directly to the ACLU
@@ -14,8 +16,10 @@ partials:
     title: ACLU
     url: https://www.aclu.org/
     image: https://upload.wikimedia.org/wikipedia/en/4/4d/American_Civil_Liberties_Union_logo.png
+
 - partial: cols
   cols:
+
   - num_cols: 6
     partials:
     - partial: hero-art
@@ -27,10 +31,10 @@ partials:
       - url: "https://twitter.com/jhomnomnom/status/826851382946705408"
         image:
           url: "https://pbs.twimg.com/media/C3mQ7yiUYAANsM-.jpg"
+
   - num_cols: 6
     partials:
     - partial: specs
-
       statement: |
           <p>
           Through all the changes in America over the last several weeks, it is
@@ -45,6 +49,7 @@ partials:
 
       campaign_ident: 'jh-ilmlbtgd'
       custom_stripe_sku: "123" # TODO
+      stripe_image_url: https://images.bigcartel.com/product_images/192314536/liftmylamp-web.jpg?auto=format&fit=max&h=1000&w=1000
       options:
         - title: Postcard
           size: 4x6"

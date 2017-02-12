@@ -20,6 +20,7 @@ var OrderController = function($element, $scope) {
   this.quantities = {};
   this.quantityOptions = [];
   this.additionalAmount = null;
+  this.stripeImageUrl = null;
   for (var i = 0; i < 50; i++) {
     this.quantityOptions.push(i);
   }
@@ -45,7 +46,8 @@ OrderController.prototype.getTotal = function() {
 };
 
 
-OrderController.prototype.setDefaults = function(ident, options) {
+OrderController.prototype.setDefaults = function(ident, options, stripeImageUrl) {
+  this.stripeImageUrl = stripeImageUrl;
   this.setCampaignIdent(ident);
   options.forEach(function(option) {
     this.skusToItems[option['stripe_sku']] = option;
@@ -99,7 +101,7 @@ OrderController.prototype.setAmount = function(amount) {
 OrderController.prototype.createStripeHandler = function() {
   return StripeCheckout.configure({
     key: 'pk_test_421OpDpSp3zsjIuVHCHZAnrR',
-    image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+    image: this.stripeImageUrl,
     locale: 'auto',
     billingAddress: true,
     shippingAddress: true,

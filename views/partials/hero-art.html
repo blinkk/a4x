@@ -11,7 +11,7 @@
     <div class="hero-art__details__body">
       <div class="hero-art__images">
         {% for image in partial.more_images %}
-        <a href="{{image.url}}" class="hero-art__images__thumb" style="background-image:url({{image.image.url}})"></a>
+        <a target="_blank" href="{{image.url}}" class="hero-art__images__thumb" style="background-image:url({{image.image.url}})"></a>
         {% endfor %}
       </div>
     </div>

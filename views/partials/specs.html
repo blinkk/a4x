@@ -1,4 +1,4 @@
-<div class="form specs" ng-controller="OrderController as ctrl" ng-init="ctrl.setDefaults('{{partial.campaign_ident}}', {{partial.options|jsonify}})">
+<div class="form specs" ng-controller="OrderController as ctrl" ng-init="ctrl.setDefaults('{{partial.campaign_ident}}', {{partial.options|jsonify}}, '{{partial.stripe_image_url}}')">
 
   <div class="hero-progress">
     <div class="hero-progress__amount">
@@ -57,12 +57,20 @@
       Would you like to donate an additional amount?
     </div>
     <div class="form__field__meta">
-      Add <b>[[ctrl.getAddMoreAmount()|currency:"$":0]]</b> to beat the average of [[ctrl.campaign.average|currency:"$":0]]!
+      <div ng-if="ctrl.getAddMoreAmount() == 0">
+        Thanks! You're donating the average amount! 👌
+      </div>
+      <div ng-if="ctrl.getAddMoreAmount() > 0">
+        Add <b>[[ctrl.getAddMoreAmount()|currency:"$":0]]</b> to beat the average of [[ctrl.campaign.average|currency:"$":0]]!
+      </div>
+      <div ng-if="ctrl.getAddMoreAmount() < 0">
+        Thanks! Your total is higher than the average of <b>[[ctrl.campaign.average|currency:"$":0]]</b>, but you can always add more on top! 💪
+      </div>
     </div>
     <div class="form__field__row">
       <div class="form__dollar form__dollar--off">$</div><input type="text" class="form__control form__control--toggled form__control--dollar form__control--toggled--off" placeholder="_" ng-model="ctrl.additionalAmount">
       <div class="form__aside" ng-class="{'form__aside--visible': ctrl.additionalAmount}">
-        Thank you!
+        Thank you! ✨
       </div>
     </div>
 
