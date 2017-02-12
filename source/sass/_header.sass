@@ -5,6 +5,10 @@
   margin-bottom: $pad
   padding: $pad
   +font-size($font-size-sm, $line-height-sm)
+  text-align: center
+
+  +md
+    text-align: left
 
   b
     font-weight: $font-weight-semibold
@@ -19,8 +23,11 @@
     +contained
 
   .header__aside
+    display: none
     float: right
     margin-top: -10px
+    +md
+      display: block
 
     .btn
       margin-left: 5px

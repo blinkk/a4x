@@ -1,6 +1,14 @@
 <div class="artist">
-  <div class="ak-grid ak-grid--valign-middle">
-    <div class="ak-grid__item ak-grid__item--3-cols--gt-md">
+  <div class="ak-grid ak-grid--valign-middle ak-grid--reversed">
+    <div class="ak-grid__item ak-grid__item--12-cols ak-grid__item--9-cols--gt-md">
+      <div class="artist__title">
+        “{{partial.title}}”
+      </div>
+      <div class="artist__subtitle">
+        {{partial.subtitle}}
+      </div>
+    </div>
+    <div class="ak-grid__item ak-grid__item--12-cols ak-grid__item--3-cols--gt-md">
       <div class="artist__aside">
         <div class="artist__bubbles">
           <a href="{{partial.artist.url}}" class="artist__bubble" style="background-image: url({{partial.artist.image}})"></a>
@@ -10,14 +18,9 @@
           By <a href="{{partial.artist.url}}">{{partial.artist.title}}</a>
           for <a href="{{partial.cause.url}}">{{partial.cause.title}}</a>
         </div>
-      </div>
-    </div>
-    <div class="ak-grid__item ak-grid__item--9-cols--gt-md">
-      <div class="artist__title">
-        “{{partial.title}}”
-      </div>
-      <div class="artist__subtitle">
-        {{partial.subtitle}}
+        <div class="artist__location">
+          <i class="material-icons">place</i> {{partial.artist.location}}
+        </div>
       </div>
     </div>
   </div>

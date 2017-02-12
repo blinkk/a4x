@@ -1,6 +1,8 @@
 .artist
-  margin: 0 0 $pad * 2
   text-align: center
+  margin: 0 0 $pad
+  +md
+    margin: 0 0 $pad * 2
 
   .artist__week
     margin-bottom: $pad / 4
@@ -20,9 +22,13 @@
   .artist__subtitle
     margin-top: $pad/2
     +font-size($font-size-sm, $line-height-sm)
+    +md
 
   .artist__aside
-    text-align: left
+    margin-top: $pad
+    +md
+      margin-top: 0
+      text-align: left
 
   .artist__bubbles
     margin-bottom: $pad / 5
@@ -54,6 +60,13 @@
 
     span
       font-weight: 500
+
+  .artist__location
+    +font-size($font-size-xs, $line-height-xs)
+    i
+      vertical-align: middle
+      +font-size($font-size-xs, $line-height-xs)
+      margin-top: -1px
 
   .artist__cause
     font-weight: 100
