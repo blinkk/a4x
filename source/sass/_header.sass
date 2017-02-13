@@ -31,7 +31,10 @@
   .header__aside
     display: none
     float: right
-    margin: -10px 0
+    margin: -15px 0
+    padding: 5px
+    overflow-x: hidden
+    overflow-y: hidden
     +md
       display: block
 
@@ -41,3 +44,9 @@
     .header__aside__text
       +font-size($font-size-sm, $line-height-sm)
       margin-right: 5px
+
+    .header__aside__content
+      transition: all 220ms ease
+
+      &--hidden
+        transform: translateX(108px)

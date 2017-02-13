@@ -7,8 +7,8 @@
     <div class="hero-art__details__body">
     {{doc.campaign.specs|safe}}
     </div>
-    <div class="hero-art__details__title">More images from the artist:</div>
-    <div class="hero-art__details__body">
+    <div class="hero-art__details__title gt--md">More images from the artist:</div>
+    <div class="hero-art__details__body gt--md">
       <div class="hero-art__images">
         {% for image in doc.campaign.more_images %}
         <a target="_blank" href="{{image.url}}" class="hero-art__images__thumb" style="background-image:url({{image.image.url}})"></a>
