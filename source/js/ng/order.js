@@ -22,6 +22,7 @@ var OrderController = function($element, $scope) {
   this.additionalAmount = null;
   this.stripeImageUrl = null;
   this.stripeCheckoutKey = null;
+  this.isSubmitted = false;
   for (var i = 0; i < 50; i++) {
     this.quantityOptions.push(i);
   }
@@ -167,6 +168,7 @@ OrderController.prototype.createOrder = function(token) {
   };
   rpc('orders.create', req).success(function(resp) {
     this.campaign = resp['campaign'];
+    this.isSubmitted = true;
     this.$scope.$apply();
   }.bind(this));
 };

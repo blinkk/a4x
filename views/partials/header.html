@@ -6,9 +6,9 @@
       <a class="btn btn--grey btn--sm">Share <i class="material-icons">share</i></a>
       {% set home_doc = g.doc('/content/pages/index.yaml') %}
       {% if doc == home_doc %}
-        <a href="#order" data-scroll class="btn btn--sm">Donate Now <i class="material-icons">navigate_next</i></a>
+        <a href="#order" data-scroll class="btn btn--sm">Donate <i class="material-icons">navigate_next</i></a>
       {% else %}
-        <a href="{{donate_url}}" class="btn btn--sm">Donate Now <i class="material-icons">navigate_next</i></a>
+        <a href="{{donate_url}}" class="btn btn--sm">Donate <i class="material-icons">navigate_next</i></a>
       {% endif %}
     </div>
   </div>
