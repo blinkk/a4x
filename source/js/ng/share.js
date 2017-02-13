@@ -3,7 +3,7 @@ var ShareController = function($scope) {
 
 
 ShareController.prototype.openFacebook = function() {
-  var url = 'https://' + window.location.host + window.location.path;
+  var url = 'https://' + window.location.host + window.location.pathname;
   FB.ui({
     method: 'feed',
     link: url

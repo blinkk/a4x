@@ -31,6 +31,7 @@ class OrderMessage(messages.Message):
     campaign_ident = messages.StringField(7)
     artist_tip = messages.FloatField(8)
     extra_donation = messages.FloatField(9)
+    stripe_title = messages.StringField(10)
 
 
 class CampaignMessage(messages.Message):

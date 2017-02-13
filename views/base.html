@@ -11,7 +11,7 @@
 {% else %}
   <title>{{_(doc.title)}} – {{_(podspec.title)}}</title>
 {% endif %}
-<meta property="og:url" content="{{doc.url}}">
+<meta property="og:url" content="https://artforx.com{{doc.url.path}}">
 <meta property="og:type" content="website">
 {% set banner_url = doc.banner_url or doc.parent.banner_url or podspec.meta.banner_url %}
 {% if banner_url %}
@@ -19,17 +19,18 @@
 {% endif %}
 <meta property="og:title" content="{{_(podspec.title)}}">
 <meta property="og:site_name" content="{{_(podspec.title)}}">
-{% if doc.description %}
+{% if doc.base == 'index' %}
+<meta property="og:image" content="{{doc.image_url}}">
+<meta name="description" content="{{_(podspec.meta.sharetext.description)|safe}}">
+<meta property="og:description" content="{{_(podspec.meta.sharetext.description)|safe}}">
+{% elif doc.description %}
 <meta name="description" content="{{_(doc.description)|safe}}">
 <meta property="og:description" content="{{_(doc.description)|safe}}">
 {% endif %}
 {% if podspec.meta.icon %}
 <link rel="shortcut icon" href="{{g.static(podspec.meta.icon).url.path}}">
 {% endif %}
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Extended" rel="stylesheet">
-<link href='https://fonts.googleapis.com/css?family=Montserrat|Rubik:100,200,300,400,500,600,700,400italic' rel='stylesheet'>
-<link href="https://fonts.googleapis.com/css?family=Roboto+Mono:100, 300,400,600,700" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,600,700|Product+Sans:400&lang=en" rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Rubik:100,200,300,400,500,600,700,400italic|Roboto:100,300,400,600,700' rel='stylesheet'>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="{{g.static('/dist/css/main.min.css').url.path}}">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>

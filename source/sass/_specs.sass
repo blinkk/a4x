@@ -61,15 +61,16 @@
 
   .items
     .items__table
-      border: 1px solid $bar-bg
+      background-color: $color-white
       border-collapse: collapse
+      border-radius: 10px
       margin-bottom: $pad * 2
       margin-top: 15px
+      cursor: default
 
       .items__table__row
         td
-          border-bottom: 1px solid $bar-bg
-          padding: $pad / 2
+          padding: $pad / 2 $pad * 1.5 $pad / 2 $pad / 2
 
       thead
         .items__table__row
@@ -79,7 +80,7 @@
             background: $color-grey
 
   .specs__pay
-    margin: $pad * 2 0
+    margin: $pad * 2 0 0
 
     .specs__pay__meta
       padding-left: $pad

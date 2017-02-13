@@ -122,10 +122,16 @@ OrderController.prototype.createStripeHandler = function() {
     locale: 'auto',
     billingAddress: true,
     shippingAddress: true,
+    closed: function() {
+      this.isLoading = false;
+      this.$scope.$apply();
+    }.bind(this),
     token: function(token) {
       this.createOrder(token);
     }.bind(this)
   });
+  this.isLoading = true;
+  this.$scope.$apply();
 };
 
 
@@ -177,6 +183,7 @@ OrderController.prototype.createOrder = function(token) {
       'artist_note': this.artistNote,
       'extra_donation': parseFloat(this.additionalAmount || 0),
       'stripe_token': token.id,
+      'stripe_title': this.stripeTitle,
       'amount': total,
       'email': token.email,
       'items': items,
@@ -193,12 +200,19 @@ OrderController.prototype.createOrder = function(token) {
       }
     }
   };
+  this.isLoading = true;
+  this.$scope.$apply();
   rpc('orders.create', req).success(function(resp) {
+    this.isLoading = false;
     this.campaign = resp['campaign'];
     this.isSubmitted = true;
     this.isOptionalShown = false;
     this.$scope.$apply();
     smoothScroll.animateScroll('#success');
+  }.bind(this)).error(function(resp) {
+    alert('Sorry, there was a problem submitting the order.');
+    this.isLoading = false;
+    this.$scope.$apply();
   }.bind(this));
 };
 

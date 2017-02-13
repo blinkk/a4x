@@ -4,13 +4,13 @@
     {{header.tagline|safe}}
     <div class="header__aside">
       <span class="header__aside__text">Share</span>
-      <a ng-click="ctrl.openFacebook('foo')" class="btn btn--social btn--round btn--sm"><img src="{{g.static('/source/images/icon_facebook.svg').url.path}}"></a>
-      <a ng-click="ctrl.openTwitter('foo')" class="btn btn--social btn--round btn--sm"><img src="{{g.static('/source/images/icon_twitter.svg').url.path}}"></a>
+      <a ng-click="ctrl.openFacebook()" class="btn btn--social btn--round btn--sm"><img src="{{g.static('/source/images/icon_facebook.svg').url.path}}"></a>
+      <a ng-click="ctrl.openTwitter('{{podspec.meta.sharetext.twitter}}')" class="btn btn--social btn--round btn--sm"><img src="{{g.static('/source/images/icon_twitter.svg').url.path}}"></a>
       {% set home_doc = g.doc('/content/pages/index.yaml') %}
       {% if doc == home_doc %}
         <a href="#order" data-scroll class="btn btn--sm">Donate <i class="material-icons">navigate_next</i></a>
       {% else %}
-        <a href="{{donate_url}}" class="btn btn--sm">Donate <i class="material-icons">navigate_next</i></a>
+        <a href="{{home_doc.url.path}}" class="btn btn--sm">Donate <i class="material-icons">navigate_next</i></a>
       {% endif %}
     </div>
   </div>

@@ -49,7 +49,9 @@ class Order(base.Model):
                 },
             )
             charge = stripe.Charge.create(
-                amount=message.amount,
+                receipt_email=message.email,
+                metadata=metadata,
+                amount=int(message.amount * 100),
                 currency='usd',
                 description=message.stripe_title,
                 source=message.stripe_token,

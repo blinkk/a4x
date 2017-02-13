@@ -43,8 +43,8 @@
         </div>
         <div class="specs__share__row" ng-controller="ShareController as share">
 
-          <a ng-click="share.openFacebook('foo')" class="btn btn--social btn--round btn--sm"><img src="{{g.static('/source/images/icon_facebook.svg').url.path}}"></a>
-          <a ng-click="share.openTwitter('foo')" class="btn btn--social btn--round btn--sm"><img src="{{g.static('/source/images/icon_twitter.svg').url.path}}"></a>
+          <a ng-click="share.openFacebook()" class="btn btn--social btn--round btn--sm"><img src="{{g.static('/source/images/icon_facebook.svg').url.path}}"></a>
+          <a ng-click="share.openTwitter('{{podspec.meta.sharetext.twitter}}')" class="btn btn--social btn--round btn--sm"><img src="{{g.static('/source/images/icon_twitter.svg').url.path}}"></a>
 
         </div>
         <p>Thank you! ❤️ 🤗</p>
@@ -92,7 +92,7 @@
         </div>
       </div>
       <div class="form__field__row">
-        <div class="form__dollar form__dollar--off">$</div><input type="text" class="form__control form__control--toggled form__control--dollar form__control--toggled--off" placeholder="_" ng-model="ctrl.additionalAmount">
+        <div class="form__dollar form__dollar--off">$</div><input type="text" class="form__control form__control--toggled form__control--dollar form__control--toggled--off" placeholder="_" ng-model="ctrl.additionalAmount" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
         <div class="form__aside" ng-class="{'form__aside--visible': ctrl.additionalAmount}">
           Thank you! ✨
         </div>
@@ -124,7 +124,7 @@
             </div>
           </div>
           <div class="form__field__row">
-            <div class="form__dollar form__dollar--off">$</div><input type="text" class="form__control form__control--toggled form__control--dollar form__control--toggled--off" placeholder="_" ng-model="ctrl.artistTip">
+            <div class="form__dollar form__dollar--off">$</div><input type="text" class="form__control form__control--toggled form__control--dollar form__control--toggled--off" placeholder="_" ng-model="ctrl.artistTip" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
             <div class="form__aside" ng-class="{'form__aside--visible': ctrl.artistTip}">
               ✨ Thank you! ✨
             </div>
@@ -133,10 +133,13 @@
       </div>
 
       <div class="specs__pay" ng-if="ctrl.isOptionalShown">
-        <button class="btn btn--icon" ng-click="ctrl.openOrderDialog()" ng-disabled="!ctrl.getTotal()">
+        <button class="btn btn--icon" ng-click="ctrl.openOrderDialog()" ng-disabled="!ctrl.getTotal() || ctrl.isLoading">
           Finish and pay
           <i class="material-icons">navigate_next</i>
         </button>
+        <div class="loader" ng-if="ctrl.isLoading">
+          {% include "/source/svg/loader.svg" %}
+        </div>
       </div>
 
       <div class="specs__pay" ng-if="!ctrl.isOptionalShown">
