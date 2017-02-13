@@ -116,6 +116,7 @@ OrderController.prototype.setSkuItem = function(sku, item, amount) {
 
 
 OrderController.prototype.createStripeHandler = function() {
+  var submitted = false;
   return StripeCheckout.configure({
     key: this.stripeCheckoutKey,
     image: this.stripeImageUrl,
@@ -123,10 +124,13 @@ OrderController.prototype.createStripeHandler = function() {
     billingAddress: true,
     shippingAddress: true,
     closed: function() {
-      this.isLoading = false;
+      if (!submitted) {
+        this.isLoading = false;
+      }
       this.$scope.$apply();
     }.bind(this),
     token: function(token) {
+      submitted = true;
       this.createOrder(token);
     }.bind(this)
   });

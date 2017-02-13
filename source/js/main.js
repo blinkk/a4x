@@ -27,6 +27,11 @@ function initNg() {
       .controller('ShareController', share.ShareController)
       .config(['$interpolateProvider', function($interpolateProvider) {
         $interpolateProvider.startSymbol('[[').endSymbol(']]');
-      }]);
+      }])
+      .filter('int', function() {
+	return function(input) {
+          return parseInt(input);
+	}
+      });
   angular.bootstrap(document, ['a4x']);
 }
