@@ -5,7 +5,7 @@
 <meta content="IE=Edge" http-equiv="X-UA-Compatible">
 <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0" name="viewport">
 {% if doc.campaign %}
-  {% set title %}Support {{doc.campaign.cause.the_title}} with "{{doc.campaign.title}}" by {{doc.campaign.artist.title}}{% endset %}
+  {% set title %}Support {{doc.campaign.cause.the_title}} with art by {{doc.campaign.artist.title}} - "{{doc.campaign.title}}"{% endset %}
 {% elif doc.parent %}
   {% set title %}{{_(doc.parent.title)}} – {{_(podspec.title)}}{% endset %}
 {% else %}
