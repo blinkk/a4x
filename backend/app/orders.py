@@ -6,8 +6,6 @@ from google.appengine.ext.ndb import msgprop
 
 import stripe
 
-DESCRIPTION = 'Art for X Invoice'
-
 
 class Order(base.Model):
     amount = ndb.FloatProperty()
@@ -57,12 +55,10 @@ class Order(base.Model):
                 source=message.stripe_token,
             )
         except stripe.CardError:
-            self.response.status_int = 400
-            self.response.out.write('Error processing payment.')
+            raise
         num_items = 0
         for item in message.items:
             num_items += item.quantity
-
         ent = cls(
             amount=message.amount,
             artist_tip=message.artist_tip,

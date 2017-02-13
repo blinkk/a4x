@@ -1,4 +1,10 @@
-<div class="form specs" ng-controller="OrderController as ctrl" ng-init="ctrl.setDefaults('{{partial.campaign_ident}}', {{partial.options|jsonify}}, '{{partial.stripe_image_url}}', '{{partial.stripe_checkout_key}}', '{{partial.stripe_title}}')" ng-cloak>
+{% if doc.campaign %}
+  {% set twitter_text = doc.campaign.twitter %}
+{% else %}
+  {% set twitter_text = podspec.meta.sharetext.twitter %}
+{% endif %}
+
+<div class="form specs" ng-controller="OrderController as ctrl" ng-init="ctrl.setDefaults('{{doc.campaign.ident}}', {{partial.options|jsonify}}, '{{doc.campaign.image_url}}', '{{partial.stripe_checkout_key}}', '{{doc.campaign.title}}')" ng-cloak>
 
   <div class="hero-progress">
     <div class="hero-progress__amount">
@@ -22,7 +28,7 @@
       The story from the artist:
     </div>
     <div class="form__field__row artist__statement">
-      {{partial.statement|safe}}
+      {{doc.campaign.statement|safe}}
     </div>
   </div>
 
@@ -44,7 +50,7 @@
         <div class="specs__share__row" ng-controller="ShareController as share">
 
           <a ng-click="share.openFacebook()" class="btn btn--social btn--round btn--sm"><img src="{{g.static('/source/images/icon_facebook.svg').url.path}}"></a>
-          <a ng-click="share.openTwitter('{{podspec.meta.sharetext.twitter}}')" class="btn btn--social btn--round btn--sm"><img src="{{g.static('/source/images/icon_twitter.svg').url.path}}"></a>
+          <a ng-click="share.openTwitter('{{twitter_text}}')" class="btn btn--social btn--round btn--sm"><img src="{{g.static('/source/images/icon_twitter.svg').url.path}}"></a>
 
         </div>
         <p>Thank you! ❤️ 🤗</p>
@@ -52,7 +58,7 @@
     </div>
     <div ng-if="!ctrl.isSubmitted">
       <div class="form__field form__field--label">
-        Choose prints to order:
+        Choose your donation and reward:
       </div>
       <div class="items">
         <table class="items__table">
@@ -120,7 +126,7 @@
           </div>
           <div class="form__field__meta">
             <div>
-              {{partial.artist_first_name}} isn't taking any profits, but you can send a tip.
+              {{doc.campaign.artist.first_name}} isn't taking any profits, but you can send a tip.
             </div>
           </div>
           <div class="form__field__row">

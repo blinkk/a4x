@@ -144,6 +144,7 @@ OrderController.prototype.goNext = function() {
 
 
 OrderController.prototype.openOrderDialog = function() {
+  this.isLoading = true;
   var numItems = 0;
   for (var sku in this.quantities) {
     var quantity = this.quantities[sku];
@@ -203,7 +204,6 @@ OrderController.prototype.createOrder = function(token) {
   this.isLoading = true;
   this.$scope.$apply();
   rpc('orders.create', req).success(function(resp) {
-    this.isLoading = false;
     this.campaign = resp['campaign'];
     this.isSubmitted = true;
     this.isOptionalShown = false;

@@ -4,23 +4,24 @@
 <meta charset="utf-8">
 <meta content="IE=Edge" http-equiv="X-UA-Compatible">
 <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0" name="viewport">
-{% if doc.base == 'index' %}
-  <title>{{_(podspec.title)}} – {{_(podspec.meta.description)}}</title>
+{% if doc.campaign %}
+  {% set title %}Support {{doc.campaign.cause.the_title}} with "{{doc.campaign.title}}" by {{doc.campaign.artist.title}} – {{podspec.title}}{% endset %}
 {% elif doc.parent %}
-  <title>{{_(doc.parent.title)}} – {{_(podspec.title)}}</title>
+  {% set title %}{{_(doc.parent.title)}} – {{_(podspec.title)}}{% endset %}
 {% else %}
-  <title>{{_(doc.title)}} – {{_(podspec.title)}}</title>
+  {% set title %}{{_(doc.title)}} – {{_(podspec.title)}}{% endset %}
 {% endif %}
+<title>{{title}}</title>
 <meta property="og:url" content="https://artforx.com{{doc.url.path}}">
 <meta property="og:type" content="website">
 {% set banner_url = doc.banner_url or doc.parent.banner_url or podspec.meta.banner_url %}
 {% if banner_url %}
 <meta property="og:image" content="{{banner_url}}">
 {% endif %}
-<meta property="og:title" content="{{_(podspec.title)}}">
+<meta property="og:title" content="{{title}}">
 <meta property="og:site_name" content="{{_(podspec.title)}}">
-{% if doc.base == 'index' %}
-<meta property="og:image" content="{{doc.image_url}}">
+{% if doc.campaign %}
+<meta property="og:image" content="{{doc.campaign.image_url}}">
 <meta name="description" content="{{_(podspec.meta.sharetext.description)|safe}}">
 <meta property="og:description" content="{{_(podspec.meta.sharetext.description)|safe}}">
 {% elif doc.description %}

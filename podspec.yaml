@@ -2,18 +2,17 @@ grow_version: ">=0.0.60"
 home: /content/pages/index.yaml
 title: Art for X
 
-localization:
-  default_locale: en
-  google_analytics_id: UA-91344777-1
-
 meta:
   sharetext:
-    twitter: "Help support the ACLU with art - \"I Lift My Lamp Beside the Golden Door\" by @jhomnomnom"
-    description: "Help Jennifer support the ACLU with art"
-  description: "Buy art and raise money for good causes"
+    twitter: "Raise money for good causes and support artists – Art for X"
+    description: "Raise money for good causes and support artists."
   icon: /source/images/icon.png
   google_site_verification: ~
   stripe_publishable_key: ""
+  google_analytics_id: UA-91344777-1
+
+localization:
+  default_locale: en
 
 extensions:
   preprocessors:

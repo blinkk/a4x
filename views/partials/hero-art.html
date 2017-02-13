@@ -1,16 +1,16 @@
 <div class="hero-art">
   <div class="hero-art__canvas">
-    <img src="{{doc.image_url}}">
+    <img src="{{doc.campaign.image_url}}">
   </div>
   <div class="hero-art__details">
     <div class="hero-art__details__title">Print specs:</div>
     <div class="hero-art__details__body">
-    {{partial.specs|safe}}
+    {{doc.campaign.specs|safe}}
     </div>
     <div class="hero-art__details__title">More images from the artist:</div>
     <div class="hero-art__details__body">
       <div class="hero-art__images">
-        {% for image in partial.more_images %}
+        {% for image in doc.campaign.more_images %}
         <a target="_blank" href="{{image.url}}" class="hero-art__images__thumb" style="background-image:url({{image.image.url}})"></a>
         {% endfor %}
       </div>

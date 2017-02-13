@@ -2,7 +2,7 @@
   <div class="ak-grid ak-grid--valign-middle ak-grid--reversed">
     <div class="ak-grid__item ak-grid__item--12-cols ak-grid__item--9-cols--gt-md">
       <div class="artist__title">
-        “{{partial.title}}”
+        “{{doc.campaign.title}}”
       </div>
       <div class="artist__subtitle">
         {{partial.subtitle}}
@@ -11,15 +11,15 @@
     <div class="ak-grid__item ak-grid__item--12-cols ak-grid__item--3-cols--gt-md">
       <div class="artist__aside">
         <div class="artist__bubbles">
-          <a target="_blank" href="{{partial.artist.url}}" class="artist__bubble" style="background-image: url({{partial.artist.image}})"></a>
-          <a target="_blank" href="{{partial.cause.url}}" class="artist__bubble artist__bubble--sq" style="background-image: url({{partial.cause.image}})"></a>
+          <a target="_blank" href="{{doc.campaign.artist.url}}" class="artist__bubble" style="background-image: url({{doc.campaign.artist.image}})"></a>
+          <a target="_blank" href="{{doc.campaign.cause.url}}" class="artist__bubble artist__bubble--sq" style="background-image: url({{doc.campaign.cause.image}})"></a>
         </div>
         <div class="artist__attribution">
-          By <a href="{{partial.artist.url}}">{{partial.artist.title}}</a>
-          for <a href="{{partial.cause.url}}">{{partial.cause.title}}</a>
+          By <a href="{{doc.campaign.artist.url}}">{{doc.campaign.artist.title}}</a>
+          for <a href="{{doc.campaign.cause.url}}">{{doc.campaign.cause.title}}</a>
         </div>
         <div class="artist__location">
-          <i class="material-icons">place</i> {{partial.artist.location}}
+          <i class="material-icons">place</i> {{doc.campaign.artist.location}}
         </div>
       </div>
     </div>

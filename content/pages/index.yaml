@@ -1,57 +1,53 @@
 $title: Home
 $path: /
 
-image_url: https://images.bigcartel.com/product_images/192314536/liftmylamp-web.jpg?auto=format&fit=max&h=1000&w=1000
-
-partials:
-
-- partial: artist
+campaign:
+  ident: 'jh-ilmlbtgd'
   title: "I Lift My Lamp Beside the Golden Door"
-  subtitle: Profits made from orders will be donated directly to the ACLU
+  image_url: https://images.bigcartel.com/product_images/192314536/liftmylamp-web.jpg?auto=format&fit=max&h=1000&w=1000
+  twitter: "Support the ACLU with art – \"I Lift My Lamp Beside the Golden Door\" by @jhomnomnom"
   artist:
+    first_name: Jennifer
     title: Jennifer Hom
     url: http://jenniferhom.com/
     image: https://pbs.twimg.com/profile_images/2874657266/aa8bc5241748dfbf9162ae3d7129b04e_400x400.png
     location: San Francisco, CA
   cause:
     title: ACLU
+    the_title: the ACLU
     url: https://www.aclu.org/
     image: https://upload.wikimedia.org/wikipedia/en/4/4d/American_Civil_Liberties_Union_logo.png
+  specs: |
+      • All giclée prints are signed, numbered, and dated.<br>
+      • The size of the print fits within its paper size with a .25" border.
+  more_images:
+  - url: "https://twitter.com/jhomnomnom/status/826851382946705408"
+    image:
+      url: "https://pbs.twimg.com/media/C3mQ7yiUYAANsM-.jpg"
+  statement: |
+      <p>
+      Through all the changes in America over the last several weeks, it is
+      clear that the country needs to remain true to our spirit.
+      Immigration is the heart of this land and I wanted to do what little
+      I can to protect it.
+      </p>
+      <p>
+      What started as a way cope turned into something
+      that I hope will help support the American Civil Liberties Union.
+      </p>
 
+partials:
+- partial: artist
+  subtitle: Profits made from orders will be donated directly to the ACLU
 - partial: cols
   cols:
-
   - num_cols: 6
     partials:
     - partial: hero-art
-      specs: |
-          • All giclée prints are signed, numbered, and dated.<br>
-          • The size of the print fits within its paper size with a .25" border.
-      more_images:
-      - url: "https://twitter.com/jhomnomnom/status/826851382946705408"
-        image:
-          url: "https://pbs.twimg.com/media/C3mQ7yiUYAANsM-.jpg"
-
   - num_cols: 6
     partials:
     - partial: specs
-      statement: |
-          <p>
-          Through all the changes in America over the last several weeks, it is
-          clear that the country needs to remain true to our spirit.
-          Immigration is the heart of this land and I wanted to do what little
-          I can to protect it.
-          </p>
-          <p>
-          What started as a way cope turned into something
-          that I hope will help support the American Civil Liberties Union.
-          </p>
-
-      stripe_title: "I Lift My Lamp Beside the Golden Door"
-      artist_first_name: Jennifer
-      campaign_ident: 'jh-ilmlbtgd'
       stripe_checkout_key: pk_test_421OpDpSp3zsjIuVHCHZAnrR
-      stripe_image_url: https://images.bigcartel.com/product_images/192314536/liftmylamp-web.jpg?auto=format&fit=max&h=1000&w=1000
       options:
         - title: Postcard
           size: 4x6"
