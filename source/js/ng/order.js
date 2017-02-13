@@ -29,6 +29,7 @@ var OrderController = function($element, $scope) {
   this.stripeCheckoutKey = null;
   this.isSubmitted = false;
   this.isOptionalShown = false;
+  this.stripeTitle = false;
   for (var i = 0; i < 50; i++) {
     this.quantityOptions.push(i);
   }
@@ -66,9 +67,10 @@ OrderController.prototype.getTotal = function() {
 
 
 OrderController.prototype.setDefaults =
-    function(ident, options, stripeImageUrl, stripeCheckoutKey) {
+    function(ident, options, stripeImageUrl, stripeCheckoutKey, stripeTitle) {
   this.stripeImageUrl = stripeImageUrl;
   this.stripeCheckoutKey = stripeCheckoutKey;
+  this.stripeTitle = stripeTitle;
   this.setCampaignIdent(ident);
   options.forEach(function(option) {
     this.skusToItems[option['stripe_sku']] = option;
@@ -146,9 +148,12 @@ OrderController.prototype.openOrderDialog = function() {
   var noun = numItems == 1 ? 'item' : 'items';
   var amount = this.getTotal() * 100;
   var donation = this.additionalAmount || 0;
+  var tip = this.artistTip || 0;
+  var description = numItems + ' ' + noun + ', $' + donation +
+      ' extra donation, $' + tip + ' tip';
   handler.open({
-    name: 'Art for X',
-    description: numItems + ' ' + noun + ', $' + donation + ' on top',
+    name: this.stripeTitle,
+    description: description,
     amount: amount 
   });
 };

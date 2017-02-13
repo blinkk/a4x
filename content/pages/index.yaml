@@ -46,6 +46,7 @@ partials:
           that I hope will help support the American Civil Liberties Union.
           </p>
 
+      stripe_title: "I Lift My Lamp Beside the Golden Door"
       artist_first_name: Jennifer
       campaign_ident: 'jh-ilmlbtgd'
       custom_stripe_sku: "123" # TODO
@@ -60,10 +61,10 @@ partials:
         - title: Small Print
           size: 8.5x11"
           price: 35
-          default_amount: 0
+          default_amount: 1
           stripe_sku: "sku_A2kYvzKCTUaR2N"
         - title: Large Print
           size: 13x19"
           price: 75
-          default_amount: 1
+          default_amount: 0
           stripe_sku: "sku_A4zTv7WfqbXvcl"

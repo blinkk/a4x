@@ -1,4 +1,4 @@
-<div class="form specs" ng-controller="OrderController as ctrl" ng-init="ctrl.setDefaults('{{partial.campaign_ident}}', {{partial.options|jsonify}}, '{{partial.stripe_image_url}}', '{{partial.stripe_checkout_key}}')">
+<div class="form specs" ng-controller="OrderController as ctrl" ng-init="ctrl.setDefaults('{{partial.campaign_ident}}', {{partial.options|jsonify}}, '{{partial.stripe_image_url}}', '{{partial.stripe_checkout_key}}', '{{partial.stripe_title}}')">
 
   <div class="hero-progress">
     <div class="hero-progress__amount">
@@ -39,18 +39,15 @@
       </div>
       <div class="specs__share">
         <div class="specs__share__title form__field form__field--label">
-          Last thing – please help even more by sharing! ❤️
+          Last thing – please share this page to help even more!
         </div>
-        <div class="specs__share__row">
+        <div class="specs__share__row" ng-controller="ShareController as share">
 
-          <div class="fb-like" data-href="https://artforx.com" data-width="300" data-layout="standard" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>
-
-        </div>
-        <div class="specs__share__row">
-
-          <a class="twitter-share-button" href="https://twitter.com/intent/tweet" data-size="large">Tweet</a>
+          <a ng-click="share.openFacebook('foo')" class="btn btn--social btn--round btn--sm"><img src="{{g.static('/source/images/icon_facebook.svg').url.path}}"></a>
+          <a ng-click="share.openTwitter('foo')" class="btn btn--social btn--round btn--sm"><img src="{{g.static('/source/images/icon_twitter.svg').url.path}}"></a>
 
         </div>
+        <p>Thank you! ❤️ 🤗</p>
       </div>
     </div>
     <div ng-if="!ctrl.isSubmitted">
