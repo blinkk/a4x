@@ -124,3 +124,16 @@
 
   .specs__optional
     margin-top: $pad * 2
+
+  .specs__share-mobile
+    display: block
+    margin-top: $pad * 2
+    +md
+      display: none
+
+    .specs__share-mobile__text
+      +font-size($font-size-sm, $line-height-sm)
+      margin-right: 5px
+
+    & > div
+      display: inline-block

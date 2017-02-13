@@ -1,3 +1,10 @@
+{% macro render_share() %}
+<div ng-controller="ShareController as share">
+  <a ng-click="share.openFacebook()" class="btn btn--social btn--round btn--sm"><img src="{{g.static('/source/images/icon_facebook.svg').url.path}}"></a>
+  <a ng-click="share.openTwitter('{{twitter_text}}')" class="btn btn--social btn--round btn--sm"><img src="{{g.static('/source/images/icon_twitter.svg').url.path}}"></a>
+</div>
+{% endmacro %}
+
 {% if doc.campaign %}
   {% set twitter_text = doc.campaign.twitter %}
 {% else %}
@@ -47,11 +54,8 @@
         <div class="specs__share__title form__field form__field--label">
           Last thing – please share this page with friends so they can contribute too!
         </div>
-        <div class="specs__share__row" ng-controller="ShareController as share">
-
-          <a ng-click="share.openFacebook()" class="btn btn--social btn--round btn--sm"><img src="{{g.static('/source/images/icon_facebook.svg').url.path}}"></a>
-          <a ng-click="share.openTwitter('{{twitter_text}}')" class="btn btn--social btn--round btn--sm"><img src="{{g.static('/source/images/icon_twitter.svg').url.path}}"></a>
-
+        <div class="specs__share__row">
+          {{render_share()}}
         </div>
         <p>Thank you! ❤️ 🤗</p>
       </div>
@@ -157,6 +161,10 @@
         </button>
       </div>
 
-  </div>
+      <div class="specs__share-mobile">
+        <span class="specs__share-mobile__text">Share</span>
+        {{render_share()}}
+      </div>
 
+  </div>
 </div>
