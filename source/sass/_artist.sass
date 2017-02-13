@@ -16,14 +16,21 @@
     +font-size($font-size-xs, $line-height-xs)
 
   .artist__title
-    +font-size($font-size-lg, $line-height-lg)
+    +font-size($font-size-md, $line-height-md)
     color: $color-black
+    max-width: 300px
+    margin: 0 auto
+    +sm
+      max-width: 100%
     +md
       +font-size($font-size-xl, $line-height-xl)
 
   .artist__subtitle
-    margin-top: $pad/2
+    max-width: 250px
+    margin: $pad/2 auto 0
     +font-size($font-size-xs, $line-height-xs)
+    +sm
+      max-width: 100%
     +md
       +font-size($font-size-sm, $line-height-sm)
 
