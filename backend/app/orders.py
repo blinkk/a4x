@@ -7,7 +7,7 @@ import os
 import stripe
 
 basename = 'stripe_live.txt'
-STRIPE_KEY = open(os.path.join(os.path.dirname(__file__), '..', '..', basename)).read()
+STRIPE_KEY = open(os.path.join(os.path.dirname(__file__), '..', '..', basename)).read().strip()
 stripe.api_key = STRIPE_KEY
 
 
