@@ -13,9 +13,8 @@ a4x.main = function() {
 
 
 function initSmoothScroll() {
-  var offset = 0;
   smoothScroll.init({
-    'offset': offset,
+    'offset': 30,
     'updateURL': false
   });
 }

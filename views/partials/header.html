@@ -1,10 +1,15 @@
 {% set header = g.doc('/content/partials/header.yaml') %}
-<div class="header">
+<div class="header" data-scroll-header>
   <div class="header__content">
     {{header.tagline|safe}}
     <div class="header__aside">
       <a class="btn btn--grey btn--sm">Share <i class="material-icons">share</i></a>
-      <a class="btn btn--sm">Donate Now <i class="material-icons">navigate_next</i></a>
+      {% set home_doc = g.doc('/content/pages/index.yaml') %}
+      {% if doc == home_doc %}
+        <a href="#order" data-scroll class="btn btn--sm">Donate Now <i class="material-icons">navigate_next</i></a>
+      {% else %}
+        <a href="{{donate_url}}" class="btn btn--sm">Donate Now <i class="material-icons">navigate_next</i></a>
+      {% endif %}
     </div>
   </div>
 </div>
