@@ -11,7 +11,7 @@
   {% set twitter_text = podspec.meta.sharetext.twitter %}
 {% endif %}
 
-<div class="form specs" ng-controller="OrderController as ctrl" ng-init="ctrl.setDefaults('{{doc.campaign.ident}}', {{partial.options|jsonify}}, '{{doc.campaign.image_url}}', '{{partial.stripe_checkout_key}}', '{{doc.campaign.title}}')" ng-cloak>
+<div class="form specs" ng-controller="OrderController as ctrl" ng-init="ctrl.setDefaults('{{doc.campaign.ident}}', {{doc.campaign.options|jsonify}}, '{{doc.campaign.image_url}}', '{{podspec.stripe_publishable_key}}', '{{doc.campaign.title}}')" ng-cloak>
 
   <div class="hero-progress">
     <div class="hero-progress__amount">
@@ -66,7 +66,7 @@
       </div>
       <div class="items">
         <table class="items__table">
-          {% for option in partial.options %}
+          {% for option in doc.campaign.options %}
           <tr class="items__table__row">
             <td>
               <div class="form__select">
@@ -91,7 +91,7 @@
         Would you like to donate an additional amount?
       </div>
       <div class="form__field__meta">
-        <div ng-if="ctrl.getAddMoreAmount() == 0">
+        <div ng-if="ctrl.getAddMoreAmount() == '0'">
           Thanks! You're donating the average amount! 👌
         </div>
         <div ng-if="ctrl.getAddMoreAmount() > 0">

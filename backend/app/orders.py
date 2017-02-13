@@ -3,8 +3,12 @@ from . import campaigns
 from . import messages
 from google.appengine.ext import ndb
 from google.appengine.ext.ndb import msgprop
-
+import os
 import stripe
+
+basename = 'stripe_live.txt'
+STRIPE_KEY = open(os.path.join(os.path.dirname(__file__), '..', '..', basename)).read()
+stripe.api_key = STRIPE_KEY
 
 
 class Order(base.Model):

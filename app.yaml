@@ -27,5 +27,5 @@ handlers:
   expiration: 1m
  
 skip_files:
-- (?!build|backend|appengine_config\.py).*
+- (?!build|backend|appengine_config\.py|stripe.txt).*
 - ^(.*/)?.*\.py[co]

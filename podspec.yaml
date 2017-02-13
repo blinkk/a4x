@@ -8,8 +8,10 @@ meta:
     description: "Via Art for X – raise money for good causes and support artists."
   icon: /source/images/icon.png
   google_site_verification: ~
-  stripe_publishable_key: ""
   google_analytics_id: UA-91344777-1
+  stripe_publishable_key_test: "pk_test_i0UkHHY0o6FW77v5TTVXEvKO"
+  stripe_publishable_key_live: "pk_live_0K51Xy0DNSk6kfCxNokABO44"
+  stripe_publishable_key: "pk_live_0K51Xy0DNSk6kfCxNokABO44"
 
 localization:
   default_locale: en

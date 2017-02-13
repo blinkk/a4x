@@ -15,3 +15,5 @@ scripts/deploy
 scripts/deploy_*
 scripts/run_*
 themes/
+stripe_live.txt
+stripe_test.txt
