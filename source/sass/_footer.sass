@@ -1,13 +1,20 @@
 .footer
   background: $color-dark
   box-sizing: border-box
-  margin: $pad * 3 0 0
-  padding: $pad * 2 $pad
   text-align: center
+  margin: $pad 0 0
+  padding: $pad
+  +font-size($font-size-sm, $line-height-sm)
+  +md
+    +font-size($font-size, $line-height)
+    margin: $pad * 3 0 0
+    padding: $pad * 2 $pad
 
   .footer__link
     display: inline-block
-    margin: 0 $pad
+    margin: $pad / 2
+    +md
+      margin: 0 $pad
 
     a
       color: $color-white

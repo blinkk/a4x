@@ -3,6 +3,12 @@
     {{partial.title}}
   </div>
   <div class="post__body">
-    {{partial.body|safe}}
+    {{partial.body|markdown|safe}}
   </div>
+  {% if partial.form %}
+  <div class="post__form">
+    {% set form = partial.form %}
+    {% include "/views/partials/form.html" %}
+  </div>
+  {% endif %}
 </div>

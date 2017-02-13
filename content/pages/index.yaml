@@ -1,6 +1,5 @@
 $title: Home
 $path: /
-donate: true
 
 partials:
 
@@ -49,6 +48,7 @@ partials:
 
       campaign_ident: 'jh-ilmlbtgd'
       custom_stripe_sku: "123" # TODO
+      stripe_checkout_key: pk_test_421OpDpSp3zsjIuVHCHZAnrR
       stripe_image_url: https://images.bigcartel.com/product_images/192314536/liftmylamp-web.jpg?auto=format&fit=max&h=1000&w=1000
       options:
         - title: Postcard

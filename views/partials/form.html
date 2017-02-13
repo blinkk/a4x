@@ -1,0 +1,37 @@
+{% macro textarea_field(item, field) %}
+  <div class="form__field">
+    {% if item.label %}
+    <label class="form__field form__field--label">{{_(item.label.rstrip('* '))}}</label>
+    {% endif %}
+    <div class="form__field__row">
+      <textarea class="form__control" placeholder="{{_(item.description)}}" name="{{field.name}}" {% if item.required %}required{% endif %}></textarea>
+    </div>
+  </div>
+{% endmacro %}
+{% macro text_field(item, field) %}
+  <div class="form__field">
+    {% if item.label %}
+    <label class="form__field form__field--label">{{_(item.label.rstrip('* '))}}</label>
+    {% endif %}
+    <div class="form__field__row">
+      <input class="form__control" type="{{"email" if "email" in item.label.lower() else field.field_type|lower}}" placeholder="{{_(item.description)}}" name="{{field.name}}" {% if item.required %}required{% endif %} />
+    </div>
+  </div>
+{% endmacro %}
+
+<div class="form">
+  <form action="{{form.action}}" method="POST">
+    {% for item in form.items %}
+      {% for field in item.fields %}
+        {% if field.field_type == 'TEXTAREA' %}
+          {{textarea_field(item, field)}}
+        {% else %}
+          {{text_field(item, field)}}
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+    <div class="form__group">
+      <button class="btn" type="submit">Send <i class="material-icons">navigate_next</i></button>
+    </div>
+  </form>
+</div>

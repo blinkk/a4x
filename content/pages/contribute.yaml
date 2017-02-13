@@ -1,1 +1,19 @@
 $title: "Contribute or Suggest Art"
+partials:
+- partial: cols
+  class: cols--narrow
+  cols:
+  - num_cols: 12
+    partials:
+    - partial: post
+      title: "Contribute or suggest art"
+      form: !g.doc /content/partials/form.yaml
+      body: |
+          If you or someone you know is an artist (illustrator, photographer,
+          filmmaker, musician, game creator – anything goes!) and if there's a
+          cause you'd like to support, we'd love to feature your work on this
+          website.
+
+          Eventually, we might have an automatic portal for creators to set up
+          campaigns, but for now you can use the form below and we will get in
+          touch.

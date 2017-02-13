@@ -3,36 +3,40 @@ partials:
 - partial: cols
   class: cols--narrow
   cols:
-  - num_cols: 8
+  - num_cols: 12
     partials:
     - partial: post
-      title: "A4X: A platform for raising money for causes and celebrating artists"
+      title: "Art for X is a way to raise money for causes by celebrating art"
       body: |
-          Periodically, we feature different artists sponsoring different
-          causes. A4X allows artists to leverage their creativity and raise
-          money and awareness for a cause they find meaningful.
-          <br><br>
-          You can contribute to both the artist and the cause by backing the
-          campaign. If you raise the average contribution, you'll receive a
-          bonus item.
-#          <br><br>
-#          Some campaigns will allow you to contribute an additional amount, and
-#          we'll send a customized hand-written letter on your behalf to
-#          representatives, which voices your support for the issue at hand.
-#          <br><br>
-#          In a future version of A4X, you'll be able to subscribe and receive
-#          notifications when new art and a new campaign is available.
-  - num_cols: 4
-    partials:
-    - partial: profiles
-      title: Who's behind this?
-      people:
-      - title: user
-      - title: user
-      body: |
-          We launched this website to become more involved with causes and the
-          political landscape in America. 
-          <br><br>
-          This website is open source and released under the CC 3.0 license.
-          If you see a problem or would like to make an enhancement, discussion
-          and pull requests are welcome.
+          We quickly built this website to empower artists to raise money for
+          causes they find meaningful. Periodically, we will feature different
+          artists sponsoring different causes.
+
+          Right now, prints are being produced in a grassroots-style way – at
+          home, but with a professional, high-quality printer and paper. This
+          keeps costs down to raise your maximum donation, but does require
+          quite a bit of time! 🙈 
+
+          As a user, you can contribute to the cause and show your support for
+          the artist by buying prints and optionally making an additional
+          donation.
+
+          ### Contribute art or code
+
+          We'd love to help you (or someone you know) raise money for a cause
+          using this site. [Contribute or suggest art](/contribute/).
+
+          Also, this website is open source and released under the [CC 3.0
+          license](http://creativecommons.org/licenses/by/3.0/us/).  If you see
+          a problem or would like to make an enhancement, discussion and pull
+          requests are welcome. [Go to the GitHub
+          project](https://github.com/blinkkcode/a4x).
+
+          ### Who's behind this?
+
+          <div class="post__bubbles">
+            <a target="_blank" class="post__bubble" href="https://blinkk.com" style="background-size: 80%; background-image:url(https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAZlAAAAJDcwNzM0MTc3LTJlZjMtNDVmNS04ODA2LTg1OTI4YmJmMmIyZQ.png)"></a>
+            <a target="_blank" class="post__bubble" href="https://twitter.com/jeremydw" style="background-image:url(https://pbs.twimg.com/profile_images/378800000134569893/08da95e62c9404c4d474e2e7f9c6d8e9_400x400.png)"></a>
+            <a target="_blank" class="post__bubble" href="https://twitter.com/jhomnomhom" style="background-image:url(https://pbs.twimg.com/profile_images/2874657266/aa8bc5241748dfbf9162ae3d7129b04e_400x400.png)"></a>
+            <a target="_blank" class="post__bubble" href="https://twitter.com/jyzhou" style="background-image:url(https://pbs.twimg.com/profile_images/644022572590436352/qJJIzpl8_400x400.jpg)"></a>
+          </div>

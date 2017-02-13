@@ -1,5 +1,6 @@
 module.exports = {
   JS_SOURCES: [
+    './node_modules/smooth-scroll/dist/js/smooth-scroll.js',
     './source/js/main.js'
   ],
   JS_OPTIONS: {

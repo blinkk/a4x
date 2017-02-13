@@ -1,6 +1,6 @@
 .post
-  +md
-    margin-right: $pad
+  max-width: 575px
+  margin: 0 auto
 
   .post__title
     +font-size($font-size-lg, $line-height-lg)
@@ -9,3 +9,24 @@
 
   .post__body
     +font-size($font-size, $line-height)
+
+  h3
+    font-weight: $font-weight-normal
+    color: $color-black
+    margin-top: $pad * 2
+
+  .post__bubbles
+    .post__bubble
+      background-color: white
+      background-position: center
+      background-size: contain
+      background-repeat: no-repeat
+      border-radius: 100%
+      display: inline-block
+      height: 50px
+      margin-right: 5px
+      overflow: hidden
+      width: 50px
+
+  .post__form
+    margin-top: $pad * 2

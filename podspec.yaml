@@ -7,10 +7,14 @@ localization:
   google_analytics_id: UA-91344777-1
 
 meta:
-  description: "Buy art and raise money for good causes."
+  description: "Buy art and raise money for good causes"
   icon: /source/images/icon.png
   google_site_verification: ~
   stripe_publishable_key: ""
+
+extensions:
+  preprocessors:
+  - ext.forms.GoogleFormsPreprocessor
 
 static_dirs:
 - static_dir: /source/images/
@@ -25,3 +29,8 @@ preprocessors:
   name: sass
   sass_dir: /source/sass/
   out_dir: /dist/css/
+- kind: google_forms
+  id: 1FAIpQLSeEkwte0TL5nhUUSDw82tXIf82P92H_WB5j0QFsQLJfFSnVjQ
+  path: /content/partials/form.yaml
+  autorun: false
+  name: form

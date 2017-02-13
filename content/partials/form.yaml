@@ -1,0 +1,35 @@
+action: https://docs.google.com/forms/d/e/1FAIpQLSeEkwte0TL5nhUUSDw82tXIf82P92H_WB5j0QFsQLJfFSnVjQ/formResponse
+items:
+- description: ''
+  fields:
+  - field_type: TEXT
+    name: entry.360843813
+    placeholder: Your answer
+  label: Your name
+  required: false
+- description: ''
+  fields:
+  - field_type: TEXT
+    name: entry.83173131
+    placeholder: Your answer
+  label: Your email
+  required: false
+- description: ''
+  fields:
+  - field_type: TEXTAREA
+    name: entry.1828467891
+  label: The cause or charity you'd like to support
+  required: false
+- description: ''
+  fields:
+  - field_type: TEXTAREA
+    name: entry.47663810
+  label: Describe or provide a link to the art
+  required: false
+- description: ''
+  fields:
+  - field_type: TEXTAREA
+    name: entry.932423673
+  label: Anything else?
+  required: false
+title: Contribute art to Art for X

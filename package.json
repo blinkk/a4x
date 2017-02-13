@@ -3,6 +3,7 @@
   "private": true,
   "dependencies": {
     "airkit": "github:grow/airkit",
-    "gulp": "3.9.1"
+    "gulp": "3.9.1",
+    "smooth-scroll": "github:cferdinandi/smooth-scroll#v9.4.3"
   }
 }

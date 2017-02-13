@@ -78,25 +78,36 @@
     +font-size($font-size-sm, $line-height-sm)
     border-color: $color-grey
     box-sizing: border-box
-    min-height: 100px
+    min-height: 50px
     user-resize: none
     width: 100%
     padding: $pad / 2
 
     &:focus
+      border-color: $color-secondary
       outline: none
 
+  label
+    display: block
+    font-weight: $font-weight-normal !important
+
   input[type=text],
+  input[type=email],
   input[type=number]
     padding: $pad / 2
     font-family: $font-family
     font-size: $font-size
 
   input[type=number].form__control,
+  input[type=email].form__control,
   input[type=text].form__control
     border-radius: 0
     -webkit-appearance: none
     border: 1px solid $color-grey
+
+    &:focus
+      border-color: $color-secondary
+      outline: none
 
     &--sm
       color: $color-text
