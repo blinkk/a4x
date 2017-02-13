@@ -27,8 +27,9 @@ class OrderMessage(messages.Message):
     items = messages.MessageField(ItemMessage, 3, repeated=True)
     stripe_token = messages.StringField(4)
     amount = messages.FloatField(5)
-    note = messages.StringField(6)
+    artist_note = messages.StringField(6)
     campaign_ident = messages.StringField(7)
+    artist_tip = messages.FloatField(8)
 
 
 class CampaignMessage(messages.Message):

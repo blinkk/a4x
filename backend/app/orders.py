@@ -12,8 +12,9 @@ DESCRIPTION = 'Art for X Invoice'
 class Order(base.Model):
     amount = ndb.FloatProperty()
     num_items = ndb.IntegerProperty()
-    note = ndb.StringProperty()
     campaign_ident = ndb.StringProperty()
+    artist_note = ndb.StringProperty()
+    artist_tip = ndb.FloatProperty()
 
     @property
     def campaign(self):
@@ -50,6 +51,8 @@ class Order(base.Model):
 
         ent = cls(
             amount=message.amount,
+            artist_tip=message.artist_tip,
+            artist_note=message.artist_note,
             num_items=num_items,
             campaign_ident=message.campaign_ident)
         ent.put()

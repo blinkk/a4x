@@ -1,3 +1,6 @@
+var smoothScroll = require('smooth-scroll');
+
+
 var rpc = function(method, data) {
   return $.ajax({
       url: '/_api/' + method,
@@ -20,9 +23,12 @@ var OrderController = function($element, $scope) {
   this.quantities = {};
   this.quantityOptions = [];
   this.additionalAmount = null;
+  this.artistTip = null;
+  this.artistNote = null;
   this.stripeImageUrl = null;
   this.stripeCheckoutKey = null;
   this.isSubmitted = false;
+  this.isOptionalShown = false;
   for (var i = 0; i < 50; i++) {
     this.quantityOptions.push(i);
   }
@@ -31,8 +37,16 @@ var OrderController = function($element, $scope) {
 
 OrderController.prototype.getAddMoreAmount = function() {
   if (this.campaign) {
-    return this.campaign.average - this.getTotal();
+    return this.campaign.average - this.getTotalMinusTip();
   }
+};
+
+
+OrderController.prototype.getTotalMinusTip = function() {
+  if (this.artistTip) {
+    return this.getTotal() - this.artistTip;
+  }
+  return this.getTotal();
 };
 
 
@@ -43,6 +57,9 @@ OrderController.prototype.getTotal = function() {
   }
   if (this.additionalAmount) {
     total += parseInt(this.additionalAmount);
+  }
+  if (this.artistTip) {
+    total += parseInt(this.artistTip);
   }
   return total;
 };
@@ -96,12 +113,6 @@ OrderController.prototype.setSkuItem = function(sku, item, amount) {
 };
 
 
-OrderController.prototype.setAmount = function(amount) {
-  this.dirty = true;
-  this.amount = amount;
-};
-
-
 OrderController.prototype.createStripeHandler = function() {
   return StripeCheckout.configure({
     key: this.stripeCheckoutKey,
@@ -113,6 +124,14 @@ OrderController.prototype.createStripeHandler = function() {
       this.createOrder(token);
     }.bind(this)
   });
+};
+
+
+OrderController.prototype.goNext = function() {
+  this.isOptionalShown = true;
+  window.setTimeout(function() {
+    smoothScroll.animateScroll('#order-note');
+  }, 10);
 };
 
 
@@ -149,6 +168,8 @@ OrderController.prototype.createOrder = function(token) {
   var req = {
     'order': {
       'campaign_ident': this.campaignIdent,
+      'artist_tip': this.artistTip,
+      'artist_note': this.artistNote,
       'stripe_token': token.id,
       'amount': total,
       'email': token.email,
@@ -169,6 +190,7 @@ OrderController.prototype.createOrder = function(token) {
   rpc('orders.create', req).success(function(resp) {
     this.campaign = resp['campaign'];
     this.isSubmitted = true;
+    this.isOptionalShown = false;
     this.$scope.$apply();
   }.bind(this));
 };

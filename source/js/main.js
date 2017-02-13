@@ -1,4 +1,5 @@
 var order = require('./ng/order');
+var share = require('./ng/share');
 var smoothScroll = require('smooth-scroll');
 
 
@@ -23,6 +24,7 @@ function initSmoothScroll() {
 function initNg() {
   angular.module('a4x', [])
       .controller('OrderController', order.OrderController)
+      .controller('ShareController', share.ShareController)
       .config(['$interpolateProvider', function($interpolateProvider) {
         $interpolateProvider.startSymbol('[[').endSymbol(']]');
       }]);

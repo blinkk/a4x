@@ -46,6 +46,7 @@ partials:
           that I hope will help support the American Civil Liberties Union.
           </p>
 
+      artist_first_name: Jennifer
       campaign_ident: 'jh-ilmlbtgd'
       custom_stripe_sku: "123" # TODO
       stripe_checkout_key: pk_test_421OpDpSp3zsjIuVHCHZAnrR

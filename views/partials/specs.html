@@ -108,22 +108,46 @@
         <div class="form__field__text">[[ctrl.getTotal()|currency:"$":0]]</div>
       </div>
 
-
-    <div class="specs__row" style="display: none">
-      <div class="form__field form__field--label">
-        Would you like to leave a note?
+      <div class="specs__optional" ng-if="ctrl.isOptionalShown" ng-cloak id="order-note">
+        <div class="specs__row specs__row--flush">
+          <div class="form__field form__field--label">
+            Leave a note for the artist (optional)
+          </div>
+          <div class="form__field__row">
+            <textarea class="form__control" ng-model="ctrl.artistNote"></textarea>
+          </div>
+        </div>
+        <div class="specs__row">
+          <div class="form__field form__field--label">
+            Tip the artist? (optional)
+          </div>
+          <div class="form__field__meta">
+            <div>
+              {{partial.artist_first_name}} isn't taking any profits, but you can send a tip.
+            </div>
+          </div>
+          <div class="form__field__row">
+            <div class="form__dollar form__dollar--off">$</div><input type="text" class="form__control form__control--toggled form__control--dollar form__control--toggled--off" placeholder="_" ng-model="ctrl.artistTip">
+            <div class="form__aside" ng-class="{'form__aside--visible': ctrl.artistTip}">
+              ✨ Thank you! ✨
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="form__field__row">
-        <textarea class="form__control"></textarea>
-      </div>
-    </div>
 
-    <div class="specs__pay">
-      <button class="btn btn--icon" ng-click="ctrl.openOrderDialog()" ng-disabled="!ctrl.getTotal()">
-        Next
-        <i class="material-icons">navigate_next</i>
-      </button>
-    </div>
+      <div class="specs__pay" ng-if="ctrl.isOptionalShown">
+        <button class="btn btn--icon" ng-click="ctrl.openOrderDialog()" ng-disabled="!ctrl.getTotal()">
+          Finish and pay
+          <i class="material-icons">navigate_next</i>
+        </button>
+      </div>
+
+      <div class="specs__pay" ng-if="!ctrl.isOptionalShown">
+        <button class="btn btn--icon" ng-click="ctrl.goNext()" ng-disabled="!ctrl.getTotal()">
+          Next
+          <i class="material-icons">navigate_next</i>
+        </button>
+      </div>
 
   </div>
 
