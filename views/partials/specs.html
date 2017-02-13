@@ -11,7 +11,7 @@
   {% set twitter_text = podspec.meta.sharetext.twitter %}
 {% endif %}
 
-<div class="form specs" ng-controller="OrderController as ctrl" ng-init="ctrl.setDefaults('{{doc.campaign.ident}}', {{doc.campaign.options|jsonify}}, '{{doc.campaign.image_url}}', '{{podspec.stripe_publishable_key}}', '{{doc.campaign.title}}')" ng-cloak>
+<div class="form specs" ng-controller="OrderController as ctrl" ng-init="ctrl.setDefaults('{{doc.campaign.ident}}', {{doc.campaign.options|jsonify}}, '{{doc.campaign.image_url}}', '{{podspec.meta.stripe_publishable_key}}', '{{doc.campaign.title}}')" ng-cloak>
 
   <div class="hero-progress">
     <div class="hero-progress__amount">

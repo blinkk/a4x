@@ -10,8 +10,8 @@ meta:
   google_site_verification: ~
   google_analytics_id: UA-91344777-1
   stripe_publishable_key_test: "pk_test_i0UkHHY0o6FW77v5TTVXEvKO"
-  stripe_publishable_key_live: "pk_live_0K51Xy0DNSk6kfCxNokABO44"
-  stripe_publishable_key: "pk_live_0K51Xy0DNSk6kfCxNokABO44"
+  stripe_publishable_key_live: "pk_live_jC0Zu7jJcsb9EXs9IMKzetXf"
+  stripe_publishable_key: "pk_live_jC0Zu7jJcsb9EXs9IMKzetXf"
 
 localization:
   default_locale: en
