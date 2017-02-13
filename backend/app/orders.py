@@ -23,24 +23,36 @@ class Order(base.Model):
     @classmethod
     def create_stripe_order(cls, message):
         try:
+            metadata = {
+                'artist_tip': message.artist_tip,
+                'artist_note': message.artist_note,
+                'extra_donation': message.extra_donation,
+            }
             stripe_items = [{
                 'type': 'sku',
                 'quantity': item.quantity,
                 'parent': item.parent,
             } for item in message.items if item.quantity]
             stripe_order = stripe.Order.create(
-              currency='usd',
-              items=stripe_items,
-              email=message.email,
-              shipping={
-                'name': message.shipping.name,
-                'address':{
-                    'line1': message.shipping.address.line1,
-                    'city': message.shipping.address.city,
-                    'country': message.shipping.address.country,
-                    'postal_code': message.shipping.address.postal_code,
+                metadata=metadata,
+                currency='usd',
+                items=stripe_items,
+                email=message.email,
+                shipping={
+                  'name': message.shipping.name,
+                  'address':{
+                      'line1': message.shipping.address.line1,
+                      'city': message.shipping.address.city,
+                      'country': message.shipping.address.country,
+                      'postal_code': message.shipping.address.postal_code,
+                  },
                 },
-              },
+            )
+            charge = stripe.Charge.create(
+                amount=message.amount,
+                currency='usd',
+                description=message.stripe_title,
+                source=message.stripe_token,
             )
         except stripe.CardError:
             self.response.status_int = 400

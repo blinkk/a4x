@@ -173,8 +173,9 @@ OrderController.prototype.createOrder = function(token) {
   var req = {
     'order': {
       'campaign_ident': this.campaignIdent,
-      'artist_tip': this.artistTip,
+      'artist_tip': parseFloat(this.artistTip || 0),
       'artist_note': this.artistNote,
+      'extra_donation': parseFloat(this.additionalAmount || 0),
       'stripe_token': token.id,
       'amount': total,
       'email': token.email,
@@ -197,6 +198,7 @@ OrderController.prototype.createOrder = function(token) {
     this.isSubmitted = true;
     this.isOptionalShown = false;
     this.$scope.$apply();
+    smoothScroll.animateScroll('#success');
   }.bind(this));
 };
 

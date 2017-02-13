@@ -30,6 +30,7 @@ class OrderMessage(messages.Message):
     artist_note = messages.StringField(6)
     campaign_ident = messages.StringField(7)
     artist_tip = messages.FloatField(8)
+    extra_donation = messages.FloatField(9)
 
 
 class CampaignMessage(messages.Message):
