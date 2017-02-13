@@ -108,6 +108,8 @@
         </div>
       </div>
 
+      <div id="donate-sentinel"></div>
+
       <div class="form__field form__field--label form__field--push">
         Your subtotal:
       </div>
@@ -141,8 +143,6 @@
           </div>
         </div>
       </div>
-
-      <div id="donate-sentinel"></div>
 
       <div class="specs__pay" ng-if="ctrl.isOptionalShown">
         <button class="btn btn--icon" ng-click="ctrl.openOrderDialog()" ng-disabled="!ctrl.getTotal() || ctrl.isLoading">

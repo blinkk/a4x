@@ -31,21 +31,24 @@ class Order(base.Model):
                 'quantity': item.quantity,
                 'parent': item.parent,
             } for item in message.items if item.quantity]
-            stripe_order = stripe.Order.create(
-                metadata=metadata,
-                currency='usd',
-                items=stripe_items,
-                email=message.email,
-                shipping={
-                  'name': message.shipping.name,
-                  'address':{
-                      'line1': message.shipping.address.line1,
-                      'city': message.shipping.address.city,
-                      'country': message.shipping.address.country,
-                      'postal_code': message.shipping.address.postal_code,
-                  },
-                },
-            )
+            # Only create an order if user has added items.
+            # Without items, it's just a donation.
+            if stripe_items:
+                stripe_order = stripe.Order.create(
+                    metadata=metadata,
+                    currency='usd',
+                    items=stripe_items,
+                    email=message.email,
+                    shipping={
+                      'name': message.shipping.name,
+                      'address':{
+                          'line1': message.shipping.address.line1,
+                          'city': message.shipping.address.city,
+                          'country': message.shipping.address.country,
+                          'postal_code': message.shipping.address.postal_code,
+                      },
+                    },
+                )
             charge = stripe.Charge.create(
                 receipt_email=message.email,
                 metadata=metadata,
@@ -57,8 +60,9 @@ class Order(base.Model):
         except stripe.CardError:
             raise
         num_items = 0
-        for item in message.items:
-            num_items += item.quantity
+        if message.items:
+            for item in message.items:
+                num_items += item.quantity
         ent = cls(
             amount=message.amount,
             artist_tip=message.artist_tip,
