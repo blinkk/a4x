@@ -6,7 +6,10 @@ from google.appengine.ext.ndb import msgprop
 import os
 import stripe
 
-basename = 'stripe_live.txt'
+if os.getenv('TESTING'):
+    basename = 'stripe_test.txt'
+else:
+    basename = 'stripe_live.txt'
 STRIPE_KEY = open(os.path.join(os.path.dirname(__file__), '..', '..', basename)).read().strip()
 stripe.api_key = STRIPE_KEY
 
