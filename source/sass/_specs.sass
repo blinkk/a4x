@@ -74,7 +74,10 @@
           line-height: inherit
 
         td
-          padding: $pad / 2 $pad * 1.5 $pad / 2 $pad / 2
+          +font-size($font-size-sm, $line-height-sm)
+          padding: $pad / 3
+          +md
+            padding: $pad / 2 $pad * 1.5 $pad / 2 $pad / 2
 
       thead
         .items__table__row
