@@ -7,11 +7,11 @@
 {% if doc.campaign %}
   {% set title %}Support {{doc.campaign.cause.the_title}} with art by {{doc.campaign.artist.title}} - "{{doc.campaign.title}}"{% endset %}
 {% elif doc.parent %}
-  {% set title %}{{_(doc.parent.title)}} – {{_(podspec.title)}}{% endset %}
+  {% set title %}{{_(doc.parent.title)}}{% endset %}
 {% else %}
-  {% set title %}{{_(doc.title)}} – {{_(podspec.title)}}{% endset %}
+  {% set title %}{{_(doc.title)}}{% endset %}
 {% endif %}
-<title>{{title}}</title>
+<title>{{title}} – {{_(podspec.title)}}</title>
 <meta property="og:url" content="https://artforx.com{{doc.url.path}}">
 <meta property="og:type" content="website">
 {% set banner_url = doc.banner_url or doc.parent.banner_url or podspec.meta.banner_url %}
