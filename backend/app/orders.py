@@ -47,6 +47,7 @@ class Order(base.Model):
                       'name': message.shipping.name,
                       'address':{
                           'line1': message.shipping.address.line1,
+                          'line2': message.shipping.address.line2,
                           'city': message.shipping.address.city,
                           'country': message.shipping.address.country,
                           'postal_code': message.shipping.address.postal_code,

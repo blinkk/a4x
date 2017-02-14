@@ -200,7 +200,7 @@ OrderController.prototype.createOrder = function(token) {
               'city': token.card.address_city,
               'state': token.card.address_state,
               'country': token.card.country,
-              'zip': token.card.address_zip
+              'postal_code': token.card.address_zip
           },
       }
     }
