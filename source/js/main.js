@@ -51,6 +51,16 @@ function initNg() {
         window.addEventListener('scroll', update);
         window.setTimeout(update, 10);
       })
+      .filter('dayDiff', function() {
+        return function(otherString) {
+          if (!otherString) {
+            return '';
+          }
+          var now = new Date();
+          var other = new Date(otherString);
+          return Math.trunc((other - now)/(1000 * 60 * 60 * 24));
+        }
+      })
       .filter('int', function() {
 	return function(input) {
           return input ? parseInt(input) : '';
