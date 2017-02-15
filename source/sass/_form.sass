@@ -34,6 +34,15 @@
       margin-bottom: $pad / 2
       font-size: $font-size-sm
 
+      .form__field__row__inline
+        display: inline-block
+        margin-left: 10px
+
+      .form__field__row__aside
+        display: inline-block
+        margin-right: 10px
+        width: 50px
+
   .form__field__text
     color: $color-black
     +font-size($font-size-lg, $line-height-lg)
@@ -89,6 +98,9 @@
     &:focus
       border-color: $color-secondary
       outline: none
+
+    &--lg
+      min-height: 160px
 
   label
     display: block

@@ -1,3 +1,4 @@
+var modal = require('airkit/modal');
 var smoothScroll = require('smooth-scroll');
 
 
@@ -27,7 +28,6 @@ var OrderController = function($element, $scope) {
   this.artistNote = null;
   this.stripeImageUrl = null;
   this.stripeCheckoutKey = null;
-  this.isSubmitted = false;
   this.isOptionalShown = false;
   this.stripeTitle = false;
   for (var i = 0; i < 50; i++) {
@@ -208,8 +208,8 @@ OrderController.prototype.createOrder = function(token) {
   this.isLoading = true;
   this.$scope.$apply();
   rpc('orders.create', req).success(function(resp) {
+    modal.openById('order-success');
     this.campaign = resp['campaign'];
-    this.isSubmitted = true;
     this.isOptionalShown = false;
     this.$scope.$apply();
     smoothScroll.animateScroll('#success');

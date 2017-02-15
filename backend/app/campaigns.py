@@ -1,4 +1,5 @@
 from . import base
+from . import emails
 from . import messages
 from google.appengine.ext import ndb
 from google.appengine.ext.ndb import msgprop
@@ -11,6 +12,9 @@ class Campaign(base.Model):
     num_orders = ndb.IntegerProperty()
     raised = ndb.FloatProperty()
     start = ndb.DateTimeProperty()
+    artist_name = ndb.StringProperty()
+    title = ndb.StringProperty()
+    story = ndb.TextProperty()
 
     @classmethod
     def get(cls, ident):
@@ -33,6 +37,10 @@ class Campaign(base.Model):
             val = '{0:.2f}'.format(round(val, 2))
             return float(val)
         return 0.0
+
+    @property
+    def url(self):
+        return 'https://artforx.com/'
 
     @property
     def average(self):
@@ -60,3 +68,16 @@ class Campaign(base.Model):
         msg.start = self.start
         msg.average = self.average
         return msg
+
+    def send_email(self, message):
+        emailer = emails.Emailer(sender_name=message.sender_name)
+        subject = 'I just donated to the ACLU by supporting an art fundraising campaign'
+        kwargs = {
+            'campaign': self,
+            'user_supplied_body': message.user_supplied_body,
+        }
+        emailer.send(
+            to=[message.recipient_email, message.sender_email],
+            subject=subject,
+            template='email.html',
+            kwargs=kwargs)

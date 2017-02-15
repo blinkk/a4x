@@ -1,6 +1,8 @@
 var classes = require('airkit/utils/classes');
 var order = require('./ng/order');
 var share = require('./ng/share');
+var emailShare = require('./ng/emailshare');
+var modal = require('airkit/modal');
 var smoothScroll = require('smooth-scroll');
 var ui = require('airkit/ui');
 
@@ -16,6 +18,9 @@ a4x.main = function() {
 
 
 function initSmoothScroll() {
+  modal.init({
+    'history': false
+  });
   smoothScroll.init({
     'offset': 30,
     'updateURL': false
@@ -27,6 +32,7 @@ function initNg() {
   angular.module('a4x', [])
       .controller('OrderController', order.OrderController)
       .controller('ShareController', share.ShareController)
+      .controller('EmailShareController', emailShare.EmailShareController)
       .config(['$interpolateProvider', function($interpolateProvider) {
         $interpolateProvider.startSymbol('[[').endSymbol(']]');
       }])
@@ -47,7 +53,7 @@ function initNg() {
       })
       .filter('int', function() {
 	return function(input) {
-          return parseInt(input);
+          return input ? parseInt(input) : '';
 	}
       });
   angular.bootstrap(document, ['a4x']);

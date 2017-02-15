@@ -1,0 +1,117 @@
+$button-height: 50px !default
+$color-black: #000 !default
+$color-white: #fff !default
+
+[data-ak-modal]
+  display: none
+
+.ak-modal
+  display: none
+  height: 100%
+  left: 0
+  opacity: 0
+  position: fixed
+  bottom: 0
+  top: 0
+  transform: scale(1.15)
+  transition: all .3s cubic-bezier(.4,0,.2,1)
+  visibility: hidden
+  width: 100%
+  z-index: 2000
+  align-items: center
+  justify-content: center
+  overflow-y: auto
+  padding: $pad
+  box-sizing: border-box
+  overflow-x: hidden
+
+  &--enabled
+    display: block
+    +md
+      display: flex
+
+  &--visible
+    opacity: 1
+    transform: scale(1)
+    visibility: visible
+
+  &-mask
+    background: rgba(0, 0, 0, .75)
+    height: 100%
+    left: 0
+    position: fixed
+    bottom: 0
+    top: 0
+    width: 100%
+    z-index: 2001
+
+  &-content
+    background: #fff
+    height: auto
+    z-index: 2001
+    width: 100%
+    +md
+      border-radius: 10px
+      position: static
+      width: auto
+
+  .ak-modal-x
+    display: none
+
+
+.modal
+  position: relative
+  .modal__success
+    .modal__success__submitted
+      background: $bar-bg
+      color: $color-black
+      padding: $pad
+      text-align: center
+      +md
+        border-top-right-radius: 10px
+        border-top-left-radius: 10px
+
+      .modal__success__submitted__icon
+        text-align: center
+
+        i
+          color: $bar-fg
+          width: 30px
+          zoom: 2
+
+      .modal__success__submitted__sm
+        margin-top: $pad / 2
+        +font-size($font-size-sm, $font-size-xs)
+
+    .modal__success__share
+      padding: $pad
+      text-align: center
+
+      .modal__success__share__row
+        margin-bottom: $pad
+
+      .modal__success__share__title
+        margin-bottom: $pad
+
+  .ak-modal-x
+    display: block
+    &:before
+      content: ' '
+      background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxOS4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHZpZXdCb3g9Ii0yODkgMzgwIDMyIDMzIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IC0yODkgMzgwIDMyIDMzOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8c3R5bGUgdHlwZT0idGV4dC9jc3MiPg0KCS5zdDB7ZmlsbDpub25lO3N0cm9rZTojNzU3NTc1O3N0cm9rZS13aWR0aDoyO3N0cm9rZS1saW5lY2FwOnNxdWFyZTt9DQo8L3N0eWxlPg0KPGc+DQoJPHBhdGggY2xhc3M9InN0MCIgZD0iTS0yODksNDEyLjVsMzIuMS0zMi4xIi8+DQo8L2c+DQo8bGluZSBjbGFzcz0ic3QwIiB4MT0iLTI4OSIgeTE9IjM4MC41IiB4Mj0iLTI1NyIgeTI9IjQxMi41Ii8+DQo8L3N2Zz4NCg==)
+      background-repeat: no-repeat
+      background-position: center
+      background-size: 15px
+      width: 30px
+      height: 30px
+
+    border-radius: 100%
+    right: 20px
+    top: 20px
+    z-index: 2
+    width: 30px
+    height: 30px
+
+  .ak-modal-x
+    background-color: transparent
+    &:hover
+      background-color: rgba(0, 0, 0, .15)

@@ -40,131 +40,184 @@
   </div>
 
   <div id="order">
-    <div ng-if="ctrl.isSubmitted" ng-cloak id="success">
-      <div class="specs__submitted">
-        <div class="specs__submitted__icon">
+    <div class="form__field form__field--label">
+      Choose your donation and reward:
+    </div>
+    <div class="items">
+      <table class="items__table">
+        {% for option in doc.campaign.options %}
+        <tr class="items__table__row">
+          <td>
+            <div class="form__select">
+              <select class="form__control" ng-model="ctrl.quantities['{{option.stripe_sku}}']" ng-change="ctrl.setSkuItem('{{option.stripe_sku}}', {{option|jsonify}}, '1')">
+                <option value="[[num]]" ng-repeat="num in ctrl.quantityOptions">[[num]]</option>
+              </select>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 7.6" enable-background="new 0 0 15 7.6"><path d="M15 1.1l-7.5 6.5-7.5-6.3 1-1.2 6.5 5.5 6.5-5.6z"></path></svg>
+            </div>
+          </td>
+          <td>
+            <em>${{option.price}}</em>
+          </td>
+          <td>
+            {{option.title}} ({{option.size}})
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+
+    <div class="form__field form__field--label">
+      Would you like to donate an additional amount?
+    </div>
+    <div class="form__field__meta">
+      <div ng-if="ctrl.getAddMoreAmount() == '0'">
+        Thanks! You're donating the average amount! 👌
+      </div>
+      <div ng-if="ctrl.getAddMoreAmount() > 0">
+        Add <b>[[ctrl.getAddMoreAmount()|currency:"$":0]]</b> to beat the average of [[ctrl.campaign.average|currency:"$":0]]!
+      </div>
+      <div ng-if="ctrl.getAddMoreAmount() < 0">
+        Thanks! Your total is higher than the average of <b>[[ctrl.campaign.average|currency:"$":0]]</b>, but you can always add more on top! 💪
+      </div>
+    </div>
+    <div class="form__field__row">
+      <div class="form__dollar form__dollar--off">$</div><input type="text" class="form__control form__control--toggled form__control--dollar form__control--toggled--off" placeholder="_" ng-model="ctrl.additionalAmount" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+      <div class="form__aside" ng-class="{'form__aside--visible': ctrl.additionalAmount}">
+        Thank you! ✨
+      </div>
+    </div>
+
+    <div id="donate-sentinel"></div>
+
+    <div class="form__field form__field--label form__field--push">
+      Your subtotal:
+    </div>
+    <div class="form__field__row">
+      <div class="form__field__text">[[ctrl.getTotal()|currency:"$":0]]</div>
+    </div>
+
+    <div class="specs__optional" ng-if="ctrl.isOptionalShown" ng-cloak id="order-note">
+      <div class="specs__row specs__row--flush">
+        <div class="form__field form__field--label">
+          Leave a note for the artist (optional)
+        </div>
+        <div class="form__field__row">
+          <textarea class="form__control" ng-model="ctrl.artistNote"></textarea>
+        </div>
+      </div>
+      <div class="specs__row">
+        <div class="form__field form__field--label">
+          Tip the artist? (optional)
+        </div>
+        <div class="form__field__meta">
+          <div>
+            {{doc.campaign.artist.first_name}} isn't taking any profits, but you can send a tip.
+          </div>
+        </div>
+        <div class="form__field__row">
+          <div class="form__dollar form__dollar--off">$</div><input type="text" class="form__control form__control--toggled form__control--dollar form__control--toggled--off" placeholder="_" ng-model="ctrl.artistTip" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+          <div class="form__aside" ng-class="{'form__aside--visible': ctrl.artistTip}">
+            ✨ Thank you! ✨
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="specs__pay" ng-if="ctrl.isOptionalShown">
+      <button class="btn btn--icon" ng-click="ctrl.openOrderDialog()" ng-disabled="!ctrl.getTotal() || ctrl.isLoading">
+        Finish and pay
+        <i class="material-icons">navigate_next</i>
+      </button>
+      <div class="loader" ng-if="ctrl.isLoading">
+        {% include "/source/svg/loader.svg" %}
+      </div>
+    </div>
+
+    <div class="specs__pay" ng-if="!ctrl.isOptionalShown">
+      <button class="btn btn--icon" ng-click="ctrl.goNext()" ng-disabled="!ctrl.getTotal()">
+        Next
+        <i class="material-icons">navigate_next</i>
+      </button>
+    </div>
+
+    <div class="specs__share-mobile">
+      <span class="specs__share-mobile__text">Share</span>
+      {{render_share()}}
+    </div>
+  </div>
+
+<div data-ak-modal="order-success">
+  <div class="modal">
+    <div class="ak-modal-x"></div>
+    <div class="modal__success">
+      <div class="modal__success__submitted">
+        <div class="modal__success__submitted__icon">
           <i class="material-icons">check_circle</i>
         </div>
         We've got your order.<br>Thank you so much for backing this cause!
-        <div class="specs__submitted__sm">
-        Questions? <a href="mailto:artforx@blinkk.com">Email us</a>.
+        <div class="modal__success__submitted__sm">
+          Questions? <a href="mailto:artforx@blinkk.com">Email us</a>.
         </div>
       </div>
-      <div class="specs__share">
-        <div class="specs__share__title form__field form__field--label">
-          Last thing – please share this page with friends so they can contribute too!
+     <div class="modal__success__share">
+        <div class="modal__success__share__title">
+          Share with friends so they can contribute too:
         </div>
-        <div class="specs__share__row">
+        <div class="modal__success__share__row">
           {{render_share()}}
         </div>
-        <p>Thank you! ❤️ 🤗</p>
+	<div class="modal__success__share__title">
+	  Send an email postcard to share your donation:
+	</div>
+	<div class="share">
+          <div class="share__email" ng-controller="EmailShareController as share" ng-init="share.campaignIdent = '{{doc.campaign.ident}}'">
+	    <div class="ak-grid ak-grid--reversed">
+	      <div class="ak-grid__item ak-grid__item--12-cols ak-grid__item--7-cols--gt-md">
+		<form class="form" ng-submit="share.submit()">
+		  <div class="form__field">
+		    <div class="form__field__row">
+		      <div class="form__field__row__aside">From:</div><input type="text" placeholder="Your name" ng-model="share.email.sender_name" class="form__control" required>
+		    </div>
+		  </div>
+		  <div class="form__field">
+		    <div class="form__field__row">
+		      <div class="form__field__row__aside"></div><input type="email" placeholder="Your email" ng-model="share.email.sender_email" class="form__control" requried>
+		    </div>
+		  </div>
+		  <div class="form__field">
+		    <div class="form__field__row">
+		      <div class="form__field__row__aside">To:</div><input type="email" placeholder="Recipient's email" ng-model="share.email.recipient_email" class="form__control" required>
+		    </div>
+		  </div>
+		  <div class="form__field">
+		    <div class="form__field__row">
+		      <textarea ng-model="share.email.user_supplied_body" class="form__control form__control--lg" required maxlength="500"></textarea>
+		    </div>
+		  </div>
+		  <div class="form__field">
+		    <div class="form__field__row">
+		      <button type="submit" class="btn btn--sm" ng-disabled="share.isLoading">Send to friend</button>
+                      <div class="loader" ng-if="share.isLoading">
+                        {% include "/source/svg/loader.svg" %}
+                      </div>
+                      <div class="form__field__row__inline" ng-if="share.isSubmitted && !share.isLoading">
+                        Email sent!
+                      </div>
+		    </div>
+		  </div>
+		</form>
+	      </div>
+	      <div class="ak-grid__item ak-grid__item--12-cols ak-grid__item--5-cols--gt-md">
+		<div class="share__email__postcard">
+		  <img src="{{doc.campaign.image_url}}">
+		</div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+      </div>
       </div>
     </div>
-    <div ng-if="!ctrl.isSubmitted">
-      <div class="form__field form__field--label">
-        Choose your donation and reward:
-      </div>
-      <div class="items">
-        <table class="items__table">
-          {% for option in doc.campaign.options %}
-          <tr class="items__table__row">
-            <td>
-              <div class="form__select">
-                <select class="form__control" ng-model="ctrl.quantities['{{option.stripe_sku}}']" ng-change="ctrl.setSkuItem('{{option.stripe_sku}}', {{option|jsonify}}, '1')">
-                <option value="[[num]]" ng-repeat="num in ctrl.quantityOptions">[[num]]</option>
-                </select>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 7.6" enable-background="new 0 0 15 7.6"><path d="M15 1.1l-7.5 6.5-7.5-6.3 1-1.2 6.5 5.5 6.5-5.6z"></path></svg>
-              </div>
-            </td>
-            <td>
-              <em>${{option.price}}</em>
-            </td>
-            <td>
-              {{option.title}} ({{option.size}})
-            </td>
-          </tr>
-          {% endfor %}
-        </table>
-      </div>
-
-      <div class="form__field form__field--label">
-        Would you like to donate an additional amount?
-      </div>
-      <div class="form__field__meta">
-        <div ng-if="ctrl.getAddMoreAmount() == '0'">
-          Thanks! You're donating the average amount! 👌
-        </div>
-        <div ng-if="ctrl.getAddMoreAmount() > 0">
-          Add <b>[[ctrl.getAddMoreAmount()|currency:"$":0]]</b> to beat the average of [[ctrl.campaign.average|currency:"$":0]]!
-        </div>
-        <div ng-if="ctrl.getAddMoreAmount() < 0">
-          Thanks! Your total is higher than the average of <b>[[ctrl.campaign.average|currency:"$":0]]</b>, but you can always add more on top! 💪
-        </div>
-      </div>
-      <div class="form__field__row">
-        <div class="form__dollar form__dollar--off">$</div><input type="text" class="form__control form__control--toggled form__control--dollar form__control--toggled--off" placeholder="_" ng-model="ctrl.additionalAmount" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
-        <div class="form__aside" ng-class="{'form__aside--visible': ctrl.additionalAmount}">
-          Thank you! ✨
-        </div>
-      </div>
-
-      <div id="donate-sentinel"></div>
-
-      <div class="form__field form__field--label form__field--push">
-        Your subtotal:
-      </div>
-      <div class="form__field__row">
-        <div class="form__field__text">[[ctrl.getTotal()|currency:"$":0]]</div>
-      </div>
-
-      <div class="specs__optional" ng-if="ctrl.isOptionalShown" ng-cloak id="order-note">
-        <div class="specs__row specs__row--flush">
-          <div class="form__field form__field--label">
-            Leave a note for the artist (optional)
-          </div>
-          <div class="form__field__row">
-            <textarea class="form__control" ng-model="ctrl.artistNote"></textarea>
-          </div>
-        </div>
-        <div class="specs__row">
-          <div class="form__field form__field--label">
-            Tip the artist? (optional)
-          </div>
-          <div class="form__field__meta">
-            <div>
-              {{doc.campaign.artist.first_name}} isn't taking any profits, but you can send a tip.
-            </div>
-          </div>
-          <div class="form__field__row">
-            <div class="form__dollar form__dollar--off">$</div><input type="text" class="form__control form__control--toggled form__control--dollar form__control--toggled--off" placeholder="_" ng-model="ctrl.artistTip" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
-            <div class="form__aside" ng-class="{'form__aside--visible': ctrl.artistTip}">
-              ✨ Thank you! ✨
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="specs__pay" ng-if="ctrl.isOptionalShown">
-        <button class="btn btn--icon" ng-click="ctrl.openOrderDialog()" ng-disabled="!ctrl.getTotal() || ctrl.isLoading">
-          Finish and pay
-          <i class="material-icons">navigate_next</i>
-        </button>
-        <div class="loader" ng-if="ctrl.isLoading">
-          {% include "/source/svg/loader.svg" %}
-        </div>
-      </div>
-
-      <div class="specs__pay" ng-if="!ctrl.isOptionalShown">
-        <button class="btn btn--icon" ng-click="ctrl.goNext()" ng-disabled="!ctrl.getTotal()">
-          Next
-          <i class="material-icons">navigate_next</i>
-        </button>
-      </div>
-
-      <div class="specs__share-mobile">
-        <span class="specs__share-mobile__text">Share</span>
-        {{render_share()}}
-      </div>
-
   </div>
 </div>

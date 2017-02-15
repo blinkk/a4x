@@ -6,6 +6,14 @@ from protorpc import remote
 
 class CampaignService(remote.Service):
 
+    @remote.method(messages.SendEmailRequest,
+                   messages.SendEmailResponse)
+    def send_email(self, request):
+        campaign = campaigns.Campaign.get_or_create(request.campaign.ident)
+        campaign.send_email(request.email)
+        resp = messages.SendEmailResponse()
+        return resp
+
     @remote.method(messages.CampaignRequest,
                    messages.CampaignResponse)
     def get(self, request):

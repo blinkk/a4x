@@ -60,3 +60,19 @@ class CampaignRequest(messages.Message):
 
 class CampaignResponse(messages.Message):
     campaign = messages.MessageField(CampaignMessage, 1)
+
+
+class EmailMessage(messages.Message):
+    sender_email = messages.StringField(1)
+    sender_name = messages.StringField(2)
+    recipient_email = messages.StringField(3)
+    user_supplied_body = messages.StringField(4)
+
+
+class SendEmailRequest(messages.Message):
+    email = messages.MessageField(EmailMessage, 1)
+    campaign = messages.MessageField(CampaignMessage, 2)
+
+
+class SendEmailResponse(messages.Message):
+    email = messages.MessageField(EmailMessage, 1)

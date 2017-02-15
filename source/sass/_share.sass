@@ -1,0 +1,34 @@
+.share
+  .share__email
+    border-radius: 5px
+    background: $color-bg
+    padding: $pad
+    text-align: left
+    +md
+      width: 600px
+
+    .loader
+      position: absolute
+      margin-top: -2px
+
+    .share__email__postcard
+        background-image: url(../images/email_postcard.svg)
+        background-repeat: no-repeat
+        background-size: contain
+        height: 270px
+        margin: $pad / 2 auto 0
+        text-align: center
+        width: 208px
+        +md
+          margin: 0 auto
+
+        img
+          max-width: 150px
+          max-height: 150px
+          margin: 74px auto 0
+
+    textarea.form__control
+      min-height: 165px
+
+  .form__field
+    margin: 0
